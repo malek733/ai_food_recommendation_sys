@@ -54,9 +54,9 @@ def extract_metadata_filters(query):
         "high-end": {"price": {"min": 40}},
     }
 
-    if "under $" in query_lower or "less than $" in query_lower:
+    if "under QR" in query_lower or "less than QR" in query_lower:
         try:
-            price_text = query_lower.split("$")[1].split()[0]
+            price_text = query_lower.split("QR")[1].split()[0]
             max_price = float(price_text)
             filters["price"] = {"max": max_price}
         except (IndexError, ValueError):
@@ -285,7 +285,7 @@ def get_recommendations(query, conversation_memory=None):
         for item in parsed_response.matches:
             output.append(
                 f"\n- **{item.name}** ({item.category}) from *{item.restaurant}*\n"
-                f"  Price: ${item.price:.2f}\n"
+                f"  Price: QR{item.price:.2f}\n"
                 f"  Description: {item.description or 'No description available'}"
             )
 
@@ -301,7 +301,7 @@ def get_recommendations(query, conversation_memory=None):
         for item in menu_items[:3]:  # Show first 3 items as fallback
             fallback_output.append(
                 f"\n- **{item['name']}** ({item['category']}) from *{item['restaurant']}*\n"
-                f"  Price: ${item['price']:.2f}\n"
+                f"  Price: QR{item['price']:.2f}\n"
                 f"  Description: {item['description'] or 'No description available'}"
             )
 

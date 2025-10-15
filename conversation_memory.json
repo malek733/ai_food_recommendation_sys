@@ -1,5 +1,256 @@
 {
-  "session_start": "2025-10-14T15:39:32.009361",
-  "last_updated": "2025-10-14T15:41:27.745862",
-  "messages": []
+  "session_start": "2025-10-15T12:11:52.329588",
+  "last_updated": "2025-10-15T12:39:14.566800",
+  "messages": [
+    {
+      "type": "ai",
+      "content": "🔥 I'd be happy to help you with the calorie information for the spicy pepperoni pizzas.\n\n**Introduction**\n\nWe've found two delicious pepperoni pizzas that fit your craving for something spicy. To provide you with accurate calorie information, we'll analyze each pizza based on its ingredients, portion size, and preparation method. We'll also consider standard nutritional data for similar dishes to estimate the calorie count for each pizza.\n\n**Calorie Information**\n\nHere are the estimated calorie counts for each pepperoni pizza:\n\n1. **Pepperoni Pizza from Kabab Khatoon**\n\t* Estimated calorie count: 1200-1400 calories\n\t* Breakdown:\n\t\t+ Crust: 200-250 calories\n\t\t+ Pepperoni: 300-350 calories\n\t\t+ Mozzarella cheese: 200-250 calories\n\t\t+ Tomato sauce: 100-150 calories\n\t\t+ Spices and seasonings: negligible calories\n\t* Notes: This pizza has a thick crust, which contributes to its higher calorie count. However, the pepperoni and mozzarella cheese are also high in calories.\n2. **Pepperoni Pizza from Pizza Mia**\n\t* Estimated calorie count: 1200-1400 calories\n\t* Breakdown:\n\t\t+ Crust: 200-250 calories\n\t\t+ Pepperoni: 300-350 calories\n\t\t+ Mozzarella cheese: 200-250 calories\n\t\t+ Tomato sauce: 100-150 calories\n\t\t+ Spices and seasonings: negligible calories\n\t* Notes: Similar to the Kabab Khatoon pizza, this pizza has a thick crust and high-calorie toppings.\n\n**Nutritional Notes and Healthier Alternatives**\n\nWhile these pizzas are delicious, they are high in calories and fat. If you're looking for a healthier alternative, consider the following options:\n\n* Opt for a thinner crust or a cauliflower crust to reduce calorie intake.\n* Choose a lighter cheese option, such as part-skim mozzarella or reduced-fat mozzarella.\n* Load up on vegetables, such as bell peppers, onions, and mushrooms, to increase the nutrient density of your pizza.\n* Consider a vegetarian or vegan pizza option to reduce saturated fat and calorie intake.\n\nRemember, portion control is key when it comes to enjoying your favorite foods. If you're concerned about calorie intake, consider sharing a pizza with a friend or ordering a smaller size.",
+      "timestamp": "2025-10-15T12:39:14.566800"
+    },
+    {
+      "type": "human",
+      "content": "from where I can get burger",
+      "timestamp": "2025-10-15T12:39:14.566800"
+    },
+    {
+      "type": "ai",
+      "content": "🤖 We've got just the thing for you! You're craving a burger, and we've found some delicious options at Grab Burger. We remembered that you were looking for something spicy earlier, but since you're now looking for a burger, we're glad we can recommend these tasty options to you.\n\n📋 Here are the matching dishes:\n\n- **Classic Cheeseburger** (Burgers) from *Grab Burger*\n  💰 Price: $11.99\n  📝 Beef patty with cheese, lettuce, tomato, and special sauce\n\n- **BBQ Bacon Burger** (Burgers) from *Grab Burger*\n  💰 Price: $15.99\n  📝 Beef patty with bacon, BBQ sauce, and onion rings\n\n🔍 You can refine your search by:\n  • price\n  • category",
+      "timestamp": "2025-10-15T12:39:14.566800"
+    },
+    {
+      "type": "human",
+      "content": "what the calories of the first option",
+      "timestamp": "2025-10-15T12:39:14.566800"
+    },
+    {
+      "type": "ai",
+      "content": "🔥 🤖 I'd be happy to help you with the calorie information for the burgers at Grab Burger.\n\n**Introduction**\n\nWe've found two delicious burger options at Grab Burger that fit your craving for a tasty meal. To provide you with accurate calorie information, we'll analyze each burger based on its ingredients, portion size, and preparation method. We'll also consider standard nutritional data for similar dishes to estimate the calorie count for each burger.\n\n**Calorie Information**\n\nHere are the estimated calorie counts for each burger:\n\n1. **Classic Cheeseburger**\n\t* Estimated calorie count: 800-1000 calories\n\t* Breakdown:\n\t\t+ Beef patty: 200-250 calories\n\t\t+ Cheese: 100-150 calories\n\t\t+ Lettuce, tomato, and onion: negligible calories\n\t\t+ Special sauce: 50-100 calories\n\t\t+ Bun: 100-150 calories\n\t* Notes: This burger has a relatively balanced calorie count, but the beef patty and cheese contribute to a significant portion of the calories.\n2. **BBQ Bacon Burger**\n\t* Estimated calorie count: 1200-1400 calories\n\t* Breakdown:\n\t\t+ Beef patty: 200-250 calories\n\t\t+ Bacon: 200-250 calories\n\t\t+ BBQ sauce: 100-150 calories\n\t\t+ Onion rings: 150-200 calories\n\t\t+ Cheese: 100-150 calories\n\t\t+ Bun: 100-150 calories\n\t* Notes: This burger has a higher calorie count due to the addition of bacon and onion rings. However, the BBQ sauce and cheese also contribute to the calorie count.\n\n**Nutritional Notes and Healthier Alternatives**\n\nWhile these burgers are delicious, they are high in calories and fat. If you're looking for a healthier alternative, consider the following options:\n\n* Opt for a leaner beef patty or a plant-based patty to reduce saturated fat and calorie intake.\n* Choose a lighter cheese option, such as part-skim mozzarella or reduced-fat mozzarella.\n* Load up on vegetables, such as lettuce, tomato, and onion, to increase the nutrient density of your burger.\n* Consider a smaller bun or a whole-grain bun to reduce carbohydrate intake.\n* If you're concerned about calorie intake, consider sharing a burger with a friend or ordering a smaller size.\n\nRemember, portion control is key when it comes to enjoying your favorite foods. If you're concerned about calorie intake, consider making healthier choices or adjusting your portion sizes.",
+      "timestamp": "2025-10-15T12:39:14.566800"
+    },
+    {
+      "type": "human",
+      "content": "what are the calories of spicy tuna roll",
+      "timestamp": "2025-10-15T12:39:14.566800"
+    },
+    {
+      "type": "ai",
+      "content": "🔥 🤖 We've got the calorie information you're looking for! Based on the food items you provided, we'll analyze each dish to estimate the calorie count. Please note that these estimates are based on standard nutritional data and may vary depending on the specific ingredients and portion sizes used.\n\n**Introduction**\n\nWe've got a list of delicious food items to analyze for calorie content. We'll break down each dish into its individual components, estimate the calorie count, and provide any relevant nutritional notes or healthier alternatives.\n\n**Calorie Information**\n\nHere are the estimated calorie counts for each food item:\n\n1. **Spicy Tuna Roll from Ocean Lobster**\n\t* Estimated calorie count: 400-500 calories\n\t* Breakdown:\n\t\t+ Tuna: 150-200 calories\n\t\t+ Spicy mayo: 100-150 calories\n\t\t+ Cucumber: negligible calories\n\t\t+ Rice: 100-150 calories\n\t* Notes: This dish has a relatively balanced calorie count, but the spicy mayo contributes to a significant portion of the calories.\n2. **California Roll from Ocean Lobster**\n\t* Estimated calorie count: 500-600 calories\n\t* Breakdown:\n\t\t+ Crab: 150-200 calories\n\t\t+ Avocado: 100-150 calories\n\t\t+ Cucumber: negligible calories\n\t\t+ Rice: 100-150 calories\n\t\t+ Sesame seeds: negligible calories\n\t* Notes: This dish has a higher calorie count due to the crab and avocado. However, the sesame seeds add a nice crunch without adding many calories.\n3. **Pepperoni Pizza from Pizza Mia**\n\t* Estimated calorie count: 1200-1400 calories\n\t* Breakdown:\n\t\t+ Crust: 200-250 calories\n\t\t+ Pepperoni: 300-350 calories\n\t\t+ Mozzarella cheese: 200-250 calories\n\t\t+ Tomato sauce: 100-150 calories\n\t\t+ Spices and seasonings: negligible calories\n\t* Notes: This pizza has a high calorie count due to the pepperoni and mozzarella cheese. However, the tomato sauce adds a burst of flavor without adding many calories.\n\n**Nutritional Notes and Healthier Alternatives**\n\nWhile these dishes are delicious, they are high in calories and fat. If you're looking for a healthier alternative, consider the following options:\n\n* Opt for a leaner protein source, such as grilled chicken or salmon, to reduce saturated fat and calorie intake.\n* Choose a lighter cheese option, such as part-skim mozzarella or reduced-fat mozzarella.\n* Load up on vegetables, such as lettuce, tomato, and cucumber, to increase the nutrient density of your dish.\n* Consider a smaller portion size or sharing a dish with a friend to reduce calorie intake.\n* If you're concerned about calorie intake, consider making healthier choices or adjusting your portion sizes.\n\nRemember, portion control is key when it comes to enjoying your favorite foods. If you're concerned about calorie intake, consider making healthier choices or adjusting your portion sizes.\n\n**Additional Recommendations**\n\nIf you're looking for a healthier alternative to the Spicy Tuna Roll, consider trying a sushi roll with brown rice and vegetables. This will reduce the calorie count and increase the nutrient density of your dish.\n\nIf you're looking for a healthier alternative to the Pepperoni Pizza, consider trying a cauliflower crust pizza with lean protein and vegetables. This will reduce the calorie count and increase the nutrient density of your dish.\n\nWe hope this information helps you make informed choices about your diet!",
+      "timestamp": "2025-10-15T12:39:14.566800"
+    },
+    {
+      "type": "human",
+      "content": "what are the items of Ocean Lobster",
+      "timestamp": "2025-10-15T12:39:14.566800"
+    },
+    {
+      "type": "ai",
+      "content": "🤖 We're glad you're interested in exploring the menu at Ocean Lobster! Based on our previous conversation, we remember that you were looking for something spicy, but since you're now looking for the items at Ocean Lobster, we've got three delicious options for you. Here are the matching dishes with their details:\n\n📋 Here are the matching dishes:\n\n- **Salmon Sashimi** (Sashimi) from *Ocean Lobster*\n  💰 Price: $13.99\n  📝 Fresh Atlantic salmon slices\n\n- **Spicy Tuna Roll** (Sushi Rolls) from *Ocean Lobster*\n  💰 Price: $10.99\n  📝 Fresh tuna with spicy mayo and cucumber\n\n- **California Roll** (Sushi Rolls) from *Ocean Lobster*\n  💰 Price: $8.99\n  📝 Crab, avocado, and cucumber with sesame seeds\n\n🔍 You can refine your search by:\n  • category\n  • price",
+      "timestamp": "2025-10-15T12:39:14.566800"
+    },
+    {
+      "type": "human",
+      "content": "what are the calories of the first option",
+      "timestamp": "2025-10-15T12:39:14.566800"
+    },
+    {
+      "type": "ai",
+      "content": "- **Salmon Sashimi**: 180-220 calories (fresh Atlantic salmon slices)\n- **Spicy Tuna Roll**: 400-500 calories (fresh tuna with spicy mayo and cucumber)\n- **California Roll**: 500-600 calories (crab, avocado, and cucumber with sesame seeds)",
+      "timestamp": "2025-10-15T12:39:14.566800"
+    },
+    {
+      "type": "human",
+      "content": "what are the calories of cheeze burger",
+      "timestamp": "2025-10-15T12:39:14.566800"
+    },
+    {
+      "type": "ai",
+      "content": "- **Salmon Sashimi**: 180-220 calories (fresh Atlantic salmon slices)\n- **Spicy Tuna Roll**: 400-500 calories (fresh tuna with spicy mayo and cucumber)\n- **California Roll**: 500-600 calories (crab, avocado, and cucumber with sesame seeds)",
+      "timestamp": "2025-10-15T12:39:14.566800"
+    },
+    {
+      "type": "human",
+      "content": "what are the calories of cheeze burger",
+      "timestamp": "2025-10-15T12:39:14.566800"
+    },
+    {
+      "type": "ai",
+      "content": "- **Cheeze Burger**: 800-1000 calories (beef patty with cheese, lettuce, tomato, and special sauce)",
+      "timestamp": "2025-10-15T12:39:14.566800"
+    },
+    {
+      "type": "human",
+      "content": "I am craving burger",
+      "timestamp": "2025-10-15T12:39:14.566800"
+    },
+    {
+      "type": "ai",
+      "content": "🤖 I found some great options for 'I am craving burger'!\n\n📋 Here are the matching dishes:\n\n- **Classic Cheeseburger** (Burgers) from *Grab Burger*\n  💰 Price: $11.99\n  📝 Beef patty with cheese, lettuce, tomato, and special sauce\n\n- **BBQ Bacon Burger** (Burgers) from *Grab Burger*\n  💰 Price: $15.99\n  📝 Beef patty with bacon, BBQ sauce, and onion rings\n\n🔍 Try being more specific with your request for better results!",
+      "timestamp": "2025-10-15T12:39:14.566800"
+    },
+    {
+      "type": "human",
+      "content": "what are the calories of te first option",
+      "timestamp": "2025-10-15T12:39:14.566800"
+    },
+    {
+      "type": "ai",
+      "content": "Error getting calorie info: Error code: 404 - {'error': {'message': 'The model `llama2-7b-chat` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}. Please try again.",
+      "timestamp": "2025-10-15T12:39:14.566800"
+    },
+    {
+      "type": "human",
+      "content": "I am craving sea food",
+      "timestamp": "2025-10-15T12:39:14.566800"
+    },
+    {
+      "type": "ai",
+      "content": "🤖 I found some great options for 'I am craving sea food'!\n\n📋 Here are the matching dishes:\n\n- **Salmon Sashimi** (Sashimi) from *Ocean Lobster*\n  💰 Price: $13.99\n  📝 Fresh Atlantic salmon slices\n\n- **Sashimi** (Unspecified category) from *Unknown restaurant*\n  💰 Price: $0.00\n  📝 Fresh raw fish slices\n\n- **Spicy Tuna Roll** (Sushi Rolls) from *Ocean Lobster*\n  💰 Price: $10.99\n  📝 Fresh tuna with spicy mayo and cucumber\n\n- **Seafood Spaghetti Marinara** (Pasta) from *Pastaroni*\n  💰 Price: $0.00\n  📝 Seafood Spaghetti Marinara\n\n- **Al Samak** (Unspecified category) from *Unknown restaurant*\n  💰 Price: $0.00\n  📝 {'ar': '', 'en': ''}\n\n🔍 Try being more specific with your request for better results!",
+      "timestamp": "2025-10-15T12:39:14.566800"
+    },
+    {
+      "type": "human",
+      "content": "what are the calories of cheese burger",
+      "timestamp": "2025-10-15T12:39:14.566800"
+    },
+    {
+      "type": "ai",
+      "content": "Error getting calorie info: Error code: 404 - {'error': {'message': 'The model `llama-3.1-8b-instan` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}. Please try again.",
+      "timestamp": "2025-10-15T12:39:14.566800"
+    },
+    {
+      "type": "ai",
+      "content": "Hey! 🌟 What kind of food can I help you find?",
+      "timestamp": "2025-10-15T12:39:14.566800"
+    },
+    {
+      "type": "human",
+      "content": "I am carving burger",
+      "timestamp": "2025-10-15T12:39:14.566800"
+    },
+    {
+      "type": "ai",
+      "content": "🤖 I found some great options for 'I am carving burger'!\n\n📋 Here are the matching dishes:\n\n- **BBQ Bacon Burger** (Burgers) from *Grab Burger*\n  💰 Price: $15.99\n  📝 Beef patty with bacon, BBQ sauce, and onion rings\n\n- **Classic Cheeseburger** (Burgers) from *Grab Burger*\n  💰 Price: $11.99\n  📝 Beef patty with cheese, lettuce, tomato, and special sauce\n\n🔍 Try being more specific with your request for better results!",
+      "timestamp": "2025-10-15T12:39:14.566800"
+    },
+    {
+      "type": "human",
+      "content": "what are the calories of the first option",
+      "timestamp": "2025-10-15T12:39:14.566800"
+    },
+    {
+      "type": "ai",
+      "content": "Error getting calorie info: Error code: 404 - {'error': {'message': 'The model `llama2-7b-chat` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}. Please try again.",
+      "timestamp": "2025-10-15T12:39:14.566800"
+    },
+    {
+      "type": "human",
+      "content": "what are the calories of cheese burger",
+      "timestamp": "2025-10-15T12:39:14.566800"
+    },
+    {
+      "type": "ai",
+      "content": "Error getting calorie info: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}. Please try again.",
+      "timestamp": "2025-10-15T12:39:14.566800"
+    },
+    {
+      "type": "human",
+      "content": "I am craving sea food",
+      "timestamp": "2025-10-15T12:39:14.566800"
+    },
+    {
+      "type": "ai",
+      "content": "🤖 I found some great options for 'I am craving sea food'!\n\n📋 Here are the matching dishes:\n\n- **Salmon Sashimi** (Sashimi) from *Ocean Lobster*\n  💰 Price: $13.99\n  📝 Fresh Atlantic salmon slices\n\n- **Sashimi** (Unspecified category) from *Unknown restaurant*\n  💰 Price: $0.00\n  📝 Fresh raw fish slices\n\n- **Spicy Tuna Roll** (Sushi Rolls) from *Ocean Lobster*\n  💰 Price: $10.99\n  📝 Fresh tuna with spicy mayo and cucumber\n\n- **Seafood Spaghetti Marinara** (Pasta) from *Pastaroni*\n  💰 Price: $0.00\n  📝 Seafood Spaghetti Marinara\n\n- **Al Samak** (Unspecified category) from *Unknown restaurant*\n  💰 Price: $0.00\n  📝 {'ar': '', 'en': ''}\n\n🔍 Try being more specific with your request for better results!",
+      "timestamp": "2025-10-15T12:39:14.566800"
+    },
+    {
+      "type": "human",
+      "content": "I am carving burger",
+      "timestamp": "2025-10-15T12:39:14.566800"
+    },
+    {
+      "type": "ai",
+      "content": "Sorry, I encountered an error: Failed to parse RecommendationResponse from completion {\"$defs\": {\"MenuItem\": {\"properties\": {\"name\": {\"description\": \"Name of the dish\", \"title\": \"Name\", \"type\": \"string\"}, \"restaurant\": {\"description\": \"Restaurant name\", \"title\": \"Restaurant\", \"type\": \"string\"}, \"price\": {\"description\": \"Price of the dish\", \"title\": \"Price\", \"type\": \"number\"}, \"category\": {\"description\": \"Category of the dish\", \"title\": \"Category\", \"type\": \"string\"}, \"description\": {\"anyOf\": [{\"type\": \"string\"}, {\"type\": \"null\"}], \"default\": null, \"description\": \"Description of the dish\", \"title\": \"Description\"}, \"spiciness\": {\"anyOf\": [{\"type\": \"string\"}, {\"type\": \"null\"}], \"default\": null, \"description\": \"Spiciness level of the dish\", \"title\": \"Spiciness\"}}, \"required\": [\"name\", \"restaurant\", \"price\", \"category\"], \"title\": \"MenuItem\", \"type\": \"object\"}}, \"properties\": {\"matches\": {\"description\": \"List of matching menu items\", \"items\": {\"$ref\": \"#/$defs/MenuItem\"}, \"title\": \"Matches\", \"type\": \"array\"}, \"explanation\": {\"description\": \"Natural language explanation of the recommendations\", \"title\": \"Explanation\", \"type\": \"string\"}, \"suggested_filters\": {\"anyOf\": [{\"items\": {\"type\": \"string\"}, \"type\": \"array\"}, {\"type\": \"null\"}], \"description\": \"Suggested filters for narrowing down results\", \"title\": \"Suggested Filters\"}, \"continuation\": {\"description\": \"Acknowledgment of previous conversation\", \"title\": \"Continuation\", \"type\": \"string\"}}, \"required\": [\"matches\", \"explanation\", \"continuation\"], \"title\": \"Recommendations\", \"type\": \"object\"}. Got: 2 validation errors for RecommendationResponse\nmatches\n  Field required [type=missing, input_value={'$defs': {'MenuItem': {'...ions', 'type': 'object'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/missing\nexplanation\n  Field required [type=missing, input_value={'$defs': {'MenuItem': {'...ions', 'type': 'object'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/missing\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE \nPlease try again with a different query.",
+      "timestamp": "2025-10-15T12:39:14.566800"
+    },
+    {
+      "type": "ai",
+      "content": "Hi there! 😊 Ready to discover some delicious food?",
+      "timestamp": "2025-10-15T12:39:14.566800"
+    },
+    {
+      "type": "human",
+      "content": "I carving burger",
+      "timestamp": "2025-10-15T12:39:14.566800"
+    },
+    {
+      "type": "ai",
+      "content": "Sorry, I couldn't find any matching dishes with those criteria. 😔\nTry adjusting your search criteria or ask for 'help'.",
+      "timestamp": "2025-10-15T12:39:14.566800"
+    },
+    {
+      "type": "human",
+      "content": "I am craving burger",
+      "timestamp": "2025-10-15T12:39:14.566800"
+    },
+    {
+      "type": "ai",
+      "content": "Sorry, I couldn't find any matching dishes with those criteria. 😔\nTry adjusting your search criteria or ask for 'help'.",
+      "timestamp": "2025-10-15T12:39:14.566800"
+    },
+    {
+      "type": "human",
+      "content": "I am craving something spicy",
+      "timestamp": "2025-10-15T12:39:14.566800"
+    },
+    {
+      "type": "ai",
+      "content": "Sorry, I couldn't find any matching dishes with those criteria. 😔\nTry adjusting your search criteria or ask for 'help'.",
+      "timestamp": "2025-10-15T12:39:14.566800"
+    },
+    {
+      "type": "ai",
+      "content": "Hi there! 😊 Ready to discover some delicious food?",
+      "timestamp": "2025-10-15T12:39:14.566800"
+    },
+    {
+      "type": "human",
+      "content": "I am craving burger",
+      "timestamp": "2025-10-15T12:39:14.566800"
+    },
+    {
+      "type": "ai",
+      "content": "Error: Failed to parse RecommendationResponse from completion {\"matches\": [{\"name\": \"Classic Cheeseburger\", \"restaurant\": \"Grab Burger\", \"price\": 11.99, \"category\": \"Burgers\", \"description\": \"Beef patty with cheese, lettuce, tomato, and special sauce\"}, {\"name\": \"BBQ Bacon Burger\", \"restaurant\": \"Grab Burger\", \"price\": 15.99, \"category\": \"Burgers\", \"description\": \"Beef patty with bacon, BBQ sauce, and onion rings\"}]}. Got: 1 validation error for RecommendationResponse\nexplanation\n  Field required [type=missing, input_value={'matches': [{'name': 'Cl...uce, and onion rings'}]}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/missing\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE ",
+      "timestamp": "2025-10-15T12:39:14.566800"
+    },
+    {
+      "type": "human",
+      "content": "what are teh calories of burger",
+      "timestamp": "2025-10-15T12:39:14.566800"
+    },
+    {
+      "type": "ai",
+      "content": "🍔 Burger: about 250-350 kcal.",
+      "timestamp": "2025-10-15T12:39:14.566800"
+    },
+    {
+      "type": "human",
+      "content": "I am carving pizza",
+      "timestamp": "2025-10-15T12:39:14.566800"
+    },
+    {
+      "type": "ai",
+      "content": "Error: Failed to parse RecommendationResponse from completion [{\"name\": \"Pepperoni Pizza\", \"restaurant\": \"Pizza Mia\", \"price\": 14.99, \"category\": \"Pizzas\", \"description\": \"Spicy pepperoni with mozzarella cheese\"}, {\"name\": \"Pepperoni Pizza\", \"restaurant\": \"Kabab Khatoon\", \"price\": 14.99, \"category\": \"Pizzas\", \"description\": \"Spicy pepperoni with mozzarella cheese\"}, {\"name\": \"Margherita Pizza\", \"restaurant\": \"Pizza Mia\", \"price\": 12.0, \"category\": \"Pizzas\", \"description\": \"Classic pizza with tomato sauce, mozzarella, and fresh basil\"}, {\"name\": \"Margherita Pizza\", \"restaurant\": \"Kabab Khatoon\", \"price\": 12.99, \"category\": \"Pizzas\", \"description\": \"Classic pizza with tomato sauce, mozzarella, and fresh basil\"}]. Got: 1 validation error for RecommendationResponse\n  Input should be a valid dictionary or instance of RecommendationResponse [type=model_type, input_value=[{'name': 'Pepperoni Pizz...ella, and fresh basil'}], input_type=list]\n    For further information visit https://errors.pydantic.dev/2.12/v/model_type\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE ",
+      "timestamp": "2025-10-15T12:39:14.566800"
+    },
+    {
+      "type": "human",
+      "content": "I am carving something spicy",
+      "timestamp": "2025-10-15T12:39:14.566800"
+    },
+    {
+      "type": "ai",
+      "content": "Error: Invalid json output: I see you're craving something spicy! 🌶️\n\nHere are some spicy options from the available items:\n\n[\n  {\n    \"name\": \"Pepperoni Pizza\",\n    \"restaurant\": \"Kabab Khatoon\",\n    \"price\": 14.99,\n    \"category\": \"Pizzas\",\n    \"description\": \"Spicy pepperoni with mozzarella cheese\"\n  },\n  {\n    \"name\": \"Pepperoni Pizza\",\n    \"restaurant\": \"Pizza Mia\",\n    \"price\": 14.99,\n    \"category\": \"Pizzas\",\n    \"description\": \"Spicy pepperoni with mozzarella cheese\"\n  }\n]\n\nThese two pizzas are quite spicy, so if you're looking for something to satisfy your craving, one of these might be the perfect choice!\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE ",
+      "timestamp": "2025-10-15T12:39:14.566800"
+    }
+  ]
 }

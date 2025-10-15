@@ -42,7 +42,6 @@ class ConversationMemory:
         self.current_session_start = datetime.now()
 
     def load_memory(self):
-        """Load conversation history from file."""
         try:
             if os.path.exists(self.memory_file):
                 with open(self.memory_file, 'r', encoding='utf-8') as f:
@@ -56,14 +55,12 @@ class ConversationMemory:
                         elif msg_type == 'ai':
                             self.chat_history.add_ai_message(content)
 
-                    # Keep only recent messages to maintain window
                     if len(self.chat_history.messages) > self.max_messages:
                         self.chat_history.messages = self.chat_history.messages[-self.max_messages:]
         except Exception as e:
             print(f"[WARNING] Could not load conversation memory: {e}")
 
     def save_memory(self):
-        """Save conversation history to file."""
         try:
             messages = []
             for message in self.chat_history.messages:
@@ -74,7 +71,6 @@ class ConversationMemory:
                 }
                 messages.append(msg_data)
 
-            # Keep only recent messages to avoid file bloat
             if len(messages) > self.max_messages:
                 messages = messages[-self.max_messages:]
 
@@ -91,16 +87,13 @@ class ConversationMemory:
             print(f"[WARNING] Could not save conversation memory: {e}")
 
     def add_user_message(self, message):
-        """Add user message to memory."""
         self.chat_history.add_user_message(message)
 
     def add_ai_message(self, message):
-        """Add AI message to memory."""
         self.chat_history.add_ai_message(message)
 
     def get_recent_context(self, limit=10):
-        """Get recent conversation context for recommendations."""
-        messages = self.chat_history.messages[-limit*2:]  # *2 for user+ai pairs
+        messages = self.chat_history.messages[-limit*2:]
         context_parts = []
 
         for msg in messages:
@@ -112,35 +105,21 @@ class ConversationMemory:
         return "\n".join(context_parts)
 
     def get_user_preferences(self):
-        """Extract user preferences from conversation history."""
         preferences = {
             'liked_restaurants': set(),
             'liked_categories': set(),
             'price_range': None,
             'avoided_items': set()
         }
-
-        messages = self.chat_history.messages
-        for msg in messages:
-            if isinstance(msg, HumanMessage):
-                content = msg.content.lower()
-                # Extract positive mentions
-                if any(word in content for word in ['love', 'like', 'great', 'excellent', 'amazing', 'perfect']):
-                    # This is a simplified preference extraction
-                    # In a real system, you'd use more sophisticated NLP
-                    pass
-
         return preferences
 
     def clear_memory(self):
-        """Clear all conversation memory."""
         self.chat_history.clear()
         if os.path.exists(self.memory_file):
             os.remove(self.memory_file)
         self.current_session_start = datetime.now()
 
     def get_memory_stats(self):
-        """Get memory usage statistics."""
         message_count = len(self.chat_history.messages)
         return {
             'message_count': message_count,
@@ -149,11 +128,9 @@ class ConversationMemory:
         }
 
 def extract_metadata_filters(query):
-    """Extract metadata filters from user query."""
     filters = {}
     query_lower = query.lower()
-    
-    # Restaurant name filters
+
     restaurant_indicators = ["from", "at", "of", "in"]
     for indicator in restaurant_indicators:
         if f" {indicator} " in f" {query_lower} ":
@@ -163,7 +140,6 @@ def extract_metadata_filters(query):
                 filters['restaurant_name'] = rest_name
                 break
 
-    # Price filters with extended patterns
     price_patterns = {
         "cheap": {"price": {"max": 15}},
         "expensive": {"price": {"min": 30}},
@@ -172,7 +148,6 @@ def extract_metadata_filters(query):
         "high-end": {"price": {"min": 40}},
     }
 
-    # Handle explicit price mentions
     if "under $" in query_lower or "less than $" in query_lower:
         try:
             price_text = query_lower.split("$")[1].split()[0]
@@ -186,7 +161,6 @@ def extract_metadata_filters(query):
                 filters["price"] = price_filter["price"]
                 break
 
-    # Category mapping
     category_mapping = {
         "appetizer": "Appetizers",
         "starter": "Appetizers",
@@ -205,7 +179,6 @@ def extract_metadata_filters(query):
         "seafood": "Seafood",
     }
 
-    # Cuisine type mapping
     cuisine_mapping = {
         "indian": "indian",
         "italian": "italian",
@@ -219,17 +192,14 @@ def extract_metadata_filters(query):
         "arabic": "arabic",
     }
 
-    # Taste preferences
     if "spicy" in query_lower:
         filters["spiciness"] = "spicy"
 
-    # Check categories
     for keyword, category in category_mapping.items():
         if keyword in query_lower:
             filters["category_name"] = category
             break
 
-    # Check cuisine types
     for cuisine, value in cuisine_mapping.items():
         if cuisine in query_lower:
             filters["restaurant_category"] = value
@@ -238,7 +208,6 @@ def extract_metadata_filters(query):
     return filters
 
 def filter_results_by_metadata(results, filters=None):
-    """Filter search results based on metadata criteria."""
     if not filters or not results:
         return results
 
@@ -249,7 +218,6 @@ def filter_results_by_metadata(results, filters=None):
         include_doc = True
 
         for filter_key, filter_value in filters.items():
-            # Restaurant name matching
             if filter_key == "restaurant_name":
                 rest_name = metadata.get("restaurant_name", "").lower()
                 filter_terms = filter_value.lower().split()
@@ -258,7 +226,6 @@ def filter_results_by_metadata(results, filters=None):
                     break
                 continue
 
-            # Price range filtering
             if filter_key == "price" and isinstance(filter_value, dict):
                 try:
                     price = float(metadata.get("price", 0))
@@ -271,7 +238,6 @@ def filter_results_by_metadata(results, filters=None):
                     break
                 continue
 
-            # Spiciness filter
             if filter_key == "spiciness":
                 description = metadata.get("description", "").lower()
                 if "spicy" not in description and "hot" not in description:
@@ -279,7 +245,6 @@ def filter_results_by_metadata(results, filters=None):
                     break
                 continue
 
-            # Category and cuisine type matching
             if filter_key in ["category_name", "restaurant_category"]:
                 value = metadata.get(filter_key, "").lower()
                 if filter_value.lower() not in value:
@@ -293,38 +258,24 @@ def filter_results_by_metadata(results, filters=None):
     return filtered_results
 
 def handle_greeting(query):
-    """Handle common greetings and return appropriate responses."""
     greetings = {
-        "hello": "Hello! 👋 I'm your food assistant. What are you craving today?",
-        "hi": "Hi there! 😊 Ready to discover some delicious food?",
-        "hey": "Hey! 🌟 What kind of food can I help you find?",
-        "good morning": "Good morning! ☀️ Ready for some breakfast recommendations?",
-        "good afternoon": "Good afternoon! 🌞 Looking for lunch ideas?",
-        "good evening": "Good evening! 🌙 How about some dinner suggestions?",
+        "hello": "Hello! I'm your food assistant. What are you craving today?",
+        "hi": "Hi there! Ready to discover some delicious food?",
+        "hey": "Hey! What kind of food can I help you find?",
+        "good morning": "Good morning! Ready for some breakfast recommendations?",
+        "good afternoon": "Good afternoon! Looking for lunch ideas?",
+        "good evening": "Good evening! How about some dinner suggestions?",
         "help": """I can help you find food in several ways:
-- Search by restaurant (e.g., "what's available at Ocean Lobster?")
-- Search by price (e.g., "show me cheap burgers" or "dishes under $20")
-- Search by category (e.g., "show me appetizers" or "what desserts are available?")
-- Search by cuisine (e.g., "show me Italian dishes")
-- Search by taste (e.g., "I want something spicy")
-
-🍽️ FOOD COMMANDS:
-Just ask naturally and I'll help you find what you're looking for!
-
-🧠 MEMORY COMMANDS:
-- 'history' - View conversation history and memory stats
-- 'memory stats' - Show detailed memory statistics
-- 'clear memory' - Clear all conversation history
-
-The system remembers your preferences and previous conversations to provide better recommendations!"""
+- Search by restaurant, category, or price
+- Ask about calories (e.g., "how many calories in fries?")
+- Type 'history' to view past chats
+- Type 'clear memory' to reset memory"""
     }
     return greetings.get(query.lower())
 
 def get_recommendations(query, conversation_memory=None):
-    """Get filtered recommendations based on user query with conversation context."""
     parser = PydanticOutputParser(pydantic_object=RecommendationResponse)
 
-    # Get conversation context if memory is available
     conversation_context = ""
     user_preferences = {}
     if conversation_memory:
@@ -336,11 +287,10 @@ def get_recommendations(query, conversation_memory=None):
     filtered_results = filter_results_by_metadata(results, filters)
 
     if not filtered_results:
-        # Try without filters if no results found
         filtered_results = chroma_db.similarity_search(query, k=5)
 
     if not filtered_results:
-        return "Sorry, I couldn't find any matching dishes with those criteria. 😔\nTry adjusting your search criteria or ask for 'help'."
+        return "Sorry, I couldn't find any matching dishes. 😔 Try adjusting your search."
 
     menu_items = []
     for doc in filtered_results[:5]:
@@ -360,142 +310,156 @@ def get_recommendations(query, conversation_memory=None):
 
     context = json.dumps(menu_items, indent=2)
 
-    # Enhanced prompt with conversation context
     conversation_section = f"CONVERSATION HISTORY:\n{conversation_context}\n" if conversation_context else ""
 
     prompt = f"""
-    You are a friendly AI food assistant with conversation memory.
+    You are a friendly AI food assistant. You must respond with ONLY valid JSON that matches the required format.
 
     User query: "{query}"
 
     {conversation_section}
-    Available matching items:
+    Available items:
     {context}
 
-    Generate a response in the following format:
-    {parser.get_format_instructions()}
+    CRITICAL: Respond with ONLY a JSON object in this exact format:
+    {{
+        "matches": [
+            {{
+                "name": "Dish Name",
+                "restaurant": "Restaurant Name",
+                "price": 15.99,
+                "category": "Category",
+                "description": "Description"
+            }}
+        ],
+        "explanation": "Brief explanation of recommendations",
+        "suggested_filters": ["filter1", "filter2"]
+    }}
 
-    Requirements:
-    1. Use ONLY the items provided above
-    2. Reference previous conversation if relevant
-    3. Remember user preferences from conversation history
-    4. Explanation should be friendly and conversational
-    5. Include specific prices and restaurant names
-    6. Suggest relevant filters based on the available options
-    7. If this follows up from previous recommendations, acknowledge the continuity
+    - Use only the dishes from the available items list.
+    - Do NOT include any text before or after the JSON.
+    - Do NOT wrap the JSON in code blocks.
+    - Ensure all required fields are present and valid.
+    - The response must be parseable by JSON.parse().
     """
 
     try:
         response = llm.invoke([HumanMessage(content=prompt)])
-        parsed_response = parser.parse(response.content)
 
-        output = []
-        output.append(f"🤖 {parsed_response.explanation}\n")
-        output.append("📋 Here are the matching dishes:")
+        # Clean the response content to extract only JSON
+        content = response.content.strip()
 
+        # Remove any markdown code block markers
+        if content.startswith("```json"):
+            content = content[7:]
+        if content.endswith("```"):
+            content = content[:-3]
+
+        # Remove any leading/trailing text that might interfere with JSON parsing
+        content = content.strip()
+
+        # Try to find JSON object boundaries
+        start_idx = content.find('{')
+        end_idx = content.rfind('}') + 1
+
+        if start_idx != -1 and end_idx > start_idx:
+            content = content[start_idx:end_idx]
+
+        parsed_response = parser.parse(content)
+
+        output = [f"Assistant: {parsed_response.explanation}\n", "Matching dishes:"]
         for item in parsed_response.matches:
             output.append(
                 f"\n- **{item.name}** ({item.category}) from *{item.restaurant}*\n"
-                f"  💰 Price: ${item.price:.2f}\n"
-                f"  📝 {item.description or 'No description available'}"
+                f"  Price: ${item.price:.2f}\n"
+                f"  Description: {item.description or 'No description available'}"
             )
 
         if parsed_response.suggested_filters:
-            output.append("\n🔍 You can refine your search by:")
-            for filter_suggestion in parsed_response.suggested_filters:
-                output.append(f"  • {filter_suggestion}")
+            output.append("\nYou can refine your search by:")
+            for f in parsed_response.suggested_filters:
+                output.append(f"  • {f}")
 
         return "\n".join(output)
-
     except Exception as e:
-        return f"Sorry, I encountered an error: {str(e)}\nPlease try again with a different query."
+        # Fallback: try to extract and display what we can from the available items
+        fallback_output = ["I found some great options for you!\n", "Matching dishes:"]
+        for item in menu_items[:3]:  # Show first 3 items as fallback
+            fallback_output.append(
+                f"\n- **{item['name']}** ({item['category']}) from *{item['restaurant']}*\n"
+                f"  Price: ${item['price']:.2f}\n"
+                f"  Description: {item['description'] or 'No description available'}"
+            )
 
-# Initialize embeddings and Chroma database
+        fallback_output.append(f"\n\nNote: There was an issue formatting the response: {str(e)}")
+        return "\n".join(fallback_output)
+
+# Initialize embeddings, Chroma, and LLM
 embeddings_model = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
 chroma_db = Chroma(persist_directory="./chroma_db", embedding_function=embeddings_model)
 
-# Initialize LLM (Groq)
-llm = ChatGroq(
-    model="llama-3.1-8b-instant",
-    temperature=0.1
-)
+llm = ChatGroq(model="llama-3.1-8b-instant", temperature=0.1)
 
 def main():
-    """Main interactive loop for the recommendation system with conversation memory."""
     print("\n" + "="*60)
-    print("🍽️ Welcome to the Interactive Food Recommendation System!")
-    print("🧠 Enhanced with Conversation Memory!")
-    print("Type 'help' for guidance, 'history' for conversation history, or 'exit' to quit")
+    print("Welcome to the Interactive Food Recommendation System!")
+    print("With Conversation Memory and Calorie Lookup!")
     print("="*60 + "\n")
 
-    # Initialize conversation memory
     memory = ConversationMemory()
 
     while True:
         try:
             query = input("\nYou: ").strip()
-
             if not query:
-                print("Please ask me something! Type 'help' if you need suggestions.")
                 continue
 
             if query.lower() in ['exit', 'quit', 'bye']:
-                print("\n👋 Thank you for using our service! Have a great meal!")
-                memory.save_memory()  # Save memory before exit
+                print("\nGoodbye! Have a tasty day!")
+                memory.save_memory()
                 break
 
-            # Handle special commands
             if query.lower() == 'history':
                 stats = memory.get_memory_stats()
-                print(f"\n📚 Conversation History Stats:")
-                print(f"  • Messages in memory: {stats['message_count']}")
-                print(f"  • Session duration: {stats['session_duration']}")
-                print(f"  • Memory file size: {stats['memory_file_size']} bytes")
-
-                recent_context = memory.get_recent_context(5)
-                if recent_context:
-                    print(f"\n💬 Recent conversation:\n{recent_context}")
-                else:
-                    print("\n💬 No conversation history yet.")
+                print(f"\n📚 Memory: {stats}")
+                print(memory.get_recent_context(5))
                 continue
 
             if query.lower() == 'clear memory':
                 memory.clear_memory()
-                print("\n🗑️ Conversation memory cleared!")
+                print("Memory cleared!")
                 continue
 
-            if query.lower() == 'memory stats':
-                stats = memory.get_memory_stats()
-                print(f"\n📊 Memory Statistics:")
-                for key, value in stats.items():
-                    print(f"  • {key.replace('_', ' ').title()}: {value}")
+            greeting = handle_greeting(query)
+            if greeting:
+                print(f"\nAssistant: {greeting}")
+                memory.add_ai_message(greeting)
                 continue
 
-            greeting_response = handle_greeting(query)
-            if greeting_response:
-                print(f"\n🤖 {greeting_response}")
-                memory.add_ai_message(greeting_response)
-                continue
-
-            # Add user message to memory
             memory.add_user_message(query)
+            print("\nProcessing...")
 
-            print("\n🔍 Searching for recommendations...")
-            time.sleep(0.5)  # Add a small delay for better UX
+            # ✅ Calorie mode detection
+            if "calorie" in query.lower() or "calories" in query.lower():
+                calorie_prompt = f"""
+                You are a nutrition assistant. The user asked: "{query}"
+                Answer briefly with the approximate calories in kcal.
+                Format example: "🍕 Pepperoni pizza: about 285 kcal per slice."
+                Be direct. No extra explanations.
+                """
+                response = llm.invoke([HumanMessage(content=calorie_prompt)]).content.strip()
+            else:
+                response = get_recommendations(query, memory)
 
-            response = get_recommendations(query, memory)
             print(f"\n{response}")
-
-            # Add AI response to memory
             memory.add_ai_message(response)
 
         except KeyboardInterrupt:
-            print("\n\n👋 Goodbye! Have a great meal!")
-            memory.save_memory()  # Save memory before exit
+            print("\nExiting gracefully...")
+            memory.save_memory()
             break
         except Exception as e:
-            print(f"\n😅 Oops! Something went wrong: {str(e)}")
-            print("Please try rephrasing your question or ask for 'help'")
+            print(f"\nError: {str(e)}")
 
         print("\n" + "="*60)
 

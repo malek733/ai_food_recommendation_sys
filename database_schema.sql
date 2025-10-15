@@ -46,6 +46,7 @@ CREATE TABLE public.menu_items (
   updated_at timestamp with time zone NOT NULL DEFAULT now(),
   preparation_time integer,
   available_quantity integer CHECK (available_quantity IS NULL OR available_quantity >= 0),
+  calories jsonb,
   CONSTRAINT menu_items_pkey PRIMARY KEY (id),
   CONSTRAINT menu_items_category_id_fkey FOREIGN KEY (category_id) REFERENCES public.categories(id)
 );

@@ -1,256 +1,256 @@
 {
-  "session_start": "2025-10-15T13:17:39.118191",
-  "last_updated": "2025-10-15T13:32:45.160737",
+  "session_start": "2025-10-15T13:33:10.732406",
+  "last_updated": "2025-10-15T13:51:53.411176",
   "messages": [
-    {
-      "type": "human",
-      "content": "I am craving something spicy",
-      "timestamp": "2025-10-15T13:32:45.159734"
-    },
-    {
-      "type": "ai",
-      "content": "Sorry, I couldn't find any matching dishes with those criteria. 😔\nTry adjusting your search criteria or ask for 'help'.",
-      "timestamp": "2025-10-15T13:32:45.160737"
-    },
-    {
-      "type": "ai",
-      "content": "Hi there! 😊 Ready to discover some delicious food?",
-      "timestamp": "2025-10-15T13:32:45.160737"
-    },
-    {
-      "type": "human",
-      "content": "I am craving burger",
-      "timestamp": "2025-10-15T13:32:45.160737"
-    },
-    {
-      "type": "ai",
-      "content": "Error: Failed to parse RecommendationResponse from completion {\"matches\": [{\"name\": \"Classic Cheeseburger\", \"restaurant\": \"Grab Burger\", \"price\": 11.99, \"category\": \"Burgers\", \"description\": \"Beef patty with cheese, lettuce, tomato, and special sauce\"}, {\"name\": \"BBQ Bacon Burger\", \"restaurant\": \"Grab Burger\", \"price\": 15.99, \"category\": \"Burgers\", \"description\": \"Beef patty with bacon, BBQ sauce, and onion rings\"}]}. Got: 1 validation error for RecommendationResponse\nexplanation\n  Field required [type=missing, input_value={'matches': [{'name': 'Cl...uce, and onion rings'}]}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/missing\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE ",
-      "timestamp": "2025-10-15T13:32:45.160737"
-    },
-    {
-      "type": "human",
-      "content": "what are teh calories of burger",
-      "timestamp": "2025-10-15T13:32:45.160737"
-    },
-    {
-      "type": "ai",
-      "content": "🍔 Burger: about 250-350 kcal.",
-      "timestamp": "2025-10-15T13:32:45.160737"
-    },
-    {
-      "type": "human",
-      "content": "I am carving pizza",
-      "timestamp": "2025-10-15T13:32:45.160737"
-    },
-    {
-      "type": "ai",
-      "content": "Error: Failed to parse RecommendationResponse from completion [{\"name\": \"Pepperoni Pizza\", \"restaurant\": \"Pizza Mia\", \"price\": 14.99, \"category\": \"Pizzas\", \"description\": \"Spicy pepperoni with mozzarella cheese\"}, {\"name\": \"Pepperoni Pizza\", \"restaurant\": \"Kabab Khatoon\", \"price\": 14.99, \"category\": \"Pizzas\", \"description\": \"Spicy pepperoni with mozzarella cheese\"}, {\"name\": \"Margherita Pizza\", \"restaurant\": \"Pizza Mia\", \"price\": 12.0, \"category\": \"Pizzas\", \"description\": \"Classic pizza with tomato sauce, mozzarella, and fresh basil\"}, {\"name\": \"Margherita Pizza\", \"restaurant\": \"Kabab Khatoon\", \"price\": 12.99, \"category\": \"Pizzas\", \"description\": \"Classic pizza with tomato sauce, mozzarella, and fresh basil\"}]. Got: 1 validation error for RecommendationResponse\n  Input should be a valid dictionary or instance of RecommendationResponse [type=model_type, input_value=[{'name': 'Pepperoni Pizz...ella, and fresh basil'}], input_type=list]\n    For further information visit https://errors.pydantic.dev/2.12/v/model_type\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE ",
-      "timestamp": "2025-10-15T13:32:45.160737"
-    },
-    {
-      "type": "human",
-      "content": "I am carving something spicy",
-      "timestamp": "2025-10-15T13:32:45.160737"
-    },
-    {
-      "type": "ai",
-      "content": "Error: Invalid json output: I see you're craving something spicy! 🌶️\n\nHere are some spicy options from the available items:\n\n[\n  {\n    \"name\": \"Pepperoni Pizza\",\n    \"restaurant\": \"Kabab Khatoon\",\n    \"price\": 14.99,\n    \"category\": \"Pizzas\",\n    \"description\": \"Spicy pepperoni with mozzarella cheese\"\n  },\n  {\n    \"name\": \"Pepperoni Pizza\",\n    \"restaurant\": \"Pizza Mia\",\n    \"price\": 14.99,\n    \"category\": \"Pizzas\",\n    \"description\": \"Spicy pepperoni with mozzarella cheese\"\n  }\n]\n\nThese two pizzas are quite spicy, so if you're looking for something to satisfy your craving, one of these might be the perfect choice!\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE ",
-      "timestamp": "2025-10-15T13:32:45.160737"
-    },
-    {
-      "type": "ai",
-      "content": "Hey! What kind of food can I help you find?",
-      "timestamp": "2025-10-15T13:32:45.160737"
-    },
-    {
-      "type": "human",
-      "content": "I am craving something spicy",
-      "timestamp": "2025-10-15T13:32:45.160737"
-    },
-    {
-      "type": "ai",
-      "content": "Assistant: These dishes are spicy and might satisfy your craving.\n\nMatching dishes:\n\n- **Pepperoni Pizza** (Pizzas) from *Pizza Mia*\n  Price: $14.99\n  Description: Spicy pepperoni with mozzarella cheese\n\n- **Pepperoni Pizza** (Pizzas) from *Kabab Khatoon*\n  Price: $14.99\n  Description: Spicy pepperoni with mozzarella cheese\n\n- **Spicy Tuna Roll** (Sushi Rolls) from *Ocean Lobster*\n  Price: $10.99\n  Description: Fresh tuna with spicy mayo and cucumber\n\nYou can refine your search by:\n  • spicy\n  • pizzas\n  • sushi",
-      "timestamp": "2025-10-15T13:32:45.160737"
-    },
-    {
-      "type": "human",
-      "content": "from where I can get fries",
-      "timestamp": "2025-10-15T13:32:45.160737"
-    },
-    {
-      "type": "ai",
-      "content": "Assistant: You can get fries from Grab Burger or Kabab Khatoon.\n\nMatching dishes:\n\n- **French Fries** (Sides) from *Grab Burger*\n  Price: $4.99\n  Description: Crispy golden fries with sea salt\n\n- **fries** (Appetizers) from *Kabab Khatoon*\n  Price: $30.00\n  Description: fries\n\nYou can refine your search by:\n  • burgers\n  • sides",
-      "timestamp": "2025-10-15T13:32:45.160737"
-    },
-    {
-      "type": "human",
-      "content": "I am craving burger",
-      "timestamp": "2025-10-15T13:32:45.160737"
-    },
-    {
-      "type": "ai",
-      "content": "Assistant: Based on your craving for a burger, we recommend these two options from Grab Burger.\n\nMatching dishes:\n\n- **Classic Cheeseburger** (Burgers) from *Grab Burger*\n  Price: $11.99\n  Description: Beef patty with cheese, lettuce, tomato, and special sauce\n\n- **BBQ Bacon Burger** (Burgers) from *Grab Burger*\n  Price: $15.99\n  Description: Beef patty with bacon, BBQ sauce, and onion rings\n\nYou can refine your search by:\n  • burgers\n  • Grab Burger",
-      "timestamp": "2025-10-15T13:32:45.160737"
-    },
-    {
-      "type": "human",
-      "content": "what are teh calories of a burger",
-      "timestamp": "2025-10-15T13:32:45.160737"
-    },
-    {
-      "type": "ai",
-      "content": "🍔 Burger: about 250-350 kcal.",
-      "timestamp": "2025-10-15T13:32:45.160737"
-    },
-    {
-      "type": "human",
-      "content": "what are the menu items of ocean lobster",
-      "timestamp": "2025-10-15T13:32:45.160737"
-    },
-    {
-      "type": "ai",
-      "content": "Assistant: Recommended dishes from Ocean Lobster menu\n\nMatching dishes:\n\n- **Salmon Sashimi** (Sashimi) from *Ocean Lobster*\n  Price: $13.99\n  Description: Fresh Atlantic salmon slices\n\n- **Spicy Tuna Roll** (Sushi Rolls) from *Ocean Lobster*\n  Price: $10.99\n  Description: Fresh tuna with spicy mayo and cucumber\n\n- **California Roll** (Sushi Rolls) from *Ocean Lobster*\n  Price: $8.99\n  Description: Crab, avocado, and cucumber with sesame seeds\n\nYou can refine your search by:\n  • sashimi\n  • sushi",
-      "timestamp": "2025-10-15T13:32:45.160737"
-    },
-    {
-      "type": "human",
-      "content": "what are the menu items of pastaroni",
-      "timestamp": "2025-10-15T13:32:45.160737"
-    },
-    {
-      "type": "ai",
-      "content": "Assistant: Recommended dishes from Pastaroni menu\n\nMatching dishes:\n\n- **Pastaroni Beef Lasagne** (Pasta) from *Pastaroni*\n  Price: $0.00\n  Description: Pastaroni Beef Lasagne\n\n- **Penne White Pasta with Shrimp** (Pasta) from *Pastaroni*\n  Price: $0.00\n  Description: Penne pasta with white cream sauce serve with Shrimp\n\n- **Rigatoni Pink Pasta with  Shrimp** (Pasta) from *Pastaroni*\n  Price: $0.00\n  Description: Rigatoni Pink Pasta with  Shrimp\n\n- **Penne White Pasta with Chicken ** (Pasta) from *Pastaroni*\n  Price: $0.00\n  Description: Penne pasta with white cream sauce serve with Chicken\n\n- **Penne Pink Pasta with  Shrimp** (Pasta) from *Pastaroni*\n  Price: $0.00\n  Description: Penne Pink Pasta with  Shrimp\n\nYou can refine your search by:\n  • pasta\n  • italian",
-      "timestamp": "2025-10-15T13:32:45.160737"
-    },
-    {
-      "type": "human",
-      "content": "what are the appetizers of kabab khatoon",
-      "timestamp": "2025-10-15T13:32:45.160737"
-    },
     {
       "type": "ai",
       "content": "Assistant: Recommended appetizers from Kabab Khatoon menu\n\nMatching dishes:\n\n- **Garlic Bread** (Appetizers) from *Kabab Khatoon*\n  Price: $6.99\n  Description: Crispy bread with garlic butter and herbs\n\n- **fries** (Appetizers) from *Kabab Khatoon*\n  Price: $30.00\n  Description: fries\n\nYou can refine your search by:\n  • appetizers\n  • kabab khatoon",
-      "timestamp": "2025-10-15T13:32:45.160737"
+      "timestamp": "2025-10-15T13:51:53.411176"
     },
     {
       "type": "human",
       "content": "I am craving pizza",
-      "timestamp": "2025-10-15T13:32:45.160737"
+      "timestamp": "2025-10-15T13:51:53.411176"
     },
     {
       "type": "ai",
       "content": "Assistant: Based on your craving for pizza, we recommend these options from the available items list.\n\nMatching dishes:\n\n- **Pepperoni Pizza** (Pizzas) from *Pizza Mia*\n  Price: $14.99\n  Description: Spicy pepperoni with mozzarella cheese\n\n- **Pepperoni Pizza** (Pizzas) from *Kabab Khatoon*\n  Price: $14.99\n  Description: Spicy pepperoni with mozzarella cheese\n\n- **Margherita Pizza** (Pizzas) from *Pizza Mia*\n  Price: $12.00\n  Description: Classic pizza with tomato sauce, mozzarella, and fresh basil\n\n- **Margherita Pizza** (Pizzas) from *Kabab Khatoon*\n  Price: $12.99\n  Description: Classic pizza with tomato sauce, mozzarella, and fresh basil\n\nYou can refine your search by:\n  • pizzas\n  • italian",
-      "timestamp": "2025-10-15T13:32:45.160737"
+      "timestamp": "2025-10-15T13:51:53.411176"
     },
     {
       "type": "human",
       "content": "what are the calories of pepperoni pizza",
-      "timestamp": "2025-10-15T13:32:45.160737"
+      "timestamp": "2025-10-15T13:51:53.411176"
     },
     {
       "type": "ai",
       "content": "🍕 Pepperoni pizza: about 285 kcal per slice.",
-      "timestamp": "2025-10-15T13:32:45.160737"
+      "timestamp": "2025-10-15T13:51:53.411176"
     },
     {
       "type": "human",
       "content": "I am carving sea food",
-      "timestamp": "2025-10-15T13:32:45.160737"
+      "timestamp": "2025-10-15T13:51:53.411176"
     },
     {
       "type": "ai",
       "content": "Assistant: Recommended seafood dishes based on your craving\n\nMatching dishes:\n\n- **Salmon Sashimi** (Sashimi) from *Ocean Lobster*\n  Price: $13.99\n  Description: Fresh Atlantic salmon slices\n\n- **Seafood Spaghetti Marinara** (Pasta) from *Pastaroni*\n  Price: $0.00\n  Description: Seafood Spaghetti Marinara\n\nYou can refine your search by:\n  • seafood\n  • italian",
-      "timestamp": "2025-10-15T13:32:45.160737"
+      "timestamp": "2025-10-15T13:51:53.411176"
     },
     {
       "type": "human",
       "content": "I am craving pizza",
-      "timestamp": "2025-10-15T13:32:45.160737"
+      "timestamp": "2025-10-15T13:51:53.411176"
     },
     {
       "type": "ai",
       "content": "Assistant: Based on your craving for pizza, we recommend these options from the available items list.\n\nMatching dishes:\n\n- **Pepperoni Pizza** (Pizzas) from *Pizza Mia*\n  Price: $14.99\n  Description: Spicy pepperoni with mozzarella cheese\n\n- **Pepperoni Pizza** (Pizzas) from *Kabab Khatoon*\n  Price: $14.99\n  Description: Spicy pepperoni with mozzarella cheese\n\n- **Margherita Pizza** (Pizzas) from *Pizza Mia*\n  Price: $12.00\n  Description: Classic pizza with tomato sauce, mozzarella, and fresh basil\n\n- **Margherita Pizza** (Pizzas) from *Kabab Khatoon*\n  Price: $12.99\n  Description: Classic pizza with tomato sauce, mozzarella, and fresh basil\n\nYou can refine your search by:\n  • pizzas\n  • italian",
-      "timestamp": "2025-10-15T13:32:45.160737"
+      "timestamp": "2025-10-15T13:51:53.411176"
     },
     {
       "type": "human",
       "content": "what are the calories",
-      "timestamp": "2025-10-15T13:32:45.160737"
+      "timestamp": "2025-10-15T13:51:53.411176"
     },
     {
       "type": "ai",
       "content": "🍗 Chicken breast: about 165 kcal per 3 oz serving.\n🍗 Grilled salmon: about 180 kcal per 3 oz serving.\n🍚 Brown rice: about 110 kcal per 1/2 cup cooked.\n🥗 Broccoli: about 55 kcal per 1 cup cooked.\n🍞 Whole wheat bread: about 89 kcal per slice.\n🥛 Almond milk: about 30 kcal per cup.\n🍎 Apple: about 95 kcal per medium-sized fruit.\n🥑 Avocado: about 160 kcal per medium-sized fruit.\n🍗 Turkey burger: about 210 kcal per patty.\n🍗 Beef burger: about 240 kcal per patty.\n🍗 Chicken wing: about 140 kcal per piece.\n🍗 Shrimp: about 120 kcal per 3 oz serving.\n🥗 Spinach: about 7 kcal per 1 cup cooked.\n🍞 Oatmeal: about 150 kcal per 1/2 cup cooked.\n🥛 Greek yogurt: about 100 kcal per 6 oz serving.\n🍗 Pork chop: about 230 kcal per 3 oz serving.\n🥗 Green beans: about 55 kcal per 1 cup cooked.\n🍗 Lamb chop: about 220 kcal per 3 oz serving.\n🥗 Carrots: about 45 kcal per 1 cup cooked.\n🍞 Quinoa: about 150 kcal per 1/2 cup cooked.\n🥗 Asparagus: about 25 kcal per 1 cup cooked.\n🥗 Cucumber: about 16 kcal per 1 cup sliced.\n🥗 Bell peppers: about 49 kcal per 1 cup sliced.\n🥗 Mushrooms: about 15 kcal per 1 cup sliced.\n🥗 Zucchini: about 25 kcal per 1 cup sliced.\n🥗 Tomatoes: about 22 kcal per 1 cup sliced.\n🥗 Lettuce: about 10 kcal per 1 cup shredded.\n🥗 Celery: about 6 kcal per 1 cup sliced.\n🥗 Radishes: about 17 kcal per 1 cup sliced.\n🥗 Beets: about 58 kcal per 1 cup cooked.\n🥗 Sweet potatoes: about 105 kcal per 1 medium-sized fruit.\n🥗 Corn: about 80 kcal per 1 cup cooked.\n🥗 Peas: about 115 kcal per 1 cup cooked.\n🥗 Pumpkin: about 26 kcal per 1 cup cooked.\n🥗 Squash: about 42 kcal per 1 cup cooked.\n🥗 Eggplant: about 25 kcal per 1 cup sliced.\n🥗 Okra: about 33 kcal per 1 cup cooked.\n🥗 Leeks: about 61 kcal per 1 cup cooked.\n🥗 Garlic: about 14 kcal per 3 cloves.\n🥗 Ginger: about 15 kcal per 3 slices.\n🥗 Onions: about 44 kcal per 1 cup sliced.\n🥗 Shallots: about 74 kcal per 1 cup sliced.\n🥗 Horseradish: about 17 kcal per 1 tablespoon.\n🥗 Wasabi: about 4 kcal per 1 teaspoon.\n🥗 Horseradish sauce: about 50 kcal per 1 tablespoon.\n🥗 Soy sauce: about 6 kcal per 1 tablespoon.\n🥗 Teriyaki sauce: about 120 kcal per 1 tablespoon.\n🥗 Hot sauce: about 5 kcal per 1 tablespoon.\n🥗 BBQ sauce: about 120 kcal per 1 tablespoon.\n🥗 Mayonnaise: about 90 kcal per 1 tablespoon.\n🥗 Ketchup: about 15 kcal per 1 tablespoon.\n🥗 Mustard: about 5 kcal per 1 tablespoon.\n🥗 Relish: about 10 kcal per 1 tablespoon.\n🥗 Salsa: about 25 kcal per 1 tablespoon.\n🥗 Guacamole: about 100 kcal per 1 tablespoon.\n🥗 Hummus: about 100 kcal per 1 tablespoon.\n🥗 Ranch dressing: about 100 kcal per 1 tablespoon.\n🥗 Caesar dressing: about 100 kcal per 1 tablespoon.\n🥗 Blue cheese dressing: about 100 kcal per 1 tablespoon.\n🥗 Balsamic vinegar: about 15 kcal per 1 tablespoon.\n🥗 Olive oil: about 120 kcal per 1 tablespoon.\n🥗 Coconut oil: about 120 kcal per 1 tablespoon.\n🥗 Avocado oil: about 120 kcal per 1 tablespoon.\n🥗 Almond oil: about 120 kcal per 1 tablespoon.\n🥗 Sunflower oil: about 120 kcal per 1 tablespoon.\n🥗 Canola oil: about 120 kcal per 1 tablespoon.\n🥗 Safflower oil: about 120 kcal per 1 tablespoon.\n🥗 Grapeseed oil: about 120 kcal per 1 tablespoon.\n🥗 Sesame oil: about 120 kcal per 1 tablespoon.\n🥗 Peanut oil: about 120 kcal per 1 tablespoon.\n🥗 Walnut oil: about 120 kcal per 1 tablespoon.\n🥗 Flaxseed oil: about 120 kcal per 1 tablespoon.\n🥗 Chia seed oil: about 120 kcal per 1 tablespoon.\n🥗 Ghee: about 120 kcal per 1 tablespoon.\n🥗 Butter: about 100 kcal per 1 tablespoon.\n🥗 Margarine: about 100 kcal per 1 tablespoon.\n🥗 Cream cheese: about 100 kcal per 1 tablespoon.\n🥗 Sour cream: about 50 kcal per 1 tablespoon.\n🥗 Yogurt cheese: about 50 kcal per 1 tablespoon.\n🥗 Cottage cheese: about 80 kcal per 1/2 cup.\n🥗 Ricotta cheese: about 100 kcal per 1/2 cup.\n🥗 Feta cheese: about 70 kcal per 1/2 cup.\n🥗 Mozzarella cheese: about 70 kcal per 1/2 cup.\n🥗 Parmesan cheese: about 110 kcal per 1/2 cup.\n🥗 Cheddar cheese: about 115 kcal per 1/2 cup.\n🥗 Swiss cheese: about 115 kcal per 1/2 cup.\n🥗 Provolone cheese: about 115 kcal per 1/2 cup.\n🥗 Gouda cheese: about 115 kcal per 1/2 cup.\n🥗 Blue cheese: about 115 kcal per 1/2 cup.\n🥗 Goat cheese: about 70 kcal per 1/2 cup.\n🥗 Feta cheese: about 70 kcal per 1/2 cup.\n🥗 Brie cheese: about 100 kcal per 1/2 cup.\n🥗 Camembert cheese: about 100 kcal per 1/2 cup.\n🥗 Havarti cheese: about 100 kcal per 1/2 cup.\n🥗 Muenster cheese: about 100 kcal per 1/2 cup.\n🥗 Pepper Jack cheese: about 100 kcal per 1/2 cup.\n🥗 Colby cheese: about 100 kcal per 1/2 cup.\n🥗 Monterey Jack cheese: about 100 kcal per 1/2 cup.\n🥗 American cheese: about 100 kcal per 1/2 cup.\n🥗 Chèvre cheese: about 70 kcal per 1/2 cup.\n🥗 Burrata cheese: about 100 kcal per 1/2 cup.\n🥗 Mascarpone cheese: about 100 kcal per 1/2 cup.\n🥗 Quark cheese: about 70 kcal per 1/2 cup.\n🥗 Neufchâtel cheese: about 70 kcal per 1/2 cup.\n🥗 Cream cheese frosting: about 100 kcal per 1 tablespoon.\n🥗 Buttercream frosting: about 100 kcal per 1 tablespoon.\n🥗 Whipped cream: about 50 kcal per 1 tablespoon.\n🥗 Ice cream: about 150 kcal per 1/2 cup.\n🥗 Sorbet: about 100 kcal per 1/2 cup.\n🥗 Frozen yogurt: about 100 kcal per 1/2 cup.\n🥗 Pudding: about 150 kcal per 1/2 cup.\n🥗 Custard: about 150 kcal per 1/2 cup.\n🥗 Mousse: about 100 kcal per 1/2 cup.\n🥗 Panna cotta: about 150 kcal per 1/2 cup.\n🥗 Creme brûlée: about 150 kcal per 1/2 cup.\n🥗 Flan: about 150 kcal per 1/2 cup.\n🥗 Tiramisu: about 150 kcal per 1/2 cup.\n🥗 Cheesecake: about 200 kcal per 1/2 cup.\n🥗 Brownies: about 200 kcal per 1/2 cup.\n🥗 Cookies: about 150 kcal per 1/2 cup.\n🥗 Cake: about 200 kcal per 1/2 cup.\n🥗 Muffin: about 150 kcal per 1/2 cup.\n🥗 Scone: about 150 kcal per 1/2 cup.\n🥗 Biscuit: about 150 kcal per 1/2 cup.\n🥗 Croissant: about 150 kcal per 1/2 cup.\n🥗 Danish pastry: about 200 kcal per 1/2 cup.\n🥗 Cinnamon roll: about 200 kcal per 1/2 cup.\n🥗 Donut: about 200 kcal per 1/2 cup.\n🥗 Eclair: about 200 kcal per 1/2 cup.\n🥗 Cream puff: about 200 kcal per 1/2 cup.\n🥗 Fruit tart: about 200 kcal per 1/2 cup.\n🥗 Cream cheese frosting: about 100 kcal per 1 tablespoon.\n🥗 Buttercream frosting: about 100 kcal per 1 tablespoon.\n🥗 Whipped cream: about 50 kcal per 1 tablespoon.\n🥗 Ice cream: about 150 kcal per 1/2 cup.\n🥗 Sorbet: about 100 kcal per 1/2 cup.\n🥗 Frozen yogurt: about 100 kcal per 1/2 cup.\n🥗 Pudding: about 150 kcal per 1/2 cup.\n🥗 Custard: about 150 kcal per 1/2 cup.\n🥗 Mousse: about 100 kcal per 1/2 cup.\n🥗 Panna cotta: about 150 kcal per 1/2 cup.\n🥗 Creme brûlée: about 150 kcal per 1/2 cup.\n🥗 Flan: about 150 kcal per 1/2 cup.\n🥗 Tiramisu: about 150 kcal per 1/2 cup.\n🥗 Cheesecake: about 200 kcal per 1/2 cup.\n🥗 Brownies: about 200 kcal per 1/2 cup.\n🥗 Cookies: about 150 kcal per 1/2 cup.\n🥗 Cake: about 200 kcal per 1/2 cup.\n🥗 Muffin: about 150 kcal per 1/2 cup.\n🥗 Scone: about 150 kcal per 1/2 cup.\n🥗 Biscuit: about 150 kcal per 1/2 cup.\n🥗 Croissant: about 150 kcal per 1/2 cup.\n🥗 Danish pastry: about 200 kcal per 1/2 cup.\n🥗 Cinnamon roll: about 200 kcal per 1/2 cup.\n🥗 Donut: about 200 kcal per 1/2 cup.\n🥗 Eclair: about 200 kcal per 1/2 cup.\n🥗 Cream puff: about 200 kcal per 1/2 cup.\n🥗 Fruit tart: about 200 kcal per 1/2 cup.\n🥗 Granola: about 100 kcal per 1/4 cup.\n🥗 Energy bar: about 200 kcal per 1 bar.\n🥗 Trail mix: about 150 kcal per 1/4 cup.\n🥗 Protein powder: about 120 kcal per 1 scoop.\n🥗 Meal replacement shake: about 200 kcal per 1 serving.\n🥗 Smoothie: about 150 kcal per 1 serving.\n🥗 Juice: about 120 kcal per 1 cup.\n🥗 Soda: about 150 kcal per 1 cup.\n🥗 Energy drink: about 150 kcal per 1 cup.\n🥗 Sports drink: about 150 kcal per 1 cup.\n🥗 Coconut water: about 45 kcal per 1 cup.\n🥗 Almond milk: about 30 kcal per 1 cup.\n🥗 Soy milk: about 80 kcal per 1 cup.\n🥗 Rice milk: about 110 kcal per 1 cup.\n🥗 Oat milk: about 35 kcal per 1 cup.\n🥗 Hemp milk: about 80 kcal per 1 cup.\n🥗 Cashew milk: about 25 kcal per 1 cup.\n🥗 Flax milk: about 25 kcal per 1 cup.\n🥗 Chia milk: about 25 kcal per 1 cup.\n🥗 Hemp protein powder: about 120 kcal per 1 scoop.\n🥗 Pea protein powder: about 120 kcal per 1 scoop.\n🥗 Rice protein powder: about 120 kcal per 1 scoop.\n🥗 Whey protein powder: about 120 kcal per 1 scoop.\n🥗 Casein protein powder: about 120 kcal per 1 scoop.\n🥗 Egg protein powder: about 120 kcal per 1 scoop.\n🥗 Soy protein powder: about 120 kcal per 1 scoop.\n🥗 Collagen protein powder: about 120 kcal per 1 scoop.\n🥗 Gelatin: about 20 kcal per 1 tablespoon.\n🥗 Agar agar: about 20 kcal per 1 tablespoon.\n🥗 Carrageenan: about 20 kcal per 1 tablespoon.\n🥗 Pectin: about 20 kcal per 1 tablespoon.\n🥗 Guar gum: about 20 kcal per 1 tablespoon.\n🥗 Xanthan gum: about 20 kcal per 1 tablespoon.\n🥗 Locust bean gum: about 20 kcal per 1 tablespoon.\n🥗 Tapioca starch: about 80 kcal per 1 tablespoon.\n🥗 Cornstarch: about 80 kcal per 1 tablespoon.\n🥗 Potato starch: about 80 kcal per 1 tablespoon.\n🥗 Tapioca flour: about 80 kcal per 1 tablespoon.\n🥗 Almond flour: about 160 kcal per 1 tablespoon.\n🥗 Coconut flour: about 160 kcal per 1 tablespoon.\n🥗 Oat flour: about 100 kcal per 1 tablespoon.\n🥗 Rice flour: about 100 kcal per 1 tablespoon.\n🥗 Quinoa flour: about 100 kcal per 1 tablespoon.\n🥗 Buckwheat flour: about 100 kcal per 1 tablespoon.\n🥗 Teff flour: about 100 kcal per 1 tablespoon.\n🥗 Amaranth flour: about 100 kcal per 1 tablespoon.\n🥗 Chia flour: about 100 kcal per 1 tablespoon.\n🥗 Hemp flour: about 100 kcal per 1 tablespoon.\n🥗 Flaxseed meal: about 100 kcal per 1 tablespoon.\n🥗 Sunflower seed meal: about 100 kcal per 1 tablespoon.\n🥗 Pumpkin seed meal: about 100 kcal per 1 tablespoon.\n🥗 Sesame seed meal: about 100 kcal per 1 tablespoon.\n🥗 Poppy seed meal: about 100 kcal per 1 tablespoon.\n🥗 Mustard seed meal: about 100 kcal per 1 tablespoon.\n🥗 Coriander seed meal: about 100 kcal per 1 tablespoon.\n🥗 Cumin seed meal: about 100 kcal per 1 tablespoon.\n🥗 Fennel seed meal: about 100 kcal per 1 tablespoon.\n🥗 Dill seed meal: about 100 kcal per 1 tablespoon.\n🥗 Caraway seed meal: about 100 kcal per 1 tablespoon.\n🥗 Anise seed meal: about 100 kcal per 1 tablespoon.\n🥗 Star anise seed meal: about 100 kcal per 1 tablespoon.\n🥗 Ginger seed meal: about 100 kcal per 1 tablespoon.\n🥗 Turmeric seed meal: about 100 kcal per 1 tablespoon.\n🥗 Cinnamon seed meal: about 100 kcal per 1 tablespoon.\n🥗 Nutmeg seed meal: about 100 kcal per 1 tablespoon.\n🥗 Cardamom seed meal: about 100 kcal per 1 tablespoon.\n🥗 Cloves seed meal: about 100 kcal per 1 tablespoon.\n🥗 Allspice seed meal: about 100 kcal per 1 tablespoon.\n🥗 Saffron seed meal: about 100 kcal per 1 tablespoon.\n🥗 Paprika seed meal: about 100 kcal per 1 tablespoon.\n🥗 Cayenne pepper seed meal: about 100 kcal per 1 tablespoon.\n🥗 Black pepper seed meal: about 100 kcal per 1 tablespoon.\n🥗 White pepper seed meal: about 100 kcal per 1 tablespoon.\n🥗 Red pepper seed meal: about 100 kcal per 1 tablespoon.\n🥗 Green pepper seed meal: about 100 kcal per 1 tablespoon.\n🥗 Yellow pepper seed meal: about 100 kcal per 1 tablespoon.\n🥗 Orange pepper seed meal: about 100 kcal per 1 tablespoon.\n🥗 Lemon pepper seed meal: about 100 kcal per 1 tablespoon.\n🥗 Lime pepper seed meal: about 100 kcal per 1 tablespoon.\n🥗 Garlic powder: about 20 kcal per 1 tablespoon.\n🥗 Onion powder: about 20 kcal per 1 tablespoon.\n🥗 Paprika powder: about 20 kcal per 1 tablespoon.\n🥗 Cayenne pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Black pepper powder: about 20 kcal per 1 tablespoon.\n🥗 White pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Red pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Green pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Yellow pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Orange pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Lemon pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Lime pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Salt: about 0 kcal per 1 teaspoon.\n🥗 Sugar: about 15 kcal per 1 teaspoon.\n🥗 Honey: about 64 kcal per 1 teaspoon.\n🥗 Maple syrup: about 64 kcal per 1 teaspoon.\n🥗 Agave nectar: about 64 kcal per 1 teaspoon.\n🥗 Coconut sugar: about 45 kcal per 1 teaspoon.\n🥗 Date sugar: about 45 kcal per 1 teaspoon.\n🥗 Brown sugar: about 45 kcal per 1 teaspoon.\n🥗 Molasses: about 64 kcal per 1 teaspoon.\n🥗 Cinnamon: about 6 kcal per 1 teaspoon.\n🥗 Nutmeg: about 6 kcal per 1 teaspoon.\n🥗 Cardamom: about 6 kcal per 1 teaspoon.\n🥗 Cloves: about 6 kcal per 1 teaspoon.\n🥗 Allspice: about 6 kcal per 1 teaspoon.\n🥗 Saffron: about 6 kcal per 1 teaspoon.\n🥗 Paprika: about 6 kcal per 1 teaspoon.\n🥗 Cayenne pepper: about 6 kcal per 1 teaspoon.\n🥗 Black pepper: about 6 kcal per 1 teaspoon.\n🥗 White pepper: about 6 kcal per 1 teaspoon.\n🥗 Red pepper: about 6 kcal per 1 teaspoon.\n🥗 Green pepper: about 6 kcal per 1 teaspoon.\n🥗 Yellow pepper: about 6 kcal per 1 teaspoon.\n🥗 Orange pepper: about 6 kcal per 1 teaspoon.\n🥗 Lemon pepper: about 6 kcal per 1 teaspoon.\n🥗 Lime pepper: about 6 kcal per 1 teaspoon.\n🥗 Garlic powder: about 20 kcal per 1 tablespoon.\n🥗 Onion powder: about 20 kcal per 1 tablespoon.\n🥗 Paprika powder: about 20 kcal per 1 tablespoon.\n🥗 Cayenne pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Black pepper powder: about 20 kcal per 1 tablespoon.\n🥗 White pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Red pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Green pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Yellow pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Orange pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Lemon pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Lime pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Ginger powder: about 20 kcal per 1 tablespoon.\n🥗 Turmeric powder: about 20 kcal per 1 tablespoon.\n🥗 Cinnamon powder: about 20 kcal per 1 tablespoon.\n🥗 Nutmeg powder: about 20 kcal per 1 tablespoon.\n🥗 Cardamom powder: about 20 kcal per 1 tablespoon.\n🥗 Cloves powder: about 20 kcal per 1 tablespoon.\n🥗 Allspice powder: about 20 kcal per 1 tablespoon.\n🥗 Saffron powder: about 20 kcal per 1 tablespoon.\n🥗 Paprika powder: about 20 kcal per 1 tablespoon.\n🥗 Cayenne pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Black pepper powder: about 20 kcal per 1 tablespoon.\n🥗 White pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Red pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Green pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Yellow pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Orange pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Lemon pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Lime pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Salt: about 0 kcal per 1 teaspoon.\n🥗 Sugar: about 15 kcal per 1 teaspoon.\n🥗 Honey: about 64 kcal per 1 teaspoon.\n🥗 Maple syrup: about 64 kcal per 1 teaspoon.\n🥗 Agave nectar: about 64 kcal per 1 teaspoon.\n🥗 Coconut sugar: about 45 kcal per 1 teaspoon.\n🥗 Date sugar: about 45 kcal per 1 teaspoon.\n🥗 Brown sugar: about 45 kcal per 1 teaspoon.\n🥗 Molasses: about 64 kcal per 1 teaspoon.\n🥗 Cinnamon: about 6 kcal per 1 teaspoon.\n🥗 Nutmeg: about 6 kcal per 1 teaspoon.\n🥗 Cardamom: about 6 kcal per 1 teaspoon.\n🥗 Cloves: about 6 kcal per 1 teaspoon.\n🥗 Allspice: about 6 kcal per 1 teaspoon.\n🥗 Saffron: about 6 kcal per 1 teaspoon.\n🥗 Paprika: about 6 kcal per 1 teaspoon.\n🥗 Cayenne pepper: about 6 kcal per 1 teaspoon.\n🥗 Black pepper: about 6 kcal per 1 teaspoon.\n🥗 White pepper: about 6 kcal per 1 teaspoon.\n🥗 Red pepper: about 6 kcal per 1 teaspoon.\n🥗 Green pepper: about 6 kcal per 1 teaspoon.\n🥗 Yellow pepper: about 6 kcal per 1 teaspoon.\n🥗 Orange pepper: about 6 kcal per 1 teaspoon.\n🥗 Lemon pepper: about 6 kcal per 1 teaspoon.\n🥗 Lime pepper: about 6 kcal per 1 teaspoon.\n🥗 Garlic powder: about 20 kcal per 1 tablespoon.\n🥗 Onion powder: about 20 kcal per 1 tablespoon.\n🥗 Paprika powder: about 20 kcal per 1 tablespoon.\n🥗 Cayenne pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Black pepper powder: about 20 kcal per 1 tablespoon.\n🥗 White pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Red pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Green pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Yellow pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Orange pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Lemon pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Lime pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Ginger powder: about 20 kcal per 1 tablespoon.\n🥗 Turmeric powder: about 20 kcal per 1 tablespoon.\n🥗 Cinnamon powder: about 20 kcal per 1 tablespoon.\n🥗 Nutmeg powder: about 20 kcal per 1 tablespoon.\n🥗 Cardamom powder: about 20 kcal per 1 tablespoon.\n🥗 Cloves powder: about 20 kcal per 1 tablespoon.\n🥗 Allspice powder: about 20 kcal per 1 tablespoon.\n🥗 Saffron powder: about 20 kcal per 1 tablespoon.\n🥗 Paprika powder: about 20 kcal per 1 tablespoon.\n🥗 Cayenne pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Black pepper powder: about 20 kcal per 1 tablespoon.\n🥗 White pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Red pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Green pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Yellow pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Orange pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Lemon pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Lime pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Salt: about 0 kcal per 1 teaspoon.\n🥗 Sugar: about 15 kcal per 1 teaspoon.\n🥗 Honey: about 64 kcal per 1 teaspoon.\n🥗 Maple syrup: about 64 kcal per 1 teaspoon.\n🥗 Agave nectar: about 64 kcal per 1 teaspoon.\n🥗 Coconut sugar: about 45 kcal per 1 teaspoon.\n🥗 Date sugar: about 45 kcal per 1 teaspoon.\n🥗 Brown sugar: about 45 kcal per 1 teaspoon.\n🥗 Molasses: about 64 kcal per 1 teaspoon.\n🥗 Cinnamon: about 6 kcal per 1 teaspoon.\n🥗 Nutmeg: about 6 kcal per 1 teaspoon.\n🥗 Cardamom: about 6 kcal per 1 teaspoon.\n🥗 Cloves: about 6 kcal per 1 teaspoon.\n🥗 Allspice: about 6 kcal per 1 teaspoon.\n🥗 Saffron: about 6 kcal per 1 teaspoon.\n🥗 Paprika: about 6 kcal per 1 teaspoon.\n🥗 Cayenne pepper: about 6 kcal per 1 teaspoon.\n🥗 Black pepper: about 6 kcal per 1 teaspoon.\n🥗 White pepper: about 6 kcal per 1 teaspoon.\n🥗 Red pepper: about 6 kcal per 1 teaspoon.\n🥗 Green pepper: about 6 kcal per 1 teaspoon.\n🥗 Yellow pepper: about 6 kcal per 1 teaspoon.\n🥗 Orange pepper: about 6 kcal per 1 teaspoon.\n🥗 Lemon pepper: about 6 kcal per 1 teaspoon.\n🥗 Lime pepper: about 6 kcal per 1 teaspoon.\n🥗 Garlic powder: about 20 kcal per 1 tablespoon.\n🥗 Onion powder: about 20 kcal per 1 tablespoon.\n🥗 Paprika powder: about 20 kcal per 1 tablespoon.\n🥗 Cayenne pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Black pepper powder: about 20 kcal per 1 tablespoon.\n🥗 White pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Red pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Green pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Yellow pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Orange pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Lemon pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Lime pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Ginger powder: about 20 kcal per 1 tablespoon.\n🥗 Turmeric powder: about 20 kcal per 1 tablespoon.\n🥗 Cinnamon powder: about 20 kcal per 1 tablespoon.\n🥗 Nutmeg powder: about 20 kcal per 1 tablespoon.\n🥗 Cardamom powder: about 20 kcal per 1 tablespoon.\n🥗 Cloves powder: about 20 kcal per 1 tablespoon.\n🥗 Allspice powder: about 20 kcal per 1 tablespoon.\n🥗 Saffron powder: about 20 kcal per 1 tablespoon.\n🥗 Paprika powder: about 20 kcal per 1 tablespoon.\n🥗 Cayenne pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Black pepper powder: about 20 kcal per 1 tablespoon.\n🥗 White pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Red pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Green pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Yellow pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Orange pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Lemon pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Lime pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Salt: about 0 kcal per 1 teaspoon.\n🥗 Sugar: about 15 kcal per 1 teaspoon.\n🥗 Honey: about 64 kcal per 1 teaspoon.\n🥗 Maple syrup: about 64 kcal per 1 teaspoon.\n🥗 Agave nectar: about 64 kcal per 1 teaspoon.\n🥗 Coconut sugar: about 45 kcal per 1 teaspoon.\n🥗 Date sugar: about 45 kcal per 1 teaspoon.\n🥗 Brown sugar: about 45 kcal per 1 teaspoon.\n🥗 Molasses: about 64 kcal per 1 teaspoon.\n🥗 Cinnamon: about 6 kcal per 1 teaspoon.\n🥗 Nutmeg: about 6 kcal per 1 teaspoon.\n🥗 Cardamom: about 6 kcal per 1 teaspoon.\n🥗 Cloves: about 6 kcal per 1 teaspoon.\n🥗 Allspice: about 6 kcal per 1 teaspoon.\n🥗 Saffron: about 6 kcal per 1 teaspoon.\n🥗 Paprika: about 6 kcal per 1 teaspoon.\n🥗 Cayenne pepper: about 6 kcal per 1 teaspoon.\n🥗 Black pepper: about 6 kcal per 1 teaspoon.\n🥗 White pepper: about 6 kcal per 1 teaspoon.\n🥗 Red pepper: about 6 kcal per 1 teaspoon.\n🥗 Green pepper: about 6 kcal per 1 teaspoon.\n🥗 Yellow pepper: about 6 kcal per 1 teaspoon.\n🥗 Orange pepper: about 6 kcal per 1 teaspoon.\n🥗 Lemon pepper: about 6 kcal per 1 teaspoon.\n🥗 Lime pepper: about 6 kcal per 1 teaspoon.\n🥗 Garlic powder: about 20 kcal per 1 tablespoon.\n🥗 Onion powder: about 20 kcal per 1 tablespoon.\n🥗 Paprika powder: about 20 kcal per 1 tablespoon.\n🥗 Cayenne pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Black pepper powder: about 20 kcal per 1 tablespoon.\n🥗 White pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Red pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Green pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Yellow pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Orange pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Lemon pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Lime pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Ginger powder: about 20 kcal per 1 tablespoon.\n🥗 Turmeric powder: about 20 kcal per 1 tablespoon.\n🥗 Cinnamon powder: about 20 kcal per 1 tablespoon.\n🥗 Nutmeg powder: about 20 kcal per 1 tablespoon.\n🥗 Cardamom powder: about 20 kcal per 1 tablespoon.\n🥗 Cloves powder: about 20 kcal per 1 tablespoon.\n🥗 Allspice powder: about 20 kcal per 1 tablespoon.\n🥗 Saffron powder: about 20 kcal per 1 tablespoon.\n🥗 Paprika powder: about 20 kcal per 1 tablespoon.\n🥗 Cayenne pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Black pepper powder: about 20 kcal per 1 tablespoon.\n🥗 White pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Red pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Green pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Yellow pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Orange pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Lemon pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Lime pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Salt: about 0 kcal per 1 teaspoon.\n🥗 Sugar: about 15 kcal per 1 teaspoon.\n🥗 Honey: about 64 kcal per 1 teaspoon.\n🥗 Maple syrup: about 64 kcal per 1 teaspoon.\n🥗 Agave nectar: about 64 kcal per 1 teaspoon.\n🥗 Coconut sugar: about 45 kcal per 1 teaspoon.\n🥗 Date sugar: about 45 kcal per 1 teaspoon.\n🥗 Brown sugar: about 45 kcal per 1 teaspoon.\n🥗 Molasses: about 64 kcal per 1 teaspoon.\n🥗 Cinnamon: about 6 kcal per 1 teaspoon.\n🥗 Nutmeg: about 6 kcal per 1 teaspoon.\n🥗 Cardamom: about 6 kcal per 1 teaspoon.\n🥗 Cloves: about 6 kcal per 1 teaspoon.\n🥗 Allspice: about 6 kcal per 1 teaspoon.\n🥗 Saffron: about 6 kcal per 1 teaspoon.\n🥗 Paprika: about 6 kcal per 1 teaspoon.\n🥗 Cayenne pepper: about 6 kcal per 1 teaspoon.\n🥗 Black pepper: about 6 kcal per 1 teaspoon.\n🥗 White pepper: about 6 kcal per 1 teaspoon.\n🥗 Red pepper: about 6 kcal per 1 teaspoon.\n🥗 Green pepper: about 6 kcal per 1 teaspoon.\n🥗 Yellow pepper: about 6 kcal per 1 teaspoon.\n🥗 Orange pepper: about 6 kcal per 1 teaspoon.\n🥗 Lemon pepper: about 6 kcal per 1 teaspoon.\n🥗 Lime pepper: about 6 kcal per 1 teaspoon.\n🥗 Garlic powder: about 20 kcal per 1 tablespoon.\n🥗 Onion powder: about 20 kcal per 1 tablespoon.\n🥗 Paprika powder: about 20 kcal per 1 tablespoon.\n🥗 Cayenne pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Black pepper powder: about 20 kcal per 1 tablespoon.\n🥗 White pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Red pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Green pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Yellow pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Orange pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Lemon pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Lime pepper powder: about 20 kcal per 1 tablespoon.\n🥗 Ginger powder: about 20 kcal per 1 tablespoon.\n🥗 Turmeric powder: about 20 kcal per 1 tablespoon.\n🥗 Cinnamon powder: about 20 kcal per 1 tablespoon.\n🥗 Nutmeg powder: about 20 kcal per 1 tablespoon.\n🥗 Cardamom powder",
-      "timestamp": "2025-10-15T13:32:45.160737"
+      "timestamp": "2025-10-15T13:51:53.411176"
     },
     {
       "type": "ai",
       "content": "Hi there! Ready to discover some delicious food?",
-      "timestamp": "2025-10-15T13:32:45.160737"
+      "timestamp": "2025-10-15T13:51:53.411176"
     },
     {
       "type": "human",
       "content": "I am carving pizza",
-      "timestamp": "2025-10-15T13:32:45.160737"
+      "timestamp": "2025-10-15T13:51:53.411176"
     },
     {
       "type": "ai",
       "content": "I found some great options for you!\n\nMatching dishes:\n\n- **Pepperoni Pizza** (Pizzas) from *Pizza Mia*\n  Price: $14.99\n  Description: Spicy pepperoni with mozzarella cheese\n\n- **Pepperoni Pizza** (Pizzas) from *Kabab Khatoon*\n  Price: $14.99\n  Description: Spicy pepperoni with mozzarella cheese\n\n- **Margherita Pizza** (Pizzas) from *Pizza Mia*\n  Price: $12.00\n  Description: Classic pizza with tomato sauce, mozzarella, and fresh basil\n\n\nNote: There was an issue formatting the response: Error code: 413 - {'error': {'message': 'Request too large for model `llama-3.1-8b-instant` in organization `org_01jqxfqn6jfymrjb5kzxr598ws` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Requested 9773, please reduce your message size and try again. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
-      "timestamp": "2025-10-15T13:32:45.160737"
+      "timestamp": "2025-10-15T13:51:53.411176"
     },
     {
       "type": "human",
       "content": "what are the calories",
-      "timestamp": "2025-10-15T13:32:45.160737"
+      "timestamp": "2025-10-15T13:51:53.411176"
     },
     {
       "type": "ai",
       "content": "🍗 Chicken breast: about 165 kcal per 3 oz serving.\n🍗 Grilled salmon: about 180 kcal per 3 oz serving.\n🍲 Brown rice: about 110 kcal per 1/2 cup cooked.\n🍞 Whole wheat bread: about 89 kcal per slice.\n🥗 Broccoli: about 55 kcal per 1 cup cooked.\n🍎 Apple: about 95 kcal per medium-sized fruit.\n🥤 Almond milk: about 30 kcal per cup.\n🥛 Greek yogurt: about 100 kcal per 6 oz serving.\n🍫 Dark chocolate: about 170 kcal per 1 oz piece.\n🍗 Turkey burger: about 210 kcal per patty.\n🥗 Spinach: about 7 kcal per 1 cup cooked.\n🍲 Quinoa: about 150 kcal per 1/2 cup cooked.\n🥗 Carrots: about 45 kcal per 1 cup cooked.\n🍗 Beef burger: about 250 kcal per patty.\n🥤 Orange juice: about 130 kcal per cup.\n🥛 Cottage cheese: about 80 kcal per 1/2 cup.\n🍞 Oatmeal: about 150 kcal per 1/2 cup cooked.\n🥗 Green beans: about 55 kcal per 1 cup cooked.\n🍗 Pork chop: about 230 kcal per 3 oz serving.\n🥤 Coconut water: about 45 kcal per cup.\n🥛 Milk: about 120 kcal per cup.\n🍲 Lentils: about 230 kcal per 1 cup cooked.\n🥗 Asparagus: about 25 kcal per 1 cup cooked.\n🍗 Shrimp: about 120 kcal per 3 oz serving.\n🍞 Bagel: about 250 kcal per medium-sized bagel.\n🥤 Cranberry juice: about 140 kcal per cup.\n🥛 Ricotta cheese: about 100 kcal per 1/2 cup.\n🍲 Sweet potato: about 105 kcal per medium-sized potato.\n🥗 Peas: about 115 kcal per 1 cup cooked.\n🍗 Chicken wing: about 140 kcal per wing.\n🥤 Pineapple juice: about 130 kcal per cup.\n🥛 Sour cream: about 100 kcal per 2 tbsp.\n🍲 Barley: about 110 kcal per 1/2 cup cooked.\n🥗 Zucchini: about 25 kcal per 1 cup cooked.\n🍗 Lamb chop: about 230 kcal per 3 oz serving.\n🥤 Grapefruit juice: about 90 kcal per cup.\n🥛 Cream cheese: about 100 kcal per 2 tbsp.\n🍲 Corn: about 80 kcal per 1 cup cooked.\n🥗 Cucumber: about 16 kcal per 1 cup sliced.\n🍗 Venison: about 150 kcal per 3 oz serving.\n🥤 Apple juice: about 130 kcal per cup.\n🥛 Feta cheese: about 70 kcal per 1/4 cup.\n🍲 Buckwheat: about 100 kcal per 1/2 cup cooked.\n🥗 Mushrooms: about 15 kcal per 1 cup cooked.\n🍗 Turkey sausage: about 220 kcal per 3 oz serving.\n🥤 Pomegranate juice: about 140 kcal per cup.\n🥛 Mozzarella cheese: about 70 kcal per 1 oz slice.\n🍲 Mashed potatoes: about 110 kcal per 1 cup cooked.\n🥗 Bell peppers: about 49 kcal per 1 cup sliced.\n🍗 Chicken thigh: about 140 kcal per 3 oz serving.\n🥤 Cranberry juice cocktail: about 160 kcal per cup.\n🥛 Ricotta cheese: about 100 kcal per 1/2 cup.\n🍲 Bulgur: about 110 kcal per 1/2 cup cooked.\n🥗 Kale: about 55 kcal per 1 cup cooked.\n🍗 Beef striploin: about 230 kcal per 3 oz serving.\n🥤 Grape juice: about 140 kcal per cup.\n🥛 Cottage cheese: about 80 kcal per 1/2 cup.\n🍲 Oats: about 150 kcal per 1/2 cup cooked.\n🥗 Celery: about 6 kcal per 1 cup sliced.\n🍗 Pork tenderloin: about 140 kcal per 3 oz serving.\n🥤 Pineapple juice cocktail: about 160 kcal per cup.\n🥛 Feta cheese: about 70 kcal per 1/4 cup.\n🍲 Barley: about 110 kcal per 1/2 cup cooked.\n🥗 Cabbage: about 22 kcal per 1 cup cooked.\n🍗 Lamb shank: about 230 kcal per 3 oz serving.\n🥤 Apple juice cocktail: about 160 kcal per cup.\n🥛 Mozzarella cheese: about 70 kcal per 1 oz slice.\n🍲 Quinoa: about 150 kcal per 1/2 cup cooked.\n🥗 Asparagus: about 25 kcal per 1 cup cooked.\n🍗 Chicken breast: about 165 kcal per 3 oz serving.\n🥤 Orange juice cocktail: about 160 kcal per cup.\n🥛 Sour cream: about 100 kcal per 2 tbsp.\n🍲 Corn: about 80 kcal per 1 cup cooked.\n🥗 Green beans: about 55 kcal per 1 cup cooked.\n🍗 Turkey breast: about 140 kcal per 3 oz serving.\n🥤 Cranberry juice cocktail: about 160 kcal per cup.\n🥛 Ricotta cheese: about 100 kcal per 1/2 cup.\n🍲 Lentils: about 230 kcal per 1 cup cooked.\n🥗 Peas: about 115 kcal per 1 cup cooked.\n🍗 Beef striploin: about 230 kcal per 3 oz serving.\n🥤 Pineapple juice cocktail: about 160 kcal per cup.\n🥛 Feta cheese: about 70 kcal per 1/4 cup.\n🍲 Mashed potatoes: about 110 kcal per 1 cup cooked.\n🥗 Zucchini: about 25 kcal per 1 cup cooked.\n🍗 Chicken wing: about 140 kcal per wing.\n🥤 Apple juice cocktail: about 160 kcal per cup.\n🥛 Mozzarella cheese: about 70 kcal per 1 oz slice.\n🍲 Bulgur: about 110 kcal per 1/2 cup cooked.\n🥗 Cucumber: about 16 kcal per 1 cup sliced.\n🍗 Venison: about 150 kcal per 3 oz serving.\n🥤 Grapefruit juice: about 90 kcal per cup.\n🥛 Cream cheese: about 100 kcal per 2 tbsp.\n🍲 Sweet potato: about 105 kcal per medium-sized potato.\n🥗 Mushrooms: about 15 kcal per 1 cup cooked.\n🍗 Turkey sausage: about 220 kcal per 3 oz serving.\n🥤 Pomegranate juice: about 140 kcal per cup.\n🥛 Cottage cheese: about 80 kcal per 1/2 cup.\n🍲 Oats: about 150 kcal per 1/2 cup cooked.\n🥗 Bell peppers: about 49 kcal per 1 cup sliced.\n🍗 Chicken thigh: about 140 kcal per 3 oz serving.\n🥤 Cranberry juice cocktail: about 160 kcal per cup.\n🥛 Ricotta cheese: about 100 kcal per 1/2 cup.\n🍲 Barley: about 110 kcal per 1/2 cup cooked.\n🥗 Kale: about 55 kcal per 1 cup cooked.\n🍗 Beef burger: about 250 kcal per patty.\n🥤 Grape juice: about 140 kcal per cup.\n🥛 Feta cheese: about 70 kcal per 1/4 cup.\n🍲 Quinoa: about 150 kcal per 1/2 cup cooked.\n🥗 Asparagus: about 25 kcal per 1 cup cooked.\n🍗 Chicken breast: about 165 kcal per 3 oz serving.\n🥤 Orange juice cocktail: about 160 kcal per cup.\n🥛 Sour cream: about 100 kcal per 2 tbsp.\n🍲 Corn: about 80 kcal per 1 cup cooked.\n🥗 Green beans: about 55 kcal per 1 cup cooked.\n🍗 Turkey breast: about 140 kcal per 3 oz serving.\n🥤 Cranberry juice cocktail: about 160 kcal per cup.\n🥛 Ricotta cheese: about 100 kcal per 1/2 cup.\n🍲 Lentils: about 230 kcal per 1 cup cooked.\n🥗 Peas: about 115 kcal per 1 cup cooked.\n🍗 Beef striploin: about 230 kcal per 3 oz serving.\n🥤 Pineapple juice cocktail: about 160 kcal per cup.\n🥛 Feta cheese: about 70 kcal per 1/4 cup.\n🍲 Mashed potatoes: about 110 kcal per 1 cup cooked.\n🥗 Zucchini: about 25 kcal per 1 cup cooked.\n🍗 Chicken wing: about 140 kcal per wing.\n🥤 Apple juice cocktail: about 160 kcal per cup.\n🥛 Mozzarella cheese: about 70 kcal per 1 oz slice.\n🍲 Bulgur: about 110 kcal per 1/2 cup cooked.\n🥗 Cucumber: about 16 kcal per 1 cup sliced.\n🍗 Venison: about 150 kcal per 3 oz serving.\n🥤 Grapefruit juice: about 90 kcal per cup.\n🥛 Cream cheese: about 100 kcal per 2 tbsp.\n🍲 Sweet potato: about 105 kcal per medium-sized potato.\n🥗 Mushrooms: about 15 kcal per 1 cup cooked.\n🍗 Turkey sausage: about 220 kcal per 3 oz serving.\n🥤 Pomegranate juice: about 140 kcal per cup.\n🥛 Cottage cheese: about 80 kcal per 1/2 cup.\n🍲 Oats: about 150 kcal per 1/2 cup cooked.\n🥗 Bell peppers: about 49 kcal per 1 cup sliced.\n🍗 Chicken thigh: about 140 kcal per 3 oz serving.\n🥤 Cranberry juice cocktail: about 160 kcal per cup.\n🥛 Ricotta cheese: about 100 kcal per 1/2 cup.\n🍲 Barley: about 110 kcal per 1/2 cup cooked.\n🥗 Kale: about 55 kcal per 1 cup cooked.\n🍗 Beef burger: about 250 kcal per patty.\n🥤 Grape juice: about 140 kcal per cup.\n🥛 Feta cheese: about 70 kcal per 1/4 cup.\n🍲 Quinoa: about 150 kcal per 1/2 cup cooked.\n🥗 Asparagus: about 25 kcal per 1 cup cooked.\n🍗 Chicken breast: about 165 kcal per 3 oz serving.\n🥤 Orange juice cocktail: about 160 kcal per cup.\n🥛 Sour cream: about 100 kcal per 2 tbsp.\n🍲 Corn: about 80 kcal per 1 cup cooked.\n🥗 Green beans: about 55 kcal per 1 cup cooked.\n🍗 Turkey breast: about 140 kcal per 3 oz serving.\n🥤 Cranberry juice cocktail: about 160 kcal per cup.\n🥛 Ricotta cheese: about 100 kcal per 1/2 cup.\n🍲 Lentils: about 230 kcal per 1 cup cooked.\n🥗 Peas: about 115 kcal per 1 cup cooked.\n🍗 Beef striploin: about 230 kcal per 3 oz serving.\n🥤 Pineapple juice cocktail: about 160 kcal per cup.\n🥛 Feta cheese: about 70 kcal per 1/4 cup.\n🍲 Mashed potatoes: about 110 kcal per 1 cup cooked.\n🥗 Zucchini: about 25 kcal per 1 cup cooked.\n🍗 Chicken wing: about 140 kcal per wing.\n🥤 Apple juice cocktail: about 160 kcal per cup.\n🥛 Mozzarella cheese: about 70 kcal per 1 oz slice.\n🍲 Bulgur: about 110 kcal per 1/2 cup cooked.\n🥗 Cucumber: about 16 kcal per 1 cup sliced.\n🍗 Venison: about 150 kcal per 3 oz serving.\n🥤 Grapefruit juice: about 90 kcal per cup.\n🥛 Cream cheese: about 100 kcal per 2 tbsp.\n🍲 Sweet potato: about 105 kcal per medium-sized potato.\n🥗 Mushrooms: about 15 kcal per 1 cup cooked.\n🍗 Turkey sausage: about 220 kcal per 3 oz serving.\n🥤 Pomegranate juice: about 140 kcal per cup.\n🥛 Cottage cheese: about 80 kcal per 1/2 cup.\n🍲 Oats: about 150 kcal per 1/2 cup cooked.\n🥗 Bell peppers: about 49 kcal per 1 cup sliced.\n🍗 Chicken thigh: about 140 kcal per 3 oz serving.\n🥤 Cranberry juice cocktail: about 160 kcal per cup.\n🥛 Ricotta cheese: about 100 kcal per 1/2 cup.\n🍲 Barley: about 110 kcal per 1/2 cup cooked.\n🥗 Kale: about 55 kcal per 1 cup cooked.\n🍗 Beef burger: about 250 kcal per patty.\n🥤 Grape juice: about 140 kcal per cup.\n🥛 Feta cheese: about 70 kcal per 1/4 cup.\n🍲 Quinoa: about 150 kcal per 1/2 cup cooked.\n🥗 Asparagus: about 25 kcal per 1 cup cooked.\n🍗 Chicken breast: about 165 kcal per 3 oz serving.\n🥤 Orange juice cocktail: about 160 kcal per cup.\n🥛 Sour cream: about 100 kcal per 2 tbsp.\n🍲 Corn: about 80 kcal per 1 cup cooked.\n🥗 Green beans: about 55 kcal per 1 cup cooked.\n🍗 Turkey breast: about 140 kcal per 3 oz serving.\n🥤 Cranberry juice cocktail: about 160 kcal per cup.\n🥛 Ricotta cheese: about 100 kcal per 1/2 cup.\n🍲 Lentils: about 230 kcal per 1 cup cooked.\n🥗 Peas: about 115 kcal per 1 cup cooked.\n🍗 Beef striploin: about 230 kcal per 3 oz serving.\n🥤 Pineapple juice cocktail: about 160 kcal per cup.\n🥛 Feta cheese: about 70 kcal per 1/4 cup.\n🍲 Mashed potatoes: about 110 kcal per 1 cup cooked.\n🥗 Zucchini: about 25 kcal per 1 cup cooked.\n🍗 Chicken wing: about 140 kcal per wing.\n🥤 Apple juice cocktail: about 160 kcal per cup.\n🥛 Mozzarella cheese: about 70 kcal per 1 oz slice.\n🍲 Bulgur: about 110 kcal per 1/2 cup cooked.\n🥗 Cucumber: about 16 kcal per 1 cup sliced.\n🍗 Venison: about 150 kcal per 3 oz serving.\n🥤 Grapefruit juice: about 90 kcal per cup.\n🥛 Cream cheese: about 100 kcal per 2 tbsp.\n🍲 Sweet potato: about 105 kcal per medium-sized potato.\n🥗 Mushrooms: about 15 kcal per 1 cup cooked.\n🍗 Turkey sausage: about 220 kcal per 3 oz serving.\n🥤 Pomegranate juice: about 140 kcal per cup.\n🥛 Cottage cheese: about 80 kcal per 1/2 cup.\n🍲 Oats: about 150 kcal per 1/2 cup cooked.\n🥗 Bell peppers: about 49 kcal per 1 cup sliced.\n🍗 Chicken thigh: about 140 kcal per 3 oz serving.\n🥤 Cranberry juice cocktail: about 160 kcal per cup.\n🥛 Ricotta cheese: about 100 kcal per 1/2 cup.\n🍲 Barley: about 110 kcal per 1/2 cup cooked.\n🥗 Kale: about 55 kcal per 1 cup cooked.\n🍗 Beef burger: about 250 kcal per patty.\n🥤 Grape juice: about 140 kcal per cup.\n🥛 Feta cheese: about 70 kcal per 1/4 cup.\n🍲 Quinoa: about 150 kcal per 1/2 cup cooked.\n🥗 Asparagus: about 25 kcal per 1 cup cooked.\n🍗 Chicken breast: about 165 kcal per 3 oz serving.\n🥤 Orange juice cocktail: about 160 kcal per cup.\n🥛 Sour cream: about 100 kcal per 2 tbsp.\n🍲 Corn: about 80 kcal per 1 cup cooked.\n🥗 Green beans: about 55 kcal per 1 cup cooked.\n🍗 Turkey breast: about 140 kcal per 3 oz serving.\n🥤 Cranberry juice cocktail: about 160 kcal per cup.\n🥛 Ricotta cheese: about 100 kcal per 1/2 cup.\n🍲 Lentils: about 230 kcal per 1 cup cooked.\n🥗 Peas: about 115 kcal per 1 cup cooked.\n🍗 Beef striploin: about 230 kcal per 3 oz serving.\n🥤 Pineapple juice cocktail: about 160 kcal per cup.\n🥛 Feta cheese: about 70 kcal per 1/4 cup.\n🍲 Mashed potatoes: about 110 kcal per 1 cup cooked.\n🥗 Zucchini: about 25 kcal per 1 cup cooked.\n🍗 Chicken wing: about 140 kcal per wing.\n🥤 Apple juice cocktail: about 160 kcal per cup.\n🥛 Mozzarella cheese: about 70 kcal per 1 oz slice.\n🍲 Bulgur: about 110 kcal per 1/2 cup cooked.\n🥗 Cucumber: about 16 kcal per 1 cup sliced.\n🍗 Venison: about 150 kcal per 3 oz serving.\n🥤 Grapefruit juice: about 90 kcal per cup.\n🥛 Cream cheese: about 100 kcal per 2 tbsp.\n🍲 Sweet potato: about 105 kcal per medium-sized potato.\n🥗 Mushrooms: about 15 kcal per 1 cup cooked.\n🍗 Turkey sausage: about 220 kcal per 3 oz serving.\n🥤 Pomegranate juice: about 140 kcal per cup.\n🥛 Cottage cheese: about 80 kcal per 1/2 cup.\n🍲 Oats: about 150 kcal per 1/2 cup cooked.\n🥗 Bell peppers: about 49 kcal per 1 cup sliced.\n🍗 Chicken thigh: about 140 kcal per 3 oz serving.\n🥤 Cranberry juice cocktail: about 160 kcal per cup.\n🥛 Ricotta cheese: about 100 kcal per 1/2 cup.\n🍲 Barley: about 110 kcal per 1/2 cup cooked.\n🥗 Kale: about 55 kcal per 1 cup cooked.\n🍗 Beef burger: about 250 kcal per patty.\n🥤 Grape juice: about 140 kcal per cup.\n🥛 Feta cheese: about 70 kcal per 1/4 cup.\n🍲 Quinoa: about 150 kcal per 1/2 cup cooked.\n🥗 Asparagus: about 25 kcal per 1 cup cooked.\n🍗 Chicken breast: about 165 kcal per 3 oz serving.\n🥤 Orange juice cocktail: about 160 kcal per cup.\n🥛 Sour cream: about 100 kcal per 2 tbsp.\n🍲 Corn: about 80 kcal per 1 cup cooked.\n🥗 Green beans: about 55 kcal per 1 cup cooked.\n🍗 Turkey breast: about 140 kcal per 3 oz serving.\n🥤 Cranberry juice cocktail: about 160 kcal per cup.\n🥛 Ricotta cheese: about 100 kcal per 1/2 cup.\n🍲 Lentils: about 230 kcal per 1 cup cooked.\n🥗 Peas: about 115 kcal per 1 cup cooked.\n🍗 Beef striploin: about 230 kcal per 3 oz serving.\n🥤 Pineapple juice cocktail: about 160 kcal per cup.\n🥛 Feta cheese: about 70 kcal per 1/4 cup.\n🍲 Mashed potatoes: about 110 kcal per 1 cup cooked.\n🥗 Zucchini: about 25 kcal per 1 cup cooked.\n🍗 Chicken wing: about 140 kcal per wing.\n🥤 Apple juice cocktail: about 160 kcal per cup.\n🥛 Mozzarella cheese: about 70 kcal per 1 oz slice.\n🍲 Bulgur: about 110 kcal per 1/2 cup cooked.\n🥗 Cucumber: about 16 kcal per 1 cup sliced.\n🍗 Venison: about 150 kcal per 3 oz serving.\n🥤 Grapefruit juice: about 90 kcal per cup.\n🥛 Cream cheese: about 100 kcal per 2 tbsp.\n🍲 Sweet potato: about 105 kcal per medium-sized potato.\n🥗 Mushrooms: about 15 kcal per 1 cup cooked.\n🍗 Turkey sausage: about 220 kcal per 3 oz serving.\n🥤 Pomegranate juice: about 140 kcal per cup.\n🥛 Cottage cheese: about 80 kcal per 1/2 cup.\n🍲 Oats: about 150 kcal per 1/2 cup cooked.\n🥗 Bell peppers: about 49 kcal per 1 cup sliced.\n🍗 Chicken thigh: about 140 kcal per 3 oz serving.\n🥤 Cranberry juice cocktail: about 160 kcal per cup.\n🥛 Ricotta cheese: about 100 kcal per 1/2 cup.\n🍲 Barley: about 110 kcal per 1/2 cup cooked.\n🥗 Kale: about 55 kcal per 1 cup cooked.\n🍗 Beef burger: about 250 kcal per patty.\n🥤 Grape juice: about 140 kcal per cup.\n🥛 Feta cheese: about 70 kcal per 1/4 cup.\n🍲 Quinoa: about 150 kcal per 1/2 cup cooked.\n🥗 Asparagus: about 25 kcal per 1 cup cooked.\n🍗 Chicken breast: about 165 kcal per 3 oz serving.\n🥤 Orange juice cocktail: about 160 kcal per cup.\n🥛 Sour cream: about 100 kcal per 2 tbsp.\n🍲 Corn: about 80 kcal per 1 cup cooked.\n🥗 Green beans: about 55 kcal per 1 cup cooked.\n🍗 Turkey breast: about 140 kcal per 3 oz serving.\n🥤 Cranberry juice cocktail: about 160 kcal per cup.\n🥛 Ricotta cheese: about 100 kcal per 1/2 cup.\n🍲 Lentils: about 230 kcal per 1 cup cooked.\n🥗 Peas: about 115 kcal per 1 cup cooked.\n🍗 Beef striploin: about 230 kcal per 3 oz serving.\n🥤 Pineapple juice cocktail: about 160 kcal per cup.\n🥛 Feta cheese: about 70 kcal per 1/4 cup.\n🍲 Mashed potatoes: about 110 kcal per 1 cup cooked.\n🥗 Zucchini: about 25 kcal per 1 cup cooked.\n🍗 Chicken wing: about 140 kcal per wing.\n🥤 Apple juice cocktail: about 160 kcal per cup.\n🥛 Mozzarella cheese: about 70 kcal per 1 oz slice.\n🍲 Bulgur: about 110 kcal per 1/2 cup cooked.\n🥗 Cucumber: about 16 kcal per 1 cup sliced.\n🍗 Venison: about 150 kcal per 3 oz serving.\n🥤 Grapefruit juice: about 90 kcal per cup.\n🥛 Cream cheese: about 100 kcal per 2 tbsp.\n🍲 Sweet potato: about 105 kcal per medium-sized potato.\n🥗 Mushrooms: about 15 kcal per 1 cup cooked.\n🍗 Turkey sausage: about 220 kcal per 3 oz serving.\n🥤 Pomegranate juice: about 140 kcal per cup.\n🥛 Cottage cheese: about 80 kcal per 1/2 cup.\n🍲 Oats: about 150 kcal per 1/2 cup cooked.\n🥗 Bell peppers: about 49 kcal per 1 cup sliced.\n🍗 Chicken thigh: about 140 kcal per 3 oz serving.\n🥤 Cranberry juice cocktail: about 160 kcal per cup.\n🥛 Ricotta cheese: about 100 kcal per 1/2 cup.\n🍲 Barley: about 110 kcal per 1/2 cup cooked.\n🥗 Kale: about 55 kcal per 1 cup cooked.\n🍗 Beef burger: about 250 kcal per patty.\n🥤 Grape juice: about 140 kcal per cup.\n🥛 Feta cheese: about 70 kcal per 1/4 cup.\n🍲 Quinoa: about 150 kcal per 1/2 cup cooked.\n🥗 Asparagus: about 25 kcal per 1 cup cooked.\n🍗 Chicken breast: about 165 kcal per 3 oz serving.\n🥤 Orange juice cocktail: about 160 kcal per cup.\n🥛 Sour cream: about 100 kcal per 2 tbsp.\n🍲 Corn: about 80 kcal per 1 cup cooked.\n🥗 Green beans: about 55 kcal per 1 cup cooked.\n🍗 Turkey breast: about 140 kcal per 3 oz serving.\n🥤 Cranberry juice cocktail: about 160 kcal per cup.\n🥛 Ricotta cheese: about 100 kcal per 1/2 cup.\n🍲 Lentils: about 230 kcal per 1 cup cooked.\n🥗 Peas: about 115 kcal per 1 cup cooked.\n🍗 Beef striploin: about 230 kcal per 3 oz serving.\n🥤 Pineapple juice cocktail: about 160 kcal per cup.\n🥛 Feta cheese: about 70 kcal per 1/4 cup.\n🍲 Mashed potatoes: about 110 kcal per 1 cup cooked.\n🥗 Zucchini: about 25 kcal per 1 cup cooked.\n🍗 Chicken wing: about 140 kcal per wing.\n🥤 Apple juice cocktail: about 160 kcal per cup.\n🥛 Mozzarella cheese: about 70 kcal per 1 oz slice.\n🍲 Bulgur: about 110 kcal per 1/2 cup cooked.\n🥗 Cucumber: about 16 kcal per 1 cup sliced.\n🍗 Venison: about 150 kcal per 3 oz serving.\n🥤 Grapefruit juice: about 90 kcal per cup.\n🥛 Cream cheese: about 100 kcal per 2 tbsp.\n🍲 Sweet potato: about 105 kcal per medium-sized potato.\n🥗 Mushrooms: about 15 kcal per 1 cup cooked.\n🍗 Turkey sausage: about 220 kcal per 3 oz serving.\n🥤 Pomegranate juice: about 140 kcal per cup.\n🥛 Cottage cheese: about 80 kcal per 1/2 cup.\n🍲 Oats: about 150 kcal per 1/2 cup cooked.\n🥗 Bell peppers: about 49 kcal per 1 cup sliced.\n🍗 Chicken thigh: about 140 kcal per 3 oz serving.\n🥤 Cranberry juice cocktail: about 160 kcal per cup.\n🥛 Ricotta cheese: about 100 kcal per 1/2 cup.\n🍲 Barley: about 110 kcal per 1/2 cup cooked.\n🥗 Kale: about 55 kcal per 1 cup cooked.\n🍗 Beef burger: about 250 kcal per patty.\n🥤 Grape juice: about 140 kcal per cup.\n🥛 Feta cheese: about 70 kcal per 1/4 cup.\n🍲 Quinoa: about 150 kcal per 1/2 cup cooked.\n🥗 Asparagus: about 25 kcal per 1 cup cooked.\n🍗 Chicken breast: about 165 kcal per 3 oz serving.\n🥤 Orange juice cocktail: about 160 kcal per cup.\n🥛 Sour cream: about 100 kcal per 2 tbsp.\n🍲 Corn: about 80 kcal per 1 cup cooked.\n🥗 Green beans: about 55 kcal per 1 cup cooked.\n🍗 Turkey breast: about 140 kcal per 3 oz serving.\n🥤 Cranberry juice cocktail: about 160 kcal per cup.\n🥛 Ricotta cheese: about 100 kcal per 1/2 cup.\n🍲 Lentils: about 230 kcal per 1 cup cooked.\n🥗 Peas: about 115 kcal per 1 cup cooked.\n🍗 Beef striploin: about 230 kcal per 3 oz serving.\n🥤 Pineapple juice cocktail: about 160 kcal per cup.\n🥛 Feta cheese: about 70 kcal per 1/4 cup.\n🍲 Mashed potatoes: about 110 kcal per 1 cup cooked.\n🥗 Zucchini: about 25 kcal per 1 cup cooked.\n🍗 Chicken wing: about 140 kcal per wing.\n🥤 Apple juice cocktail: about 160 kcal per cup.\n🥛 Mozzarella cheese: about 70 kcal per 1 oz slice.\n🍲 Bulgur: about 110 kcal per 1/2 cup cooked.\n🥗 Cucumber: about 16 kcal per 1 cup sliced.\n🍗 Venison: about 150 kcal per 3 oz serving.\n🥤 Grapefruit juice: about 90 kcal per cup.\n🥛 Cream cheese: about 100 kcal per 2 tbsp.\n🍲 Sweet potato: about 105 kcal per medium-sized potato.\n🥗 Mushrooms: about 15 kcal per 1 cup cooked.\n🍗 Turkey sausage: about 220 kcal per 3 oz serving.\n🥤 Pomegranate juice: about 140 kcal per cup.\n🥛 Cottage cheese: about 80 kcal per 1/2 cup.\n🍲 Oats: about 150 kcal per 1/2 cup cooked.\n🥗 Bell peppers: about 49 kcal per 1 cup sliced.\n🍗 Chicken thigh: about 140 kcal per 3 oz serving.\n🥤 Cranberry juice cocktail: about 160 kcal per cup.\n🥛 Ricotta cheese: about 100 kcal per 1/2 cup.\n🍲 Barley: about 110 kcal per 1/2 cup cooked.\n🥗 Kale: about 55 kcal per 1 cup cooked.\n🍗 Beef burger: about 250 kcal per patty.\n🥤 Grape juice: about 140 kcal per cup.\n🥛 Feta cheese: about 70 kcal per 1/4 cup.\n🍲 Quinoa: about 150 kcal per 1/2 cup cooked.\n🥗 Asparagus: about 25 kcal per 1 cup cooked.\n🍗 Chicken breast: about 165 kcal per 3 oz serving.\n🥤 Orange juice cocktail: about 160 kcal per cup.\n🥛 Sour cream: about 100 kcal per 2 tbsp.\n🍲 Corn: about 80 kcal per 1 cup cooked.\n🥗 Green beans: about 55 kcal per 1 cup cooked.\n🍗 Turkey breast: about 140 kcal per 3 oz serving.\n🥤 Cranberry juice cocktail: about 160 kcal per cup.\n🥛 Ricotta cheese: about 100 kcal per 1/2 cup.\n🍲 Lentils: about 230 kcal per 1 cup cooked.\n🥗 Peas: about 115 kcal per 1 cup cooked.\n🍗 Beef striploin: about 230 kcal per 3 oz serving.\n🥤 Pineapple juice cocktail: about 160 kcal per cup.\n🥛 Feta cheese: about 70 kcal per 1/4 cup.\n🍲 Mashed potatoes: about 110 kcal per 1 cup cooked.\n🥗 Zucchini: about 25 kcal per 1 cup cooked.\n🍗 Chicken wing: about 140 kcal per wing.\n🥤 Apple juice cocktail: about 160 kcal per cup.\n🥛 Mozzarella cheese: about 70 kcal per 1 oz slice.\n🍲 Bulgur: about 110 kcal per 1/2 cup cooked.\n🥗 Cucumber: about 16 kcal per 1 cup sliced.\n🍗 Venison: about 150 kcal per 3 oz serving.\n🥤 Grapefruit juice: about 90 kcal per cup.\n🥛 Cream cheese: about 100 kcal per 2 tbsp.\n🍲 Sweet potato: about 105 kcal per medium-sized potato.\n🥗 Mushrooms: about 15 kcal per 1 cup cooked.\n🍗 Turkey sausage: about 220 kcal per 3 oz serving.\n🥤 Pomegranate juice: about 140 kcal per cup.\n🥛 Cottage cheese: about 80 kcal per 1/2 cup.\n🍲 Oats: about 150 kcal per 1/2 cup cooked.\n🥗 Bell peppers: about 49 kcal per 1 cup sliced.\n🍗 Chicken thigh: about 140 kcal per 3 oz serving.\n🥤 Cranberry juice cocktail: about 160 kcal per cup.\n🥛 Ricotta cheese: about 100 kcal per 1/2 cup.\n🍲 Barley: about 110 kcal per 1/2 cup cooked.\n🥗 Kale: about 55 kcal per 1 cup cooked.\n🍗 Beef burger: about 250 kcal per patty.\n🥤 Grape juice: about 140 kcal per cup.\n🥛 Feta cheese: about 70 kcal per 1/4 cup.\n🍲 Quinoa: about 150 kcal per 1/2 cup cooked.\n🥗 Asparagus: about 25 kcal per 1 cup cooked.\n🍗 Chicken breast: about 165 kcal per 3 oz serving.\n🥤 Orange juice cocktail: about 160 kcal per cup.\n🥛 Sour cream: about 100 kcal per 2 tbsp.\n🍲 Corn: about 80 kcal per 1 cup cooked.\n🥗 Green beans: about 55 kcal per 1 cup cooked.\n🍗 Turkey breast: about 140 kcal per 3 oz serving.\n🥤 Cranberry juice cocktail: about 160 kcal per cup.\n🥛 Ricotta cheese: about 100 kcal per 1/2 cup.\n🍲 Lentils: about 230 kcal per 1 cup cooked.\n🥗 Peas: about 115 kcal per 1 cup cooked.\n🍗 Beef striploin: about 230 kcal per 3 oz serving.\n🥤 Pineapple juice cocktail: about 160 kcal per cup.\n🥛 Feta cheese: about 70 kcal per 1/4 cup.\n🍲 Mashed potatoes: about 110 kcal per 1 cup cooked.\n🥗 Zucchini: about 25 kcal per 1 cup cooked.\n🍗 Chicken wing: about 140 kcal per wing.\n🥤 Apple juice cocktail: about 160 kcal per cup.\n🥛 Mozzarella cheese: about 70 kcal per 1 oz slice.\n🍲 Bulgur: about 110 kcal per 1/2 cup cooked.\n🥗 Cucumber: about 16 kcal per 1 cup sliced.\n🍗 Venison: about 150 kcal per 3 oz serving.\n🥤 Grapefruit juice: about 90 kcal per cup.\n🥛 Cream cheese: about 100 kcal per 2 tbsp.\n🍲 Sweet potato: about 105 kcal per medium-sized potato.\n🥗 Mushrooms: about 15 kcal per 1 cup cooked.\n🍗 Turkey sausage: about 220 kcal per 3 oz serving.\n🥤 Pomegranate juice: about 140 kcal per cup.\n🥛 Cottage cheese: about 80 kcal per 1/2 cup.\n🍲 Oats: about 150 kcal per 1/2 cup cooked.\n🥗 Bell peppers: about 49 kcal per 1 cup sliced.\n🍗 Chicken thigh: about 140 kcal per 3 oz serving.\n🥤 Cranberry juice cocktail: about 160 kcal per cup.\n🥛 Ricotta cheese: about 100 kcal per 1/2 cup.\n🍲 Barley: about 110 kcal per 1/2 cup cooked.\n🥗 Kale: about 55 kcal per 1 cup cooked.\n🍗 Beef burger: about 250 kcal per patty.\n🥤 Grape juice: about 140 kcal per cup.\n🥛 Feta cheese: about 70 kcal per 1/4 cup.\n🍲 Quinoa: about 150 kcal per 1/2 cup cooked.\n🥗 Asparagus: about 25 kcal per 1 cup cooked.\n🍗 Chicken breast: about 165 kcal per 3 oz serving.\n🥤 Orange juice cocktail: about 160 kcal per cup.\n🥛 Sour cream: about 100 kcal per 2 tbsp.\n🍲 Corn: about 80 kcal per 1 cup cooked.\n🥗 Green beans: about 55 kcal per 1 cup cooked.\n🍗 Turkey breast: about 140 kcal per 3 oz serving.\n🥤 Cranberry juice cocktail: about 160 kcal per cup.\n🥛 Ricotta cheese: about 100 kcal per 1/2 cup.\n🍲 Lentils: about 230 kcal per 1 cup cooked.\n🥗 Peas: about 115 kcal per 1 cup cooked.\n🍗 Beef striploin: about",
-      "timestamp": "2025-10-15T13:32:45.160737"
+      "timestamp": "2025-10-15T13:51:53.411176"
     },
     {
       "type": "human",
       "content": "from where I can get burger",
-      "timestamp": "2025-10-15T13:32:45.160737"
+      "timestamp": "2025-10-15T13:51:53.411176"
     },
     {
       "type": "ai",
       "content": "I found some great options for you!\n\nMatching dishes:\n\n- **Classic Cheeseburger** (Burgers) from *Grab Burger*\n  Price: $11.99\n  Description: Beef patty with cheese, lettuce, tomato, and special sauce\n\n- **BBQ Bacon Burger** (Burgers) from *Grab Burger*\n  Price: $15.99\n  Description: Beef patty with bacon, BBQ sauce, and onion rings\n\n- **Test ** (Burgers) from *Grab Burger*\n  Price: $100.00\n  Description: {'ar': '', 'en': ''}\n\n\nNote: There was an issue formatting the response: Error code: 413 - {'error': {'message': 'Request too large for model `llama-3.1-8b-instant` in organization `org_01jqxfqn6jfymrjb5kzxr598ws` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Requested 18065, please reduce your message size and try again. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
-      "timestamp": "2025-10-15T13:32:45.160737"
+      "timestamp": "2025-10-15T13:51:53.411176"
     },
     {
       "type": "human",
       "content": "what are teh calories of buregr",
-      "timestamp": "2025-10-15T13:32:45.160737"
+      "timestamp": "2025-10-15T13:51:53.411176"
     },
     {
       "type": "ai",
       "content": "Burger: about 250-350 kcal.",
-      "timestamp": "2025-10-15T13:32:45.160737"
+      "timestamp": "2025-10-15T13:51:53.411176"
     },
     {
       "type": "ai",
       "content": "Hi there! Ready to discover some delicious food?",
-      "timestamp": "2025-10-15T13:32:45.160737"
+      "timestamp": "2025-10-15T13:51:53.411176"
     },
     {
       "type": "human",
       "content": "I am carving burger",
-      "timestamp": "2025-10-15T13:32:45.160737"
+      "timestamp": "2025-10-15T13:51:53.411176"
     },
     {
       "type": "ai",
       "content": "I found some great options for you!\n\nMatching dishes:\n\n- **BBQ Bacon Burger** (Burgers) from *Grab Burger*\n  Price: $15.99\n  Description: Beef patty with bacon, BBQ sauce, and onion rings\n\n- **Classic Cheeseburger** (Burgers) from *Grab Burger*\n  Price: $11.99\n  Description: Beef patty with cheese, lettuce, tomato, and special sauce\n\n\nNote: There was an issue formatting the response: Error code: 413 - {'error': {'message': 'Request too large for model `llama-3.1-8b-instant` in organization `org_01jqxfqn6jfymrjb5kzxr598ws` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Requested 17885, please reduce your message size and try again. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
-      "timestamp": "2025-10-15T13:32:45.160737"
+      "timestamp": "2025-10-15T13:51:53.411176"
     },
     {
       "type": "human",
       "content": "I am carving something spicy",
-      "timestamp": "2025-10-15T13:32:45.160737"
+      "timestamp": "2025-10-15T13:51:53.411176"
     },
     {
       "type": "ai",
       "content": "I found some great options for you!\n\nMatching dishes:\n\n- **Pepperoni Pizza** (Pizzas) from *Kabab Khatoon*\n  Price: $14.99\n  Description: Spicy pepperoni with mozzarella cheese\n\n- **Pepperoni Pizza** (Pizzas) from *Pizza Mia*\n  Price: $14.99\n  Description: Spicy pepperoni with mozzarella cheese\n\n\nNote: There was an issue formatting the response: Error code: 413 - {'error': {'message': 'Request too large for model `llama-3.1-8b-instant` in organization `org_01jqxfqn6jfymrjb5kzxr598ws` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Requested 17904, please reduce your message size and try again. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
-      "timestamp": "2025-10-15T13:32:45.160737"
+      "timestamp": "2025-10-15T13:51:53.411176"
+    },
+    {
+      "type": "ai",
+      "content": "Hi there! Ready to discover some delicious food?",
+      "timestamp": "2025-10-15T13:51:53.411176"
+    },
+    {
+      "type": "human",
+      "content": "I am craving somthing spicy",
+      "timestamp": "2025-10-15T13:51:53.411176"
+    },
+    {
+      "type": "ai",
+      "content": "Assistant: Recommended dishes based on your craving for something spicy\n\nMatching dishes:\n\n- **Pepperoni Pizza** (Pizzas) from *Kabab Khatoon*\n  Price: $14.99\n  Description: Spicy pepperoni with mozzarella cheese\n\n- **Pepperoni Pizza** (Pizzas) from *Pizza Mia*\n  Price: $14.99\n  Description: Spicy pepperoni with mozzarella cheese\n\n- **Spicy Tuna Roll** (Sushi Rolls) from *Ocean Lobster*\n  Price: $10.99\n  Description: Fresh tuna with spicy mayo and cucumber\n\nYou can refine your search by:\n  • spicy\n  • pizzas\n  • sushi",
+      "timestamp": "2025-10-15T13:51:53.411176"
+    },
+    {
+      "type": "human",
+      "content": "what are the menu items of Ocean Lobster",
+      "timestamp": "2025-10-15T13:51:53.411176"
+    },
+    {
+      "type": "ai",
+      "content": "Assistant: Recommended dishes from Ocean Lobster based on your query\n\nMatching dishes:\n\n- **Salmon Sashimi** (Sashimi) from *Ocean Lobster*\n  Price: $13.99\n  Description: Fresh Atlantic salmon slices\n\n- **Spicy Tuna Roll** (Sushi Rolls) from *Ocean Lobster*\n  Price: $10.99\n  Description: Fresh tuna with spicy mayo and cucumber\n\n- **California Roll** (Sushi Rolls) from *Ocean Lobster*\n  Price: $8.99\n  Description: Crab, avocado, and cucumber with sesame seeds\n\nYou can refine your search by:\n  • sushi\n  • seafood",
+      "timestamp": "2025-10-15T13:51:53.411176"
+    },
+    {
+      "type": "human",
+      "content": "I am carving burger",
+      "timestamp": "2025-10-15T13:51:53.411176"
+    },
+    {
+      "type": "ai",
+      "content": "Assistant: Recommended burgers based on your craving\n\nMatching dishes:\n\n- **BBQ Bacon Burger** (Burgers) from *Grab Burger*\n  Price: $15.99\n  Description: Beef patty with bacon, BBQ sauce, and onion rings\n\n- **Classic Cheeseburger** (Burgers) from *Grab Burger*\n  Price: $11.99\n  Description: Beef patty with cheese, lettuce, tomato, and special sauce\n\nYou can refine your search by:\n  • burgers\n  • grab burger",
+      "timestamp": "2025-10-15T13:51:53.411176"
+    },
+    {
+      "type": "human",
+      "content": "is their fries at grab burger",
+      "timestamp": "2025-10-15T13:51:53.411176"
+    },
+    {
+      "type": "ai",
+      "content": "Assistant: Grab Burger offers fries with their burgers.\n\nMatching dishes:\n\n- **Classic Cheeseburger** (Burgers) from *Grab Burger*\n  Price: $11.99\n  Description: Beef patty with cheese, lettuce, tomato, and special sauce\n\n- **BBQ Bacon Burger** (Burgers) from *Grab Burger*\n  Price: $15.99\n  Description: Beef patty with bacon, BBQ sauce, and onion rings\n\nYou can refine your search by:\n  • fries\n  • burgers",
+      "timestamp": "2025-10-15T13:51:53.411176"
+    },
+    {
+      "type": "human",
+      "content": "from where I can get  fries",
+      "timestamp": "2025-10-15T13:51:53.411176"
+    },
+    {
+      "type": "ai",
+      "content": "Assistant: Recommended dishes based on your query for fries\n\nMatching dishes:\n\n- **French Fries** (Sides) from *Grab Burger*\n  Price: $4.99\n  Description: Crispy golden fries with sea salt\n\n- **fries** (Appetizers) from *Kabab Khatoon*\n  Price: $30.00\n  Description: fries\n\nYou can refine your search by:\n  • fries\n  • sides",
+      "timestamp": "2025-10-15T13:51:53.411176"
+    },
+    {
+      "type": "human",
+      "content": "what are teh calories of a buregr",
+      "timestamp": "2025-10-15T13:51:53.411176"
+    },
+    {
+      "type": "ai",
+      "content": "🍔 Burger: about 250-300 kcal.",
+      "timestamp": "2025-10-15T13:51:53.411176"
+    },
+    {
+      "type": "human",
+      "content": "fro where I can get pasta",
+      "timestamp": "2025-10-15T13:51:53.411176"
+    },
+    {
+      "type": "ai",
+      "content": "Assistant: Recommended pasta dishes from Pastaroni\n\nMatching dishes:\n\n- **Penne White Pasta with Chicken ** (Pasta) from *Pastaroni*\n  Price: $0.00\n  Description: Penne pasta with white cream sauce serve with Chicken\n\n- **Penne White Pasta with Shrimp** (Pasta) from *Pastaroni*\n  Price: $0.00\n  Description: Penne pasta with white cream sauce serve with Shrimp\n\n- **Penne Pink Pasta with  Shrimp** (Pasta) from *Pastaroni*\n  Price: $0.00\n  Description: Penne Pink Pasta with  Shrimp\n\n- **Penne Pink Pasta with Chicken** (Pasta) from *Pastaroni*\n  Price: $0.00\n  Description: Penne Pink Pasta with Chicken\n\n- **Penne Pesto Pasta with Chicken** (Pasta) from *Pastaroni*\n  Price: $0.00\n  Description: Penne Pesto Pasta with Chicken\n\nYou can refine your search by:\n  • pastaroni\n  • pasta",
+      "timestamp": "2025-10-15T13:51:53.411176"
+    },
+    {
+      "type": "human",
+      "content": "is there healthy options",
+      "timestamp": "2025-10-15T13:51:53.411176"
+    },
+    {
+      "type": "ai",
+      "content": "Assistant: Recommended healthy options from the available items list\n\nMatching dishes:\n\n- **Be Vegan** (Unspecified category) from *Unknown restaurant*\n  Price: $0.00\n  Description: {'ar': '', 'en': ''}\n\n- **Salad Gourmet** (Unspecified category) from *Unknown restaurant*\n  Price: $0.00\n  Description: {'ar': '', 'en': ''}\n\n- **Diet Nation** (Unspecified category) from *Unknown restaurant*\n  Price: $0.00\n  Description: {'ar': '', 'en': ''}\n\n- **Healthy Land** (Unspecified category) from *Unknown restaurant*\n  Price: $0.00\n  Description: {'ar': '', 'en': ''}\n\n- **Healthy Village** (Unspecified category) from *Unknown restaurant*\n  Price: $0.00\n  Description: {'ar': '', 'en': ''}\n\nYou can refine your search by:\n  • healthy\n  • low-calorie",
+      "timestamp": "2025-10-15T13:51:53.411176"
+    },
+    {
+      "type": "human",
+      "content": "give me healthy dishes",
+      "timestamp": "2025-10-15T13:51:53.411176"
+    },
+    {
+      "type": "ai",
+      "content": "Assistant: Recommended healthy pasta dishes from Pastaroni\n\nMatching dishes:\n\n- **Penne White Pasta with Shrimp** (Pasta) from *Pastaroni*\n  Price: $0.00\n  Description: Penne pasta with white cream sauce serve with Shrimp\n\n- **Penne White Pasta with Chicken ** (Pasta) from *Pastaroni*\n  Price: $0.00\n  Description: Penne pasta with white cream sauce serve with Chicken\n\n- **Penne Pesto Pasta with Shrimp** (Pasta) from *Pastaroni*\n  Price: $0.00\n  Description: Penne Pesto Pasta with Shrimp\n\nYou can refine your search by:\n  • pastaroni\n  • pasta",
+      "timestamp": "2025-10-15T13:51:53.411176"
+    },
+    {
+      "type": "human",
+      "content": "what are the appetizers of Kabab Khatoon",
+      "timestamp": "2025-10-15T13:51:53.411176"
+    },
+    {
+      "type": "ai",
+      "content": "Assistant: Recommended appetizers from Kabab Khatoon\n\nMatching dishes:\n\n- **Garlic Bread** (Appetizers) from *Kabab Khatoon*\n  Price: $6.99\n  Description: Crispy bread with garlic butter and herbs\n\n- **fries** (Appetizers) from *Kabab Khatoon*\n  Price: $30.00\n  Description: fries\n\nYou can refine your search by:\n  • appetizers\n  • kabab khatoon",
+      "timestamp": "2025-10-15T13:51:53.411176"
+    },
+    {
+      "type": "human",
+      "content": "I am craving something spicy",
+      "timestamp": "2025-10-15T13:51:53.411176"
+    },
+    {
+      "type": "ai",
+      "content": "Assistant: Recommended dishes based on your craving for something spicy\n\nMatching dishes:\n\n- **Pepperoni Pizza** (Pizzas) from *Pizza Mia*\n  Price: $14.99\n  Description: Spicy pepperoni with mozzarella cheese\n\n- **Pepperoni Pizza** (Pizzas) from *Kabab Khatoon*\n  Price: $14.99\n  Description: Spicy pepperoni with mozzarella cheese\n\n- **Spicy Tuna Roll** (Sushi Rolls) from *Ocean Lobster*\n  Price: $10.99\n  Description: Fresh tuna with spicy mayo and cucumber\n\nYou can refine your search by:\n  • spicy\n  • hot",
+      "timestamp": "2025-10-15T13:51:53.411176"
+    },
+    {
+      "type": "human",
+      "content": "what are the calories of the first item",
+      "timestamp": "2025-10-15T13:51:53.411176"
+    },
+    {
+      "type": "ai",
+      "content": "I'm not aware of the specific item you are referring to.",
+      "timestamp": "2025-10-15T13:51:53.411176"
     }
   ]
 }

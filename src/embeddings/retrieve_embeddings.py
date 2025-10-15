@@ -4,6 +4,7 @@ from langchain_groq import ChatGroq
 from langchain_core.messages import HumanMessage, AIMessage, SystemMessage
 from langchain.output_parsers import PydanticOutputParser
 from langchain_community.chat_message_histories import ChatMessageHistory
+from langchain.memory import ConversationBufferMemory
 from pydantic import BaseModel, Field
 from typing import List, Optional, Dict, Any
 from dotenv import load_dotenv
@@ -31,101 +32,6 @@ class RecommendationResponse(BaseModel):
         default_factory=list
     )
 
-class ConversationMemory:
-    """Enhanced conversation memory with persistence and context awareness."""
-
-    def __init__(self, memory_file="conversation_memory.json", max_messages=50):
-        self.memory_file = memory_file
-        self.max_messages = max_messages
-        self.chat_history = ChatMessageHistory()
-        self.load_memory()
-        self.current_session_start = datetime.now()
-
-    def load_memory(self):
-        try:
-            if os.path.exists(self.memory_file):
-                with open(self.memory_file, 'r', encoding='utf-8') as f:
-                    data = json.load(f)
-                    for message_data in data.get('messages', []):
-                        msg_type = message_data['type']
-                        content = message_data['content']
-
-                        if msg_type == 'human':
-                            self.chat_history.add_user_message(content)
-                        elif msg_type == 'ai':
-                            self.chat_history.add_ai_message(content)
-
-                    if len(self.chat_history.messages) > self.max_messages:
-                        self.chat_history.messages = self.chat_history.messages[-self.max_messages:]
-        except Exception as e:
-            print(f"[WARNING] Could not load conversation memory: {e}")
-
-    def save_memory(self):
-        try:
-            messages = []
-            for message in self.chat_history.messages:
-                msg_data = {
-                    'type': 'human' if isinstance(message, HumanMessage) else 'ai',
-                    'content': message.content,
-                    'timestamp': datetime.now().isoformat()
-                }
-                messages.append(msg_data)
-
-            if len(messages) > self.max_messages:
-                messages = messages[-self.max_messages:]
-
-            data = {
-                'session_start': self.current_session_start.isoformat(),
-                'last_updated': datetime.now().isoformat(),
-                'messages': messages
-            }
-
-            with open(self.memory_file, 'w', encoding='utf-8') as f:
-                json.dump(data, f, indent=2, ensure_ascii=False)
-
-        except Exception as e:
-            print(f"[WARNING] Could not save conversation memory: {e}")
-
-    def add_user_message(self, message):
-        self.chat_history.add_user_message(message)
-
-    def add_ai_message(self, message):
-        self.chat_history.add_ai_message(message)
-
-    def get_recent_context(self, limit=10):
-        messages = self.chat_history.messages[-limit*2:]
-        context_parts = []
-
-        for msg in messages:
-            if isinstance(msg, HumanMessage):
-                context_parts.append(f"User: {msg.content}")
-            elif isinstance(msg, AIMessage):
-                context_parts.append(f"Assistant: {msg.content}")
-
-        return "\n".join(context_parts)
-
-    def get_user_preferences(self):
-        preferences = {
-            'liked_restaurants': set(),
-            'liked_categories': set(),
-            'price_range': None,
-            'avoided_items': set()
-        }
-        return preferences
-
-    def clear_memory(self):
-        self.chat_history.clear()
-        if os.path.exists(self.memory_file):
-            os.remove(self.memory_file)
-        self.current_session_start = datetime.now()
-
-    def get_memory_stats(self):
-        message_count = len(self.chat_history.messages)
-        return {
-            'message_count': message_count,
-            'session_duration': str(datetime.now() - self.current_session_start),
-            'memory_file_size': os.path.getsize(self.memory_file) if os.path.exists(self.memory_file) else 0
-        }
 
 def extract_metadata_filters(query):
     filters = {}
@@ -279,8 +185,16 @@ def get_recommendations(query, conversation_memory=None):
     conversation_context = ""
     user_preferences = {}
     if conversation_memory:
-        conversation_context = conversation_memory.get_recent_context(limit=5)
-        user_preferences = conversation_memory.get_user_preferences()
+        # Get recent context from chat memory
+        recent_messages = conversation_memory.chat_memory.messages[-10:] if len(conversation_memory.chat_memory.messages) > 10 else conversation_memory.chat_memory.messages
+        context_parts = []
+        for msg in recent_messages:
+            if isinstance(msg, HumanMessage):
+                context_parts.append(f"User: {msg.content}")
+            elif isinstance(msg, AIMessage):
+                context_parts.append(f"Assistant: {msg.content}")
+        conversation_context = "\n".join(context_parts)
+        user_preferences = {}
 
     filters = extract_metadata_filters(query)
     results = chroma_db.similarity_search(query, k=8)
@@ -398,7 +312,8 @@ def get_recommendations(query, conversation_memory=None):
 embeddings_model = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
 chroma_db = Chroma(persist_directory="./chroma_db", embedding_function=embeddings_model)
 
-llm = ChatGroq(model="llama-3.1-8b-instant", temperature=0.1)
+llm = ChatGroq(model="llama-3.1-8b-instant", temperature=0.3)
+
 
 def main():
     print("\n" + "="*60)
@@ -406,7 +321,9 @@ def main():
     print("With Conversation Memory and Calorie Lookup!")
     print("="*60 + "\n")
 
-    memory = ConversationMemory()
+    chat_history = ChatMessageHistory()
+    memory = ConversationBufferMemory(chat_memory=chat_history, return_messages=True)
+    last_items = []  # Track last shown items
 
     while True:
         try:
@@ -416,51 +333,99 @@ def main():
 
             if query.lower() in ['exit', 'quit', 'bye']:
                 print("\nGoodbye! Have a tasty day!")
-                memory.save_memory()
                 break
 
             if query.lower() == 'history':
-                stats = memory.get_memory_stats()
+                # Get memory statistics
+                message_count = len(memory.chat_memory.messages)
+                stats = {
+                    'message_count': message_count,
+                    'memory_type': 'ConversationBufferMemory',
+                    'chat_history_size': message_count
+                }
                 print(f"\n📚 Memory: {stats}")
-                print(memory.get_recent_context(5))
+                # Get recent context from chat memory
+                recent_messages = memory.chat_memory.messages[-10:] if len(memory.chat_memory.messages) > 10 else memory.chat_memory.messages
+                context_parts = []
+                for msg in recent_messages:
+                    if isinstance(msg, HumanMessage):
+                        context_parts.append(f"User: {msg.content}")
+                    elif isinstance(msg, AIMessage):
+                        context_parts.append(f"Assistant: {msg.content}")
+                print("\n".join(context_parts))
                 continue
 
             if query.lower() == 'clear memory':
-                memory.clear_memory()
+                memory.chat_memory.clear()
+                last_items.clear()  # Clear tracked items too
                 print("Memory cleared!")
                 continue
 
             greeting = handle_greeting(query)
             if greeting:
                 print(f"\nAssistant: {greeting}")
-                memory.add_ai_message(greeting)
+                memory.chat_memory.add_ai_message(greeting)
                 continue
 
-            memory.add_user_message(query)
+            memory.chat_memory.add_user_message(query)
             print("\nProcessing...")
 
-            # ✅ Calorie mode detection
+            # Handle references to previous items
+            if any(x in query.lower() for x in ["first", "second", "third", "last"]) and last_items:
+                try:
+                    index = -1
+                    if "first" in query.lower(): index = 0
+                    elif "second" in query.lower(): index = 1
+                    elif "third" in query.lower(): index = 2
+                    elif "last" in query.lower(): index = -1
+                    
+                    referenced_item = last_items[index]
+                    query = query.lower().replace("first", "").replace("second", "").replace("third", "").replace("last", "")
+                    query = f"{query} {referenced_item['name']}"
+                except IndexError:
+                    print("I couldn't find that item in the previous results.")
+                    continue
+
+            # Calorie query handling
             if "calorie" in query.lower() or "calories" in query.lower():
                 calorie_prompt = f"""
-                You are a nutrition assistant. The user asked: "{query}"
-                Answer briefly with the approximate calories in kcal.
-                Format example: "🍕 Pepperoni pizza: about 285 kcal per slice."
-                Be direct. No extra explanations.
+                You are a nutrition assistant providing brief, focused responses.
+                Query: "{query}"
+                
+                Respond with:
+                1. Estimated calorie range
+                Keep it concise and factual.
                 """
-                response = llm.invoke([HumanMessage(content=calorie_prompt)]).content.strip()
+                
+                response = llm.invoke([
+                    SystemMessage(content="You are a precise nutrition assistant."),
+                    HumanMessage(content=calorie_prompt)
+                ]).content.strip()
             else:
                 response = get_recommendations(query, memory)
+                # Store items for reference
+                try:
+                    parsed = json.loads(response)
+                    if "matches" in parsed:
+                        last_items = parsed["matches"]
+                except:
+                    # If parsing fails, try to extract items from formatted response
+                    items = []
+                    for line in response.split("\n"):
+                        if line.startswith("- **"):
+                            item_info = line.split("**")[1:]
+                            if item_info:
+                                items.append({"name": item_info[0]})
+                    last_items = items
 
             print(f"\n{response}")
-            memory.add_ai_message(response)
+            memory.chat_memory.add_ai_message(response)
 
         except KeyboardInterrupt:
             print("\nExiting gracefully...")
-            memory.save_memory()
             break
         except Exception as e:
             print(f"\nError: {str(e)}")
-            memory.save_memory()
 
         print("\n" + "="*60)
 

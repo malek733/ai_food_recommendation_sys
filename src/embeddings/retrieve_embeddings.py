@@ -279,7 +279,7 @@ def get_recommendations(query, conversation_memory=None):
     conversation_context = ""
     user_preferences = {}
     if conversation_memory:
-        conversation_context = conversation_memory.get_recent_context()
+        conversation_context = conversation_memory.get_recent_context(limit=5)
         user_preferences = conversation_memory.get_user_preferences()
 
     filters = extract_metadata_filters(query)
@@ -460,6 +460,7 @@ def main():
             break
         except Exception as e:
             print(f"\nError: {str(e)}")
+            memory.save_memory()
 
         print("\n" + "="*60)
 

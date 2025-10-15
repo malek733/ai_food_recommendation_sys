@@ -179,6 +179,46 @@ def handle_greeting(query):
     }
     return greetings.get(query.lower())
 
+def _extract_json_from_markdown(content):
+    """
+    Extract JSON content from markdown-formatted text.
+
+    Args:
+        content (str): Raw response content that may contain markdown formatting
+
+    Returns:
+        str: Clean JSON string ready for parsing
+    """
+    if not content:
+        return content
+
+    # Remove common markdown code block patterns
+    content = content.strip()
+
+    # Handle ```json ... ``` blocks
+    if content.startswith("```json"):
+        content = content[7:]
+        if content.endswith("```"):
+            content = content[:-3]
+    # Handle ``` ... ``` blocks (generic)
+    elif content.startswith("```"):
+        content = content[3:]
+        if content.endswith("```"):
+            content = content[:-3]
+
+    # Remove any remaining leading/trailing whitespace
+    content = content.strip()
+
+    # Find JSON object boundaries
+    start_idx = content.find('{')
+    end_idx = content.rfind('}') + 1
+
+    if start_idx != -1 and end_idx > start_idx:
+        content = content[start_idx:end_idx]
+
+    return content
+
+
 def get_recommendations(query, conversation_memory=None):
     parser = PydanticOutputParser(pydantic_object=RecommendationResponse)
 
@@ -263,49 +303,25 @@ def get_recommendations(query, conversation_memory=None):
         # Clean the response content to extract only JSON
         content = response.content.strip()
 
-        # Remove any markdown code block markers
-        if content.startswith("```json"):
-            content = content[7:]
-        if content.endswith("```"):
-            content = content[:-3]
-
-        # Remove any leading/trailing text that might interfere with JSON parsing
-        content = content.strip()
-
-        # Try to find JSON object boundaries
-        start_idx = content.find('{')
-        end_idx = content.rfind('}') + 1
-
-        if start_idx != -1 and end_idx > start_idx:
-            content = content[start_idx:end_idx]
+        # Remove markdown code block markers and extract JSON
+        content = _extract_json_from_markdown(content)
 
         parsed_response = parser.parse(content)
 
-        output = [f"Assistant: {parsed_response.explanation}\n", "Matching dishes:"]
+        output = ["Found these options:"]
         for item in parsed_response.matches:
             output.append(
-                f"\n- **{item.name}** ({item.category}) from *{item.restaurant}*\n"
-                f"  Price: QR{item.price:.2f}\n"
-                f"  Description: {item.description or 'No description available'}"
+                f"- **{item.name}** at {item.restaurant} - QR{item.price:.2f}"
             )
-
-        if parsed_response.suggested_filters:
-            output.append("\nYou can refine your search by:")
-            for f in parsed_response.suggested_filters:
-                output.append(f"  • {f}")
 
         return "\n".join(output)
     except Exception as e:
-        # Fallback: try to extract and display what we can from the available items
-        fallback_output = ["I found some great options for you!\n", "Matching dishes:"]
+        # Fallback: simple direct output
+        fallback_output = ["Found these options:"]
         for item in menu_items[:3]:  # Show first 3 items as fallback
             fallback_output.append(
-                f"\n- **{item['name']}** ({item['category']}) from *{item['restaurant']}*\n"
-                f"  Price: QR{item['price']:.2f}\n"
-                f"  Description: {item['description'] or 'No description available'}"
+                f"- **{item['name']}** at {item['restaurant']} - QR{item['price']:.2f}"
             )
-
-        fallback_output.append(f"\n\nNote: There was an issue formatting the response: {str(e)}")
         return "\n".join(fallback_output)
 
 # Initialize embeddings, Chroma, and LLM

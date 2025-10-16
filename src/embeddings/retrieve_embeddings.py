@@ -4,7 +4,6 @@ from langchain_groq import ChatGroq
 from langchain_core.messages import HumanMessage, AIMessage, SystemMessage
 from langchain.output_parsers import PydanticOutputParser
 from langchain_community.chat_message_histories import ChatMessageHistory
-from langchain.memory import ConversationBufferMemory
 from pydantic import BaseModel, Field
 from typing import List, Optional, Dict, Any
 from dotenv import load_dotenv
@@ -219,14 +218,14 @@ def _extract_json_from_markdown(content):
     return content
 
 
-def get_recommendations(query, conversation_memory=None):
+def get_recommendations(query, chat_history=None):
     parser = PydanticOutputParser(pydantic_object=RecommendationResponse)
 
     conversation_context = ""
     user_preferences = {}
-    if conversation_memory:
-        # Get recent context from chat memory
-        recent_messages = conversation_memory.chat_memory.messages[-10:] if len(conversation_memory.chat_memory.messages) > 10 else conversation_memory.chat_memory.messages
+    if chat_history and chat_history.messages:
+        # Get recent context from chat history
+        recent_messages = chat_history.messages[-10:] if len(chat_history.messages) > 10 else chat_history.messages
         context_parts = []
         for msg in recent_messages:
             if isinstance(msg, HumanMessage):
@@ -267,7 +266,8 @@ def get_recommendations(query, conversation_memory=None):
     conversation_section = f"CONVERSATION HISTORY:\n{conversation_context}\n" if conversation_context else ""
 
     prompt = f"""
-    You are a friendly AI food assistant. You must respond with ONLY valid JSON that matches the required format.
+    You are a friendly and helpful AI food assistant. Respond in a warm, engaging manner.
+    Your goal is to help customers find delicious food while making them feel welcomed and valued.
 
     User query: "{query}"
 
@@ -275,7 +275,7 @@ def get_recommendations(query, conversation_memory=None):
     Available items:
     {context}
 
-    CRITICAL: Respond with ONLY a JSON object in this exact format:
+    Respond with a JSON object that includes:
     {{
         "matches": [
             {{
@@ -286,16 +286,19 @@ def get_recommendations(query, conversation_memory=None):
                 "description": "Description"
             }}
         ],
-        "explanation": "Brief explanation of recommendations",
-        "suggested_filters": ["filter1", "filter2"]
+        "explanation": "Friendly explanation of why these dishes match their preferences",
+        "suggested_filters": ["helpful filter suggestions"],
+        "follow_up": "A friendly question to help them further (e.g., 'Would you like to know about our vegetarian options?' or 'Can I help you with spice levels?')"
     }}
 
-    - Use only the dishes from the available items list.
-    - Do NOT include any text before or after the JSON.
-    - Do NOT wrap the JSON in code blocks.
-    - Ensure all required fields are present and valid.
-    - The response must be parseable by JSON.parse().
+    Guidelines:
+    - Be warm and conversational in the explanation
+    - Suggest relevant alternatives
+    - Include helpful tips about dishes
+    - Add a follow-up question to continue the conversation
+    - Keep the tone friendly and engaging
     """
+
 
     try:
         response = llm.invoke([HumanMessage(content=prompt)])
@@ -308,20 +311,35 @@ def get_recommendations(query, conversation_memory=None):
 
         parsed_response = parser.parse(content)
 
-        output = ["Found these options:"]
+        output = []
+        output.append(f"🤖 {parsed_response.explanation}\n")
+        output.append("📋 Here are some great matches for you:")
+        
         for item in parsed_response.matches:
             output.append(
-                f"- **{item.name}** at {item.restaurant} - QR{item.price:.2f}"
+                f"\n- **{item.name}** ({item.category}) from *{item.restaurant}*\n"
+                f"  💰 Price: QR{item.price:.2f}\n"
+                f"  📝 {item.description}"
             )
 
+        if parsed_response.suggested_filters:
+            output.append("\n💡 You might also want to try:")
+            for filter_suggestion in parsed_response.suggested_filters:
+                output.append(f"  • {filter_suggestion}")
+
+        # Add the follow-up question
+        output.append(f"\n👋 {getattr(parsed_response, 'follow_up', 'Is there anything else I can help you find?')}")
+
         return "\n".join(output)
+
     except Exception as e:
-        # Fallback: simple direct output
-        fallback_output = ["Found these options:"]
-        for item in menu_items[:3]:  # Show first 3 items as fallback
+        # Update the fallback response to be more friendly
+        fallback_output = ["I found these delicious options for you:"]
+        for item in menu_items[:3]:
             fallback_output.append(
                 f"- **{item['name']}** at {item['restaurant']} - QR{item['price']:.2f}"
             )
+        fallback_output.append("\n💭 Would you like to know more about any of these dishes?")
         return "\n".join(fallback_output)
 
 # Initialize embeddings, Chroma, and LLM
@@ -338,7 +356,6 @@ def main():
     print("="*60 + "\n")
 
     chat_history = ChatMessageHistory()
-    memory = ConversationBufferMemory(chat_memory=chat_history, return_messages=True)
     last_items = []  # Track last shown items
 
     while True:
@@ -352,16 +369,16 @@ def main():
                 break
 
             if query.lower() == 'history':
-                # Get memory statistics
-                message_count = len(memory.chat_memory.messages)
+                # Get chat history statistics
+                message_count = len(chat_history.messages)
                 stats = {
                     'message_count': message_count,
-                    'memory_type': 'ConversationBufferMemory',
+                    'memory_type': 'ChatMessageHistory',
                     'chat_history_size': message_count
                 }
-                print(f"\n📚 Memory: {stats}")
-                # Get recent context from chat memory
-                recent_messages = memory.chat_memory.messages[-10:] if len(memory.chat_memory.messages) > 10 else memory.chat_memory.messages
+                print(f"\n📚 Chat History: {stats}")
+                # Get recent messages from chat history
+                recent_messages = chat_history.messages[-10:] if len(chat_history.messages) > 10 else chat_history.messages
                 context_parts = []
                 for msg in recent_messages:
                     if isinstance(msg, HumanMessage):
@@ -372,18 +389,18 @@ def main():
                 continue
 
             if query.lower() == 'clear memory':
-                memory.chat_memory.clear()
+                chat_history.clear()
                 last_items.clear()  # Clear tracked items too
-                print("Memory cleared!")
+                print("Chat history cleared!")
                 continue
 
             greeting = handle_greeting(query)
             if greeting:
                 print(f"\nAssistant: {greeting}")
-                memory.chat_memory.add_ai_message(greeting)
+                chat_history.add_ai_message(greeting)
                 continue
 
-            memory.chat_memory.add_user_message(query)
+            chat_history.add_user_message(query)
             print("\nProcessing...")
 
             # Handle references to previous items
@@ -418,7 +435,7 @@ def main():
                     HumanMessage(content=calorie_prompt)
                 ]).content.strip()
             else:
-                response = get_recommendations(query, memory)
+                response = get_recommendations(query, chat_history)
                 # Store items for reference
                 try:
                     parsed = json.loads(response)
@@ -435,7 +452,7 @@ def main():
                     last_items = items
 
             print(f"\n{response}")
-            memory.chat_memory.add_ai_message(response)
+            chat_history.add_ai_message(response)
 
         except KeyboardInterrupt:
             print("\nExiting gracefully...")

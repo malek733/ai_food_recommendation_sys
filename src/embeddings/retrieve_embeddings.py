@@ -84,6 +84,13 @@ def extract_metadata_filters(query):
         "seafood": "Seafood",
     }
 
+    # Special handling for healthy food requests
+    healthy_keywords = ["healthy", "health", "light", "fresh", "nutritious", "low calorie", "diet"]
+    if any(keyword in query_lower for keyword in healthy_keywords):
+        # Look for healthy categories
+        healthy_categories = ["Salads", "Soups", "Seafood", "Appetizers"]
+        filters["healthy_categories"] = healthy_categories
+
     cuisine_mapping = {
         "indian": "indian",
         "italian": "italian",
@@ -92,7 +99,6 @@ def extract_metadata_filters(query):
         "asian": "asian",
         "middle eastern": "middle_eastern",
         "fast food": "fast_food",
-        "healthy": "healthy",
         "vegetarian": "vegetarian",
         "arabic": "arabic",
     }
@@ -153,6 +159,13 @@ def filter_results_by_metadata(results, filters=None):
             if filter_key in ["category_name", "restaurant_category"]:
                 value = metadata.get(filter_key, "").lower()
                 if filter_value.lower() not in value:
+                    include_doc = False
+                    break
+                continue
+
+            if filter_key == "healthy_categories":
+                category = metadata.get("category_name", "").lower()
+                if category not in [cat.lower() for cat in filter_value]:
                     include_doc = False
                     break
                 continue
@@ -421,15 +434,34 @@ def main():
 
             # Calorie query handling
             if "calorie" in query.lower() or "calories" in query.lower():
+                # Check if user is asking about a specific item or "this item" from last recommendation
+                query_lower = query.lower()
+                item_context = ""
+
+                if "this item" in query_lower and last_items:
+                    # Use the first item from last recommendation
+                    referenced_item = last_items[0]
+                    item_context = f" for {referenced_item['name']} from {referenced_item['restaurant']}"
+                elif "first" in query_lower and last_items:
+                    referenced_item = last_items[0]
+                    item_context = f" for {referenced_item['name']} from {referenced_item['restaurant']}"
+                elif "second" in query_lower and len(last_items) > 1:
+                    referenced_item = last_items[1]
+                    item_context = f" for {referenced_item['name']} from {referenced_item['restaurant']}"
+                elif "third" in query_lower and len(last_items) > 2:
+                    referenced_item = last_items[2]
+                    item_context = f" for {referenced_item['name']} from {referenced_item['restaurant']}"
+
                 calorie_prompt = f"""
                 You are a nutrition assistant providing brief, focused responses.
-                Query: "{query}"
-                
+                Query: "{query}"{item_context}
+
                 Respond with:
-                1. Estimated calorie range
-                Keep it concise and factual.
+                1. Estimated calorie range for the item
+                2. Keep it concise and factual
+                3. If no specific item mentioned, ask for clarification
                 """
-                
+
                 response = llm.invoke([
                     SystemMessage(content="You are a precise nutrition assistant."),
                     HumanMessage(content=calorie_prompt)

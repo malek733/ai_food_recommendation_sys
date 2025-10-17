@@ -1,292 +1,256 @@
+import os
+import json
 from dotenv import load_dotenv
+from supabase import create_client, Client
 from langchain_chroma import Chroma
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_groq import ChatGroq
-from langchain_core.messages import HumanMessage
-from langchain.output_parsers import StructuredOutputParser, ResponseSchema
+from langchain.agents import initialize_agent, Tool
+from langchain_core.messages import HumanMessage, AIMessage, SystemMessage
+from langchain_google_genai import ChatGoogleGenerativeAI
 
-# Load environment variables
+# =========================================================
+# 1️⃣ Setup
+# =========================================================
+
 load_dotenv()
 
-# Initialize embeddings and Chroma
-embeddings_model = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
-chroma_db = Chroma(persist_directory="./chroma_db", embedding_function=embeddings_model)
+# Supabase connection
+SUPABASE_URL = os.getenv("SUPABASE_URL")
+SUPABASE_KEY = os.getenv("SUPABASE_KEY")
+supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
-# Initialize LLM (Groq)
-llm = ChatGroq(
-    model="Qwen/Qwen3-32b",
-    temperature=0.4
+# Initialize embeddings & vectorstore (for food recommendation search)
+embeddings_model = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
+chroma_db_path = "./chroma_db"
+vectorstore = Chroma(persist_directory=chroma_db_path, embedding_function=embeddings_model)
+
+# Smart LLM for advanced recommendations
+smart_llm = ChatGoogleGenerativeAI(
+    model="gemini-2.5-flash",
+    temperature=0,
+    api_key=os.getenv("GOOGLE_API_KEY"),
+    request_timeout=120  # ⏰ timeout in seconds (increase if you have long tasks)
 )
 
-# Define structured output schema
-response_schemas = [
-    ResponseSchema(
-        name="recommendations",
-        description="List of recommended dishes with name, restaurant, price, and description"
-    ),
-    ResponseSchema(
-        name="summary",
-        description="A human-like explanation of why these dishes match the user query"
-    )
-]
-output_parser = StructuredOutputParser.from_response_schemas(response_schemas)
-format_instructions = output_parser.get_format_instructions()
+# =========================================================
+# 2️⃣ Chat history class
+# =========================================================
 
-def extract_metadata_filters(query):
-    """Extract metadata filters from user query."""
-    filters = {}
-    query_lower = query.lower()
-    
-    # Restaurant filters
-    restaurant_keywords = {
-        "from": lambda x: x.split("from")[1].strip().split()[0],
-        "at": lambda x: x.split("at")[1].strip().split()[0],
-        "restaurant": lambda x: x.split("restaurant")[1].strip().split()[0]
-    }
-    
-    for keyword, extractor in restaurant_keywords.items():
-        if keyword in query_lower:
-            try:
-                restaurant_name = extractor(query_lower)
-                if restaurant_name:
-                    filters['restaurant_name'] = restaurant_name
-                break
-            except (IndexError, AttributeError):
-                continue
+class ChatHistory:
+    def __init__(self):
+        self.messages = []
 
-    # Price range filters with error handling
+    def add_user_message(self, message: str):
+        self.messages.append(HumanMessage(content=message))
+
+    def add_ai_message(self, message: str):
+        self.messages.append(AIMessage(content=message))
+
+    def get_history(self):
+        return self.messages
+
+
+chat_history = ChatHistory()
+
+# =========================================================
+# 3️⃣ Core food recommendation logic
+# =========================================================
+
+def get_recommendations(query: str, history: ChatHistory):
+    """Query the Chroma database to find the best matching food items."""
     try:
-        price_patterns = {
-            "cheap": {"price": {"max": 15}},
-            "expensive": {"price": {"min": 30}},
-            "moderate": {"price": {"min": 15, "max": 30}},
+        docs = vectorstore.similarity_search(query, k=5)
+        if not docs:
+            return "No matching dishes found."
+
+        recommendations = [doc.page_content for doc in docs]
+        prompt = f"User asked: {query}\nHere are the top menu items:\n\n" + "\n".join(recommendations)
+
+        response = smart_llm.invoke([
+            SystemMessage(content="You are a helpful food recommendation assistant."),
+            HumanMessage(content=prompt)
+        ])
+        return response.content
+
+    except Exception as e:
+        return f"Error during recommendation: {e}"
+
+# =========================================================
+# 4️⃣ Smart Planning (Agentic) Tools
+# =========================================================
+
+cart = []
+
+def query_menu_from_supabase(name: str):
+    """Search for menu items and pick the best match (case-insensitive, partial)."""
+    try:
+        res = supabase.table("menu_items").select("id, name, price, description").execute()
+        items = res.data or []
+        search_lower = name.lower()
+
+        matches = []
+        for item in items:
+            # handle both dict and string names
+            if isinstance(item.get("name"), dict):
+                en_name = item["name"].get("en", "").lower()
+                ar_name = item["name"].get("ar", "").lower()
+                if search_lower in en_name or search_lower in ar_name:
+                    matches.append(item)
+            else:
+                if search_lower in str(item.get("name", "")).lower():
+                    matches.append(item)
+
+        # 👇 This is where you add the Chroma fallback
+        if not matches:
+            # Fallback to Chroma search if Supabase has no match
+            docs = vectorstore.similarity_search(name, k=1)
+            if docs:
+                return {
+                    "success": True,
+                    "message": f"Found via vector search: {docs[0].page_content}"
+                }
+            return {
+                "success": False,
+                "message": f"No items found for '{name}' in Supabase or Chroma."
+            }
+
+        # If found in Supabase, return the first match
+        first = matches[0]
+        return {
+            "success": True,
+            "item_id": first["id"],
+            "name": first["name"],
+            "price": first["price"],
+            "description": first.get("description", {}),
+            "message": f"Found item '{first['name'].get('en', first['name'])}' with ID {first['id']}"
         }
 
-        # Handle "under $X" pattern separately
-        if "under $" in query_lower:
-            try:
-                max_price = float(query_lower.split("under $")[1].split()[0])
-                filters["price"] = {"max": max_price}
-            except (IndexError, ValueError):
-                pass
-        else:
-            for pattern, price_filter in price_patterns.items():
-                if pattern in query_lower:
-                    filters["price"] = price_filter["price"]
-                    break
     except Exception as e:
-        print(f"[WARNING] Error processing price filters: {e}")
+        return {"success": False, "message": f"Error querying menu items: {e}"}
 
-    # Category filters based on actual categories
-    category_mapping = {
-        "appetizer": "Appetizers",
-        "starter": "Appetizers",
-        "main": "Main Course",
-        "dessert": "Desserts",
-        "sweet": "Desserts",
-        "pizza": "Pizzas",
-        "burger": "Burgers",
-        "sushi": "Sushi Rolls",
-        "pasta": "Pasta",
-        "side": "Sides"
-    }
 
-    # Cuisine/Restaurant type filters with normalized values
-    cuisine_mapping = {
-        "indian": "indian",
-        "italian": "italian",
-        "american": "american",
-        "seafood": "seafood",
-        "healthy": "healthy",
-        "fast food": "fast_food",
-        "arabic": "arabic",
-        "asian": "asian",
-        "iranian": "iranian",
-        "qatari": "qatari"
-    }
 
-    # Check for category matches
-    for keyword, category in category_mapping.items():
-        if keyword in query_lower:
-            filters["category_name"] = category
-            break
 
-    # Check for cuisine type matches
-    for cuisine, normalized_value in cuisine_mapping.items():
-        if cuisine in query_lower:
-            filters["restaurant_category"] = normalized_value
-            break
+import re
+import json
 
-    return filters
-
-def filter_results_by_metadata(results, filters=None):
-    """Filter search results based on metadata criteria."""
-    if not filters or not results:
-        return results
-
-    filtered_results = []
-    
-    for doc in results:
-        metadata = doc.metadata
-        include_doc = True
-
-        for filter_key, filter_value in filters.items():
-            # Skip if the metadata doesn't have the key we're filtering on
-            if filter_key not in metadata and filter_key != "restaurant_name":
-                continue
-
-            # Handle restaurant category filtering
-            if filter_key == "restaurant_category":
-                restaurant_cats = metadata.get("restaurant_category", "").lower()
-                if filter_value.lower() not in restaurant_cats:
-                    include_doc = False
-                    break
-                continue
-
-            # Handle price range filtering
-            if filter_key == "price" and isinstance(filter_value, dict):
-                price = float(metadata.get("price", 0))
-                if ("min" in filter_value and price < filter_value["min"]) or \
-                   ("max" in filter_value and price > filter_value["max"]):
-                    include_doc = False
-                    break
-                continue
-
-            # Handle restaurant name filtering
-            if filter_key == "restaurant_name":
-                rest_name = metadata.get("restaurant_name", "").lower()
-                if filter_value.lower() not in rest_name:
-                    include_doc = False
-                    break
-                continue
-
-            # Handle exact match filtering for other fields
-            if str(metadata.get(filter_key, "")).lower() != str(filter_value).lower():
-                include_doc = False
-                break
-
-        if include_doc:
-            filtered_results.append(doc)
-
-    return filtered_results
-
-# Welcome message
-print("Welcome to GoFood AI Assistant! 🍽️")
-print("Ask me about food recommendations. Type 'exit' to quit.\n")
-
-# Define greetings and their responses
-greetings = {
-    "hello": "Hello! I'm excited to help you find delicious food! 🍽️",
-    "hi": "Hi there! Ready to discover some amazing dishes? 😊",
-    "hey": "Hey! What kind of food are you craving today? 🌟",
-    "good morning": "Good morning! Hope you're having a great start to your day! ☀️",
-    "good afternoon": "Good afternoon! Looking for a tasty lunch or snack? 🍽️",
-    "good evening": "Good evening! How about some dinner recommendations? 🍽️",
-    "how are you": "I'm doing great, thank you for asking! Ready to help you find the perfect meal! 😊",
-    "what's up": "Not much, just ready to recommend some delicious food! What are you in the mood for? 🍕",
-    "help": "I can help you find great food! Just tell me what you're craving - spicy food, healthy options, or specific cuisines! 🍽️"
-}
-
-# Start chat loop
-while True:
+def add_to_cart(item_id: str = None, quantity: int = 1):
+    """Add an item to the cart by item_id. Handles both structured and raw string inputs."""
     try:
+        # Handle if agent passed a raw string like: 'item_id="uuid", quantity=1'
+        if isinstance(item_id, str) and ("item_id" in item_id or "quantity" in item_id):
+            # Try to parse it as JSON first
+            try:
+                data = json.loads(item_id)
+                item_id = data.get("item_id", item_id)
+                quantity = int(data.get("quantity", 1))
+            except json.JSONDecodeError:
+                # Fallback to regex parsing
+                item_id_match = re.search(r'item_id="?([a-f0-9\-]+)"?', item_id)
+                quantity_match = re.search(r'quantity=?(\d+)', item_id)
+                if item_id_match:
+                    item_id = item_id_match.group(1)
+                if quantity_match:
+                    quantity = int(quantity_match.group(1))
+
+        # 🟢 Now item_id should be a clean UUID
+        res = supabase.table("menu_items").select("id, name, price").eq("id", item_id).execute()
+        if not res.data:
+            return {"success": False, "message": f"Item with id {item_id} not found."}
+
+        item = res.data[0]
+        item_name = item["name"]["en"] if isinstance(item["name"], dict) and "en" in item["name"] else str(item["name"])
+
+        cart.append({
+            "id": item["id"],
+            "name": item_name,
+            "price": float(item["price"]),
+            "quantity": quantity
+        })
+        return {"success": True, "message": f"Added {quantity} × {item_name} (QR{item['price']:.2f}) to cart."}
+
+    except Exception as e:
+        return {"success": False, "message": f"Error adding item to cart: {e}"}
+
+
+def view_cart():
+    if not cart:
+        return "Your cart is empty."
+    total = sum(c["price"] * c["quantity"] for c in cart)
+    summary = "\n".join([f"- {c['quantity']} × {c['name']} (QR{c['price']:.2f})" for c in cart])
+    return f"Your Cart:\n{summary}\n\nTotal: QR{total:.2f}"
+
+
+def checkout():
+    if not cart:
+        return "Your cart is empty. Please add items first."
+    total = sum(c["price"] * c["quantity"] for c in cart)
+    items = [{"name": c["name"], "quantity": c["quantity"], "price": c["price"]} for c in cart]
+    cart.clear()
+    return f"Order placed successfully!\nTotal: QR{total:.2f}\nItems: {items}"
+
+# =========================================================
+# 5️⃣ Smart Agent setup
+# =========================================================
+
+tools = [
+    Tool(name="QueryMenu", func=query_menu_from_supabase, description="Search for menu items in Supabase."),
+    Tool(name="AddToCart", func=add_to_cart, description="Add item to cart by item_id and quantity."),
+    Tool(name="ViewCart", func=view_cart, description="Show user's current cart."),
+    Tool(name="Checkout", func=checkout, description="Checkout and confirm order."),
+]
+
+smart_agent = initialize_agent(
+    tools,
+    smart_llm,
+    agent_type="zero-shot-react-description",
+    verbose=True,
+    max_iterations=15,  # increase to allow more reasoning steps
+    handle_parsing_errors=True,
+    max_execution_time=180  # optional: total timeout in seconds for whole reasoning chain
+)
+
+# =========================================================
+# 6️⃣ Main interactive loop
+# =========================================================
+
+def main():
+    print("Welcome to Smart Food Agent!")
+    print("Ask about food, calories, or say things like:")
+    print("  - add spicy tuna roll to my cart")
+    print("  - view cart")
+    print("  - checkout\n")
+
+    while True:
         query = input("You: ").strip()
-
-        if not query:
-            print("Please enter a valid query!")
-            continue
-
-        if query.lower() in ["exit", "quit", "bye"]:
-            print("Goodbye! Hope you enjoy your meal! 👋")
+        if query.lower() in ["exit", "quit"]:
+            print("Goodbye!")
             break
 
-        # Check for greetings
-        query_lower = query.lower()
-        if query_lower in greetings:
-            print(f"GoFood AI: {greetings[query_lower]}\n")
-            continue
+        chat_history.add_user_message(query)
 
-        # Extract metadata filters
-        filters = extract_metadata_filters(query)
-
-        # Perform similarity search with error handling
-        try:
-            results = chroma_db.similarity_search(query, k=8)
-        except Exception as e:
-            print(f"Error performing search: {e}")
-            continue
-
-        # Apply metadata filters
-        filtered_results = filter_results_by_metadata(results, filters)
-
-        if not filtered_results:
-            print("Sorry, I couldn't find any matching dishes in our database. 😔\n")
-            continue
-
-        # Build context for LLM
-        context_parts = []
-        for doc in filtered_results[:4]:  # Limit to top 4 results
-            metadata = doc.metadata
-            item_info = [
-                f"Name: {metadata.get('name', 'N/A')}",
-                f"Restaurant: {metadata.get('restaurant_name', 'N/A')}",
-                f"Price: ${metadata.get('price', 'N/A')}",
-                f"Description: {metadata.get('description', 'N/A')}",
-                f"Category: {metadata.get('category_name', 'N/A')}"
-            ]
-            context_parts.append("\n".join(item_info))
-
-        context = "\n\n".join(context_parts)
-
-        # Build prompt
-        prompt = f"""
-        You are an intelligent AI food recommendation assistant. Use ONLY the information provided in the database context below.
-
-        CRITICAL INSTRUCTIONS:
-        - ONLY recommend items that are EXPLICITLY listed in the database context provided
-        - DO NOT create or invent new menu items, restaurants, or descriptions
-        - DO NOT hallucinate or make up information
-        - If no suitable items exist in the context, say "I couldn't find matching dishes in our current database"
-
-        User query: "{query}"
-
-        DATABASE CONTEXT (Only use this information):
-        {context}
-
-        RESPONSE FORMAT:
-        {format_instructions}
-        """
-
-        # Get LLM response with error handling
-        try:
-            response = llm.invoke([HumanMessage(content=prompt)])
-            parsed_output = output_parser.parse(response.content)
-            
-            recommendations = parsed_output.get("recommendations", [])
-            summary = parsed_output.get("summary", "")
-
-            print("\nGoFood AI:\n")
-            print(summary)
-            print("\nRecommendations:\n")
-
-            if recommendations:
-                for i, rec in enumerate(recommendations, 1):
-                    print(f"{i}. {rec['name']} from {rec['restaurant']}")
-                    print(f"   Price: ${rec['price']}")
-                    print(f"   {rec['description']}\n")
+        # Route to smart agent if it's an action
+        if any(word in query.lower() for word in ["add", "order", "checkout", "cart"]):
+            print("\nSmart Agent handling your request...")
+            result = smart_agent.invoke(query)
+            if isinstance(result, dict):
+                result_str = result.get("message", str(result))
             else:
-                print("No specific recommendations found for your query.\n")
+                result_str = str(result)
+            print(result_str)
+            chat_history.add_ai_message(result_str)
+            continue
 
-        except Exception as e:
-            print("Sorry, I had trouble processing the recommendations. Please try again. 😅\n")
-            print(f"Debug info: {e}\n")
+        # Otherwise, do normal food recommendation
+        response = get_recommendations(query, chat_history)
+        print(response)
+        chat_history.add_ai_message(response)
 
-        print("---------------------------------------\n")
 
-    except KeyboardInterrupt:
-        print("\nGoodbye! Hope you enjoy your meal! 👋")
-        break
-    except Exception as e:
-        print(f"An unexpected error occurred: {e}")
-        print("Please try again.")
-        continue
+# =========================================================
+# 7️⃣ Run
+# =========================================================
+
+if __name__ == "__main__":
+    main()

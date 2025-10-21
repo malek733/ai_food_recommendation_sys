@@ -8,6 +8,10 @@ from langchain_groq import ChatGroq
 from langchain.agents import initialize_agent, Tool
 from langchain_core.messages import HumanMessage, AIMessage, SystemMessage
 from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain.memory import ConversationBufferMemory
+from langchain.output_parsers import PydanticOutputParser
+from pydantic import BaseModel, Field
+from typing import List, Optional
 
 # =========================================================
 # 1️⃣ Setup
@@ -22,100 +26,186 @@ supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
 # Initialize embeddings & vectorstore (for food recommendation search)
 embeddings_model = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
-chroma_db_path = "./chroma_db"
+chroma_db_path = "./src/embeddings/chroma_db"
 vectorstore = Chroma(persist_directory=chroma_db_path, embedding_function=embeddings_model)
 
 # Smart LLM for advanced recommendations
-smart_llm = ChatGoogleGenerativeAI(
-    model="gemini-2.5-flash",
+smart_llm = ChatGroq(
+    model="llama-3.3-70b-versatile",
     temperature=0,
-    api_key=os.getenv("GOOGLE_API_KEY"),
-    request_timeout=120  # ⏰ timeout in seconds (increase if you have long tasks)
+    api_key=os.getenv("GROQ_API_KEY"),
+    request_timeout=120
 )
 
 # =========================================================
-# 2️⃣ Chat history class
+# 2️⃣ Conversation Memory
 # =========================================================
 
-class ChatHistory:
-    def __init__(self):
-        self.messages = []
+conversation_memory = ConversationBufferMemory(
+    memory_key="chat_history",
+    return_messages=True,
+    output_key="output",
+    input_key="input"
+)
 
-    def add_user_message(self, message: str):
-        self.messages.append(HumanMessage(content=message))
+def add_user_message_to_memory(message: str):
+    conversation_memory.chat_memory.add_user_message(HumanMessage(content=message))
 
-    def add_ai_message(self, message: str):
-        self.messages.append(AIMessage(content=message))
+def add_ai_message_to_memory(message: str):
+    conversation_memory.chat_memory.add_ai_message(AIMessage(content=message))
 
-    def get_history(self):
-        return self.messages
+def get_conversation_history():
+    return conversation_memory.chat_memory.messages
 
+def clear_conversation_memory():
+    conversation_memory.chat_memory.clear()
 
-chat_history = ChatHistory()
-
-# =========================================================
-# 3️⃣ Core food recommendation logic
-# =========================================================
-
-def get_recommendations(query: str, history: ChatHistory):
-    """Query the Chroma database to find the best matching food items."""
+def save_conversation_memory(file_path: str = "conversation_memory.json"):
     try:
-        docs = vectorstore.similarity_search(query, k=5)
+        memory_data = {
+            "messages": [
+                {"type": "human" if isinstance(msg, HumanMessage) else "ai", "content": msg.content}
+                for msg in conversation_memory.chat_memory.messages
+            ]
+        }
+        with open(file_path, 'w', encoding='utf-8') as f:
+            json.dump(memory_data, f, ensure_ascii=False, indent=2)
+        print(f"Conversation memory saved to {file_path}")
+    except Exception as e:
+        print(f"Error saving conversation memory: {e}")
+
+def load_conversation_memory(file_path: str = "conversation_memory.json"):
+    try:
+        if os.path.exists(file_path):
+            with open(file_path, 'r', encoding='utf-8') as f:
+                memory_data = json.load(f)
+            conversation_memory.chat_memory.clear()
+            for msg in memory_data.get("messages", []):
+                if msg["type"] == "human":
+                    conversation_memory.chat_memory.add_user_message(msg["content"])
+                else:
+                    conversation_memory.chat_memory.add_ai_message(msg["content"])
+            print(f"Conversation memory loaded from {file_path}")
+        else:
+            print(f"No conversation memory file found at {file_path}")
+    except Exception as e:
+        print(f"Error loading conversation memory: {e}")
+
+# =========================================================
+# 3️⃣ Output Parsing (Pydantic Models)
+# =========================================================
+
+class FoodRecommendation(BaseModel):
+    name: str = Field(..., description="Name of the recommended food item")
+    reason: Optional[str] = Field(None, description="Why this item was recommended")
+    description: Optional[str] = Field(None, description="Brief summary of the dish")
+
+class FoodRecommendationsOutput(BaseModel):
+    recommendations: List[FoodRecommendation] = Field(..., description="List of recommended dishes")
+
+recommendation_parser = PydanticOutputParser(pydantic_object=FoodRecommendationsOutput)
+
+# =========================================================
+# 4️⃣ Core Recommendation Logic
+# =========================================================
+
+import re
+
+def get_recommendations(query: str):
+    """Query the Chroma database and use the LLM to return structured recommendations."""
+    try:
+        recent_messages = get_conversation_history()
+        context_messages = recent_messages[-4:] if len(recent_messages) > 4 else recent_messages
+
+        # Get more results for better filtering
+        docs = vectorstore.similarity_search(query, k=8)
+
         if not docs:
             return "No matching dishes found."
 
-        recommendations = [doc.page_content for doc in docs]
-        prompt = f"User asked: {query}\nHere are the top menu items:\n\n" + "\n".join(recommendations)
+        # Extract better formatted recommendations with metadata
+        recommendations = []
+        for doc in docs[:5]:  # Limit to top 5
+            metadata = doc.metadata
+            name = metadata.get("name", "Unknown")
+            description = metadata.get("description", "No description available")
+            restaurant = metadata.get("restaurant_name", "Unknown restaurant")
+            price = metadata.get("price", "N/A")
+            category = metadata.get("category_name", "Unspecified")
 
-        response = smart_llm.invoke([
-            SystemMessage(content="You are a helpful food recommendation assistant."),
-            HumanMessage(content=prompt)
-        ])
-        return response.content
+            recommendations.append({
+                "name": name,
+                "description": description,
+                "restaurant": restaurant,
+                "price": price,
+                "category": category
+            })
+
+        # Create a more user-friendly prompt
+        menu_context = json.dumps(recommendations, indent=2)
+
+        prompt = (
+            f"You are a friendly food recommendation assistant.\n"
+            f"Help users find delicious food based on their query.\n"
+            f"Return a **valid JSON only** following this format:\n\n"
+            f"{recommendation_parser.get_format_instructions()}\n\n"
+            f"User query: {query}\n\n"
+            f"Available menu items:\n{menu_context}\n\n"
+            f"Guidelines:\n"
+            f"- Recommend dishes that best match the user's request\n"
+            f"- Include 2-3 relevant recommendations\n"
+            f"- Provide specific reasons why each dish matches\n"
+            f"- Keep descriptions brief but informative\n"
+        )
+
+        messages = [SystemMessage(content=prompt)]
+        for msg in context_messages:
+            messages.append(msg)
+
+        response = smart_llm.invoke(messages)
+        raw_output = response.content.strip()
+
+        # Extract JSON if the model added text before/after it
+        json_match = re.search(r'\{[\s\S]*\}', raw_output)
+        if not json_match:
+            return f"Error: Could not find valid JSON in model output:\n{raw_output}"
+        json_str = json_match.group(0)
+
+        # Parse structured output
+        parsed = recommendation_parser.parse(json_str)
+
+        # Create a more user-friendly display
+        display = "\nRecommended Dishes:\n"
+        for rec in parsed.recommendations:
+            display += f"- {rec.name}"
+            if rec.description:
+                display += f": {rec.description}"
+            else:
+                display += ": No description."
+            if rec.reason:
+                display += f" -> {rec.reason}"
+            display += "\n"
+
+        return display
 
     except Exception as e:
         return f"Error during recommendation: {e}"
 
+
 # =========================================================
-# 4️⃣ Smart Planning (Agentic) Tools
+# 5️⃣ Smart Planning (Agentic) Tools
 # =========================================================
 
 cart = []
 
 def query_menu_from_supabase(name: str):
-    """Search for menu items and pick the best match (case-insensitive, partial)."""
     try:
         res = supabase.table("menu_items").select("id, name, price, description").execute()
         items = res.data or []
         search_lower = name.lower()
-
-        matches = []
-        for item in items:
-            # handle both dict and string names
-            if isinstance(item.get("name"), dict):
-                en_name = item["name"].get("en", "").lower()
-                ar_name = item["name"].get("ar", "").lower()
-                if search_lower in en_name or search_lower in ar_name:
-                    matches.append(item)
-            else:
-                if search_lower in str(item.get("name", "")).lower():
-                    matches.append(item)
-
-        # 👇 This is where you add the Chroma fallback
+        matches = [i for i in items if search_lower in str(i.get('name', '')).lower()]
         if not matches:
-            # Fallback to Chroma search if Supabase has no match
-            docs = vectorstore.similarity_search(name, k=1)
-            if docs:
-                return {
-                    "success": True,
-                    "message": f"Found via vector search: {docs[0].page_content}"
-                }
-            return {
-                "success": False,
-                "message": f"No items found for '{name}' in Supabase or Chroma."
-            }
-
-        # If found in Supabase, return the first match
+            return {"success": False, "message": f"No items found for '{name}'."}
         first = matches[0]
         return {
             "success": True,
@@ -123,134 +213,114 @@ def query_menu_from_supabase(name: str):
             "name": first["name"],
             "price": first["price"],
             "description": first.get("description", {}),
-            "message": f"Found item '{first['name'].get('en', first['name'])}' with ID {first['id']}"
+            "message": f"Found '{first['name']}'"
         }
-
     except Exception as e:
-        return {"success": False, "message": f"Error querying menu items: {e}"}
+        return {"success": False, "message": str(e)}
 
-
-
-
-import re
-import json
-
-def add_to_cart(item_id: str = None, quantity: int = 1):
-    """Add an item to the cart by item_id. Handles both structured and raw string inputs."""
+def add_to_cart(item_id=None, quantity=1):
     try:
-        # Handle if agent passed a raw string like: 'item_id="uuid", quantity=1'
-        if isinstance(item_id, str) and ("item_id" in item_id or "quantity" in item_id):
-            # Try to parse it as JSON first
-            try:
-                data = json.loads(item_id)
-                item_id = data.get("item_id", item_id)
-                quantity = int(data.get("quantity", 1))
-            except json.JSONDecodeError:
-                # Fallback to regex parsing
-                item_id_match = re.search(r'item_id="?([a-f0-9\-]+)"?', item_id)
-                quantity_match = re.search(r'quantity=?(\d+)', item_id)
-                if item_id_match:
-                    item_id = item_id_match.group(1)
-                if quantity_match:
-                    quantity = int(quantity_match.group(1))
+        # Handle different input formats from the agent
+        if isinstance(item_id, dict):
+            if "item_id" in item_id:
+                item_id = item_id["item_id"]
+                quantity = item_id.get("quantity", 1)
+            else:
+                return {"success": False, "message": "Invalid item_id format provided."}
 
-        # 🟢 Now item_id should be a clean UUID
+        # Ensure we have a valid item_id
+        if not item_id:
+            return {"success": False, "message": "No item ID provided."}
+
+        # Convert string UUID to proper format if needed
+        if isinstance(item_id, str):
+            # Remove any quotes that might be in the string
+            item_id = item_id.strip('"\'')
+
+        # Query the database for the item
         res = supabase.table("menu_items").select("id, name, price").eq("id", item_id).execute()
         if not res.data:
-            return {"success": False, "message": f"Item with id {item_id} not found."}
+            return {"success": False, "message": f"Item with ID '{item_id}' not found."}
 
         item = res.data[0]
-        item_name = item["name"]["en"] if isinstance(item["name"], dict) and "en" in item["name"] else str(item["name"])
-
-        cart.append({
-            "id": item["id"],
-            "name": item_name,
-            "price": float(item["price"]),
-            "quantity": quantity
-        })
-        return {"success": True, "message": f"Added {quantity} × {item_name} (QR{item['price']:.2f}) to cart."}
-
+        item_name = item["name"]["en"] if isinstance(item["name"], dict) else str(item["name"])
+        cart.append({"id": item["id"], "name": item_name, "price": float(item["price"]), "quantity": quantity})
+        return {"success": True, "message": f"Added {quantity} × {item_name} to cart."}
     except Exception as e:
-        return {"success": False, "message": f"Error adding item to cart: {e}"}
+        return {"success": False, "message": f"Error adding to cart: {e}"}
 
-
-def view_cart():
+def view_cart(*args, **kwargs):
     if not cart:
-        return "Your cart is empty."
+        return "Cart is empty."
     total = sum(c["price"] * c["quantity"] for c in cart)
-    summary = "\n".join([f"- {c['quantity']} × {c['name']} (QR{c['price']:.2f})" for c in cart])
-    return f"Your Cart:\n{summary}\n\nTotal: QR{total:.2f}"
+    items = "\n".join([f"- {c['quantity']} × {c['name']} (QR{c['price']:.2f})" for c in cart])
+    return f"Your Cart:\n{items}\nTotal: QR{total:.2f}"
 
-
-def checkout():
+def checkout(*args, **kwargs):
     if not cart:
-        return "Your cart is empty. Please add items first."
+        return "Cart is empty."
     total = sum(c["price"] * c["quantity"] for c in cart)
     items = [{"name": c["name"], "quantity": c["quantity"], "price": c["price"]} for c in cart]
     cart.clear()
     return f"Order placed successfully!\nTotal: QR{total:.2f}\nItems: {items}"
 
 # =========================================================
-# 5️⃣ Smart Agent setup
+# 6️⃣ Agent Setup
 # =========================================================
 
 tools = [
     Tool(name="QueryMenu", func=query_menu_from_supabase, description="Search for menu items in Supabase."),
-    Tool(name="AddToCart", func=add_to_cart, description="Add item to cart by item_id and quantity."),
-    Tool(name="ViewCart", func=view_cart, description="Show user's current cart."),
-    Tool(name="Checkout", func=checkout, description="Checkout and confirm order."),
+    Tool(name="AddToCart", func=add_to_cart, description="Add an item to the cart."),
+    Tool(name="ViewCart", func=view_cart, description="View the current cart."),
+    Tool(name="Checkout", func=checkout, description="Checkout and place the order."),
 ]
 
 smart_agent = initialize_agent(
-    tools,
-    smart_llm,
-    agent_type="zero-shot-react-description",
+    tools=tools,
+    llm=smart_llm,
+    agent="zero-shot-react-description",
     verbose=True,
-    max_iterations=15,  # increase to allow more reasoning steps
     handle_parsing_errors=True,
-    max_execution_time=180  # optional: total timeout in seconds for whole reasoning chain
+    memory=conversation_memory
 )
 
 # =========================================================
-# 6️⃣ Main interactive loop
+# 7️⃣ Main Loop
 # =========================================================
 
 def main():
-    print("Welcome to Smart Food Agent!")
-    print("Ask about food, calories, or say things like:")
-    print("  - add spicy tuna roll to my cart")
-    print("  - view cart")
-    print("  - checkout\n")
-
+    print("Smart Food Agent - Welcome!")
+    load_conversation_memory()
     while True:
-        query = input("You: ").strip()
+        query = input("\nYou: ").strip()
         if query.lower() in ["exit", "quit"]:
+            save_conversation_memory()
             print("Goodbye!")
             break
 
-        chat_history.add_user_message(query)
+        if query.lower() == "save memory":
+            save_conversation_memory(); continue
+        elif query.lower() == "load memory":
+            load_conversation_memory(); continue
+        elif query.lower() == "clear memory":
+            clear_conversation_memory(); print("Memory cleared."); continue
 
-        # Route to smart agent if it's an action
+        add_user_message_to_memory(query)
+
         if any(word in query.lower() for word in ["add", "order", "checkout", "cart"]):
             print("\nSmart Agent handling your request...")
-            result = smart_agent.invoke(query)
-            if isinstance(result, dict):
-                result_str = result.get("message", str(result))
-            else:
-                result_str = str(result)
-            print(result_str)
-            chat_history.add_ai_message(result_str)
+            try:
+                result = smart_agent.invoke(query)
+                response = result["output"] if isinstance(result, dict) else str(result)
+                print(response)
+                add_ai_message_to_memory(response)
+            except Exception as e:
+                print(f"Error: {e}")
             continue
 
-        # Otherwise, do normal food recommendation
-        response = get_recommendations(query, chat_history)
+        response = get_recommendations(query)
         print(response)
-        chat_history.add_ai_message(response)
-
-
-# =========================================================
-# 7️⃣ Run
-# =========================================================
+        add_ai_message_to_memory(response)
 
 if __name__ == "__main__":
     main()

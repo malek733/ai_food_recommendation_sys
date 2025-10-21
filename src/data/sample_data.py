@@ -61,28 +61,28 @@ def create_fake_data():
     # Create menu items for each category
     menu_items_data = {
         "Sushi": [
-            {"name": {"en": "California Roll", "ar": "كاليفورنيا رول"}, "description": {"en": "Crab, avocado, cucumber", "ar": "سلطعون، أفوكادو، خيار"}, "price": 12.99, "preparation_time": 10},
-            {"name": {"en": "Spicy Tuna Roll", "ar": "سبايسي تونا رول"}, "description": {"en": "Fresh tuna with spicy mayo", "ar": "تونة طازجة مع مايو حار"}, "price": 14.99, "preparation_time": 12},
-            {"name": {"en": "Salmon Nigiri", "ar": "سالمون نيجيري"}, "description": {"en": "Fresh salmon over rice", "ar": "سالمون طازج على الأرز"}, "price": 9.99, "preparation_time": 8},
+            {"name": {"en": "California Roll", "ar": "كاليفورنيا رول"}, "description": {"en": "Crab, avocado, cucumber", "ar": "سلطعون، أفوكادو، خيار"}, "price": 12.99, "preparation_time": 10, "calories": 250},
+            {"name": {"en": "Spicy Tuna Roll", "ar": "سبايسي تونا رول"}, "description": {"en": "Fresh tuna with spicy mayo", "ar": "تونة طازجة مع مايو حار"}, "price": 14.99, "preparation_time": 12, "calories": 320},
+            {"name": {"en": "Salmon Nigiri", "ar": "سالمون نيجيري"}, "description": {"en": "Fresh salmon over rice", "ar": "سالمون طازج على الأرز"}, "price": 9.99, "preparation_time": 8, "calories": 180},
         ],
         "Pizza": [
-            {"name": {"en": "Margherita Pizza", "ar": "بيتزا مارغريتا"}, "description": {"en": "Tomato, mozzarella, basil", "ar": "طماطم، موزاريلا، ريحان"}, "price": 16.99, "preparation_time": 15},
-            {"name": {"en": "Pepperoni Pizza", "ar": "بيتزا بيبروني"}, "description": {"en": "Pepperoni, cheese, tomato sauce", "ar": "بيبروني، جبنة، صلصة طماطم"}, "price": 18.99, "preparation_time": 18},
+            {"name": {"en": "Margherita Pizza", "ar": "بيتزا مارغريتا"}, "description": {"en": "Tomato, mozzarella, basil", "ar": "طماطم، موزاريلا، ريحان"}, "price": 16.99, "preparation_time": 15, "calories": 280},
+            {"name": {"en": "Pepperoni Pizza", "ar": "بيتزا بيبروني"}, "description": {"en": "Pepperoni, cheese, tomato sauce", "ar": "بيبروني، جبنة، صلصة طماطم"}, "price": 18.99, "preparation_time": 18, "calories": 350},
         ],
         "Burgers": [
-            {"name": {"en": "Classic Burger", "ar": "برجر كلاسيكي"}, "description": {"en": "Beef patty, lettuce, tomato", "ar": "لحم بقري، خس، طماطم"}, "price": 10.99, "preparation_time": 12},
-            {"name": {"en": "BBQ Bacon Burger", "ar": "برجر لحم مع بيكون"}, "description": {"en": "Beef patty, bacon, BBQ sauce", "ar": "لحم بقري، بيكون، صلصة باربيكيو"}, "price": 13.99, "preparation_time": 15},
+            {"name": {"en": "Classic Burger", "ar": "برجر كلاسيكي"}, "description": {"en": "Beef patty, lettuce, tomato", "ar": "لحم بقري، خس، طماطم"}, "price": 10.99, "preparation_time": 12, "calories": 450},
+            {"name": {"en": "BBQ Bacon Burger", "ar": "برجر لحم مع بيكون"}, "description": {"en": "Beef patty, bacon, BBQ sauce", "ar": "لحم بقري، بيكون، صلصة باربيكيو"}, "price": 13.99, "preparation_time": 15, "calories": 520},
         ],
         "Tacos": [
-            {"name": {"en": "Beef Tacos", "ar": "تاكو لحم بقري"}, "description": {"en": "Seasoned ground beef in crispy shells", "ar": "لحم بقري متبل في قشور مقرمشة"}, "price": 8.99, "preparation_time": 8},
-            {"name": {"en": "Chicken Quesadilla", "ar": "كيساديلا دجاج"}, "description": {"en": "Grilled chicken and cheese", "ar": "دجاج مشوي وجبنة"}, "price": 9.99, "preparation_time": 10},
+            {"name": {"en": "Beef Tacos", "ar": "تاكو لحم بقري"}, "description": {"en": "Seasoned ground beef in crispy shells", "ar": "لحم بقري متبل في قشور مقرمشة"}, "price": 8.99, "preparation_time": 8, "calories": 220},
+            {"name": {"en": "Chicken Quesadilla", "ar": "كيساديلا دجاج"}, "description": {"en": "Grilled chicken and cheese", "ar": "دجاج مشوي وجبنة"}, "price": 9.99, "preparation_time": 10, "calories": 380},
         ],
         "Salads": [
-            {"name": {"en": "Avocado Salad", "ar": "سلطة أفوكادو"}, "description": {"en": "Mixed greens with avocado", "ar": "خضروات مشكلة مع أفوكادو"}, "price": 9.99, "preparation_time": 7},
-            {"name": {"en": "Quinoa Bowl", "ar": "كينوا بول"}, "description": {"en": "Quinoa with roasted vegetables", "ar": "كينوا مع خضروات مشوية"}, "price": 12.99, "preparation_time": 9},
+            {"name": {"en": "Avocado Salad", "ar": "سلطة أفوكادو"}, "description": {"en": "Mixed greens with avocado", "ar": "خضروات مشكلة مع أفوكادو"}, "price": 9.99, "preparation_time": 7, "calories": 180},
+            {"name": {"en": "Quinoa Bowl", "ar": "كينوا بول"}, "description": {"en": "Quinoa with roasted vegetables", "ar": "كينوا مع خضروات مشوية"}, "price": 12.99, "preparation_time": 9, "calories": 320},
         ],
         "Pizza": [
-            {"name": {"en": "Tiramisu", "ar": "تيراميسو"}, "description": {"en": "Classic Italian dessert made of layers of coffee-soaked ladyfingers and whipped mascarpone cream, topped with cocoa powder", "ar": "حلوى إيطالية كلاسيكية مصنوعة من طبقات من بسكويت اللادي فينجر المنقوع بالقهوة وكريمة الماسكاربوني المخفوقة، مغطاة بمسحوق الكاكاو"}, "price": 13.00, "preparation_time": 5},
+            {"name": {"en": "Tiramisu", "ar": "تيراميسو"}, "description": {"en": "Classic Italian dessert made of layers of coffee-soaked ladyfingers and whipped mascarpone cream, topped with cocoa powder", "ar": "حلوى إيطالية كلاسيكية مصنوعة من طبقات من بسكويت اللادي فينجر المنقوع بالقهوة وكريمة الماسكاربوني المخفوقة، مغطاة بمسحوق الكاكاو"}, "price": 13.00, "preparation_time": 5, "calories": 280},
         ]
     }
 
